@@ -1,0 +1,6 @@
+framework module Pods_BarHopTests {
+  umbrella header "Pods-BarHopTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

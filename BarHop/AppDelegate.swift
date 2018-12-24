@@ -8,6 +8,7 @@
 
 import UIKit
 import AWSMobileClient
+import Stripe
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -20,6 +21,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return AWSMobileClient.sharedInstance().interceptApplication(
             application,
             didFinishLaunchingWithOptions: launchOptions)
+    }
+    
+    func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        STPPaymentConfiguration.shared().publishableKey = "pk_test_ObmeWxmhcizqCRhpltrkOXNS"
+        // do any other necessary launch configuration
+        return true
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

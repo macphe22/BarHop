@@ -4,21 +4,25 @@ PODS:
   - AWSCore (2.6.35)
   - AWSMobileClient (2.6.35):
     - AWSAuthCore (= 2.6.35)
+  - Stripe (14.0.0)
 
 DEPENDENCIES:
   - AWSMobileClient (~> 2.6.13)
+  - Stripe
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - AWSAuthCore
     - AWSCore
     - AWSMobileClient
+    - Stripe
 
 SPEC CHECKSUMS:
   AWSAuthCore: 386e045a341acebf2409425467e907ae1a45ed63
   AWSCore: 2dab62ef2e5ca5d8c72c6cbdb3a6ea1532c27c2b
   AWSMobileClient: f89a36e0d95fc354a9d3b50d347371788c542449
+  Stripe: db29ad197c74aca6fb981e4e8355cf7ebd0fca5a
 
-PODFILE CHECKSUM: bd2f5aa90dba375465d5b2db01ce8996ca91d1b9
+PODFILE CHECKSUM: 4093b6c27bfbee54010a336f5eebfeead7cf364d
 
 COCOAPODS: 1.5.3

@@ -15,13 +15,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
+    // Add a AWSMobileClient call in application:didFinishLaunching
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         return AWSMobileClient.sharedInstance().interceptApplication(
             application,
             didFinishLaunchingWithOptions: launchOptions)
     }
+    // Add a AWSMobileClient call in application:open url
+    func application(_ application: UIApplication, open url: URL,
+                     sourceApplication: String?, annotation: Any) -> Bool {
+        
+        return AWSMobileClient.sharedInstance().interceptApplication(
+            application, open: url,
+            sourceApplication: sourceApplication,
+            annotation: annotation)
+        
+    }
+    
+    // Add a AWSMobileClient call in application:didFinishLaunching
+
     
     //func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: //[UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         //STPPaymentConfiguration.shared().publishableKey = "pk_test_ObmeWxmhcizqCRhpltrkOXNS"

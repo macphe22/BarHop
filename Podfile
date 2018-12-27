@@ -7,6 +7,8 @@ target :'BarHop' do
   # Comment the next line if you're not using Swift and don't want to use dynamic 
   use_frameworks!
   pod 'AWSMobileClient', '~> 2.6.13'
+  pod 'AWSUserPoolsSignIn', '~> 2.6.13'
+  pod 'AWSAuthUI', '~> 2.6.13'
   pod 'Stripe'
   # Pods for BarHop
 

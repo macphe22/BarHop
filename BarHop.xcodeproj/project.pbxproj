@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		1EF4BBAF8E1314AD1B103805 /* Pods_BarHop.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6454501B7B68AEF7AE8CD7B8 /* Pods_BarHop.framework */; };
 		388839B0F42A3C1C5E694C2D /* Pods_BarHopTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5D202D4ED592C981B7CDAA5 /* Pods_BarHopTests.framework */; };
-		A126134821D08A63008FC02F /* SignUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A126134721D08A63008FC02F /* SignUpVC.swift */; };
 		A126134A21D08BFD008FC02F /* MainScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A126134921D08BFD008FC02F /* MainScreenVC.swift */; };
 		D2F8EF42B222F0757748BFA8 /* Pods_BarHopUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4EED81701FD3D85B34B8A5EE /* Pods_BarHopUITests.framework */; };
 		D3DDFAD121D0818F0071B437 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DDFAD021D0818F0071B437 /* AppDelegate.swift */; };
@@ -43,7 +42,6 @@
 		4EED81701FD3D85B34B8A5EE /* Pods_BarHopUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BarHopUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6454501B7B68AEF7AE8CD7B8 /* Pods_BarHop.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BarHop.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		83E6392AB7F36F4E69E100AA /* Pods-BarHop.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BarHop.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BarHop/Pods-BarHop.debug.xcconfig"; sourceTree = "<group>"; };
-		A126134721D08A63008FC02F /* SignUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpVC.swift; sourceTree = "<group>"; };
 		A126134921D08BFD008FC02F /* MainScreenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenVC.swift; sourceTree = "<group>"; };
 		BA278A557AA837A2F0DC83C3 /* Pods-BarHopUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BarHopUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-BarHopUITests/Pods-BarHopUITests.release.xcconfig"; sourceTree = "<group>"; };
 		BACC7E0B876795EF4FEF91B3 /* Pods-BarHopUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BarHopUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BarHopUITests/Pods-BarHopUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -147,7 +145,6 @@
 				D3DDFAD221D0818F0071B437 /* LoginVC.swift */,
 				D3DDFAD421D0818F0071B437 /* Main.storyboard */,
 				A126134921D08BFD008FC02F /* MainScreenVC.swift */,
-				A126134721D08A63008FC02F /* SignUpVC.swift */,
 				D3DDFAD721D081910071B437 /* Assets.xcassets */,
 				D3DDFAD921D081910071B437 /* LaunchScreen.storyboard */,
 				D3DDFAFE21D0823F0071B437 /* awsconfiguration.json */,
@@ -400,7 +397,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				D3DDFAD321D0818F0071B437 /* LoginVC.swift in Sources */,
-				A126134821D08A63008FC02F /* SignUpVC.swift in Sources */,
 				D3DDFAD121D0818F0071B437 /* AppDelegate.swift in Sources */,
 				A126134A21D08BFD008FC02F /* MainScreenVC.swift in Sources */,
 			);

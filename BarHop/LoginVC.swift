@@ -28,7 +28,18 @@ class LoginVC: UIViewController {
                 })
         }
     }
+    func showSignIn() {
+        self.viewDidLoad()
+    }
 
-
+    @IBAction func signOutButtonPress(_ sender: Any) {
+        print("here")
+        AWSSignInManager.sharedInstance().logout(completionHandler: {(result: Any?, error: Error?) in
+            self.showSignIn()
+            // print("Sign-out Successful: \(signInProvider.getDisplayName)");
+            
+        })
+    }
+    
 }
 

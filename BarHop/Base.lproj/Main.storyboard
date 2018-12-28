@@ -44,30 +44,45 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AI4-y4-1jD">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AI4-y4-1jD">
                                 <rect key="frame" x="0.0" y="64" width="260" height="603"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zxu-4h-UyE">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zxu-4h-UyE">
                                         <rect key="frame" x="0.0" y="0.0" width="260" height="60"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="zxu-4h-UyE" secondAttribute="height" multiplier="13:3" id="esx-an-d2u"/>
+                                        </constraints>
                                         <state key="normal" title="Active Passes">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qHr-0S-LyC">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qHr-0S-LyC">
                                         <rect key="frame" x="0.0" y="68" width="260" height="60"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="qHr-0S-LyC" secondAttribute="height" multiplier="13:3" id="UID-Gf-GtU"/>
+                                        </constraints>
                                         <state key="normal" title="Sign Out">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.1529411765" green="0.21176470589999999" blue="0.25882352939999997" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="zxu-4h-UyE" secondAttribute="trailing" id="4FF-IS-hUm"/>
+                                    <constraint firstAttribute="trailing" secondItem="qHr-0S-LyC" secondAttribute="trailing" id="Rzc-Na-Qxb"/>
+                                    <constraint firstItem="zxu-4h-UyE" firstAttribute="top" secondItem="AI4-y4-1jD" secondAttribute="top" id="ZC1-BK-a0R"/>
+                                    <constraint firstAttribute="width" secondItem="AI4-y4-1jD" secondAttribute="height" multiplier="260:603" id="ZxS-Jz-Ht1"/>
+                                    <constraint firstItem="qHr-0S-LyC" firstAttribute="top" secondItem="zxu-4h-UyE" secondAttribute="bottom" constant="8" id="lM6-Pj-OS2"/>
+                                    <constraint firstItem="qHr-0S-LyC" firstAttribute="leading" secondItem="AI4-y4-1jD" secondAttribute="leading" id="sk9-Hw-CDR"/>
+                                    <constraint firstItem="zxu-4h-UyE" firstAttribute="leading" secondItem="AI4-y4-1jD" secondAttribute="leading" id="xCr-Rz-VTH"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="0.1142979452" green="0.17104559080000001" blue="0.22137200339999999" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="AI4-y4-1jD" firstAttribute="top" secondItem="pKi-y3-kkW" secondAttribute="top" id="2BU-5H-Ccv"/>
                             <constraint firstItem="AI4-y4-1jD" firstAttribute="leading" secondItem="pKi-y3-kkW" secondAttribute="leading" id="aog-lK-dhV"/>
+                            <constraint firstItem="AI4-y4-1jD" firstAttribute="bottom" secondItem="pKi-y3-kkW" secondAttribute="bottom" id="oj3-6X-5KA"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="pKi-y3-kkW"/>
                     </view>

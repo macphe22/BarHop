@@ -9,6 +9,7 @@
 import UIKit
 import AWSAuthCore
 import AWSAuthUI
+import AWSDynamoDB
 
 class MainScreenVC: UIViewController {
     

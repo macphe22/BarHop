@@ -11,7 +11,7 @@ import AWSAuthCore
 import AWSAuthUI
 import AWSDynamoDB
 
- class LoginVC: UIViewController {
+ class mainScreenVC: UIViewController {
 
 //    override func viewDidLoad() {
 //        super.viewDidLoad()

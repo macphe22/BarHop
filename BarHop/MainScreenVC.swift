@@ -46,6 +46,8 @@ class MainScreenVC: UIViewController {
             ProfLeftEdge.constant = 0;
         }
         profileOpen = !profileOpen;
+        
+        
     }
     
 //@IBAction func signOutButtonPress(_ sender: Any) {

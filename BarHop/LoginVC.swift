@@ -65,7 +65,7 @@ import AWSDynamoDB
 
 
     @IBAction func signOutButtonPress(_ sender: Any) {
-        print("here")
+        //print("here")
         AWSSignInManager.sharedInstance().logout(completionHandler: {(result: Any?, error: Error?) in
             self.viewDidLoad()
             //self.presentAuthUIViewController()
@@ -73,6 +73,20 @@ import AWSDynamoDB
             
         })
     }
+    
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if let identifier = segue.identifier {
+//            switch identifier{
+//            case "show register":
+//                    if let vc = segue.destination as? UIViewController {
+//                        print("true")
+//
+//                }
+//            default: break
+//            }
+//        }
+//    }
+    
     // Creating a new customer
     func createCustomer(){
         print("Creating Customer")

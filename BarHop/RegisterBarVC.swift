@@ -12,9 +12,22 @@ class RegisterBarVC: UINavigationController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        print("register view loaded")
+        
         // Do any additional setup after loading the view.
     }
+    //Textfields below
+    
+    @IBOutlet weak var bar_name: UITextField!
+    @IBOutlet weak var ownersName: UITextField!
+
+    @IBOutlet weak var phoneNumber: UITextField!
+    
+    @IBOutlet weak var address: UITextField!
+    @IBOutlet weak var maxCapacity: UITextField!
+    @IBOutlet weak var accountNumber: UITextField!
+    
+    @IBOutlet weak var ticketPrice: UITextField!
     
 
     /*

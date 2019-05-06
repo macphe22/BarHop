@@ -10,7 +10,6 @@ target :'BarHop' do
   pod 'AWSUserPoolsSignIn', '~> 2.6.13'
   pod 'AWSAuthUI', '~> 2.6.13'
   pod 'AWSDynamoDB', '~> 2.6.13'
-  pod 'Stripe'
   # Pods for BarHop
 
   target 'BarHopTests' do

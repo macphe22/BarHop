@@ -16,14 +16,12 @@ PODS:
   - AWSUserPoolsSignIn (2.6.35):
     - AWSAuthCore (= 2.6.35)
     - AWSCognitoIdentityProvider (= 2.6.35)
-  - Stripe (14.0.0)
 
 DEPENDENCIES:
   - AWSAuthUI (~> 2.6.13)
   - AWSDynamoDB (~> 2.6.13)
   - AWSMobileClient (~> 2.6.13)
   - AWSUserPoolsSignIn (~> 2.6.13)
-  - Stripe
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -35,7 +33,6 @@ SPEC REPOS:
     - AWSDynamoDB
     - AWSMobileClient
     - AWSUserPoolsSignIn
-    - Stripe
 
 SPEC CHECKSUMS:
   AWSAuthCore: 386e045a341acebf2409425467e907ae1a45ed63
@@ -46,8 +43,7 @@ SPEC CHECKSUMS:
   AWSDynamoDB: f4902fc37384dcf9547e2d8a32a5b208d4d1d996
   AWSMobileClient: f89a36e0d95fc354a9d3b50d347371788c542449
   AWSUserPoolsSignIn: cf3293cf2c423922e628082a9b09e77473afc8b0
-  Stripe: db29ad197c74aca6fb981e4e8355cf7ebd0fca5a
 
-PODFILE CHECKSUM: b7b91266d23e79315b15573376622b76db39bd42
+PODFILE CHECKSUM: 5cfe67e4f66327602f1234613f5b9230b80d505e
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.6.1

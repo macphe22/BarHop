@@ -1,7 +1,7 @@
 # BarHop
 
 ### Purpose
-BarHop is an application that allows users to pay in advance to skip the lines at local bars. The earlier a user selects to receive priority, the cheaper the pass is.
+BarHop is an iOS application that allows users to preemptively elect to skip the lines to get into participating bars/clubs on busy nights.
 
 ### Technologies Used
-BarHop is an iOS application that uses primarily Swift 4.2. However, through AWS and Stripe, multiple backend softwares will be used in order to effectively and securely transfer confidential user data.
+BarHop is an iOS application that uses primarily Swift 4.2. However, through AWS, user data will be confidentially transferred and stored, and with Venmo SDK, users will have ease of payment through a brief cross-platform interaction.

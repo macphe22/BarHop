@@ -12,6 +12,7 @@ import CoreLocation
 
 class MapSearchVC: UIViewController {
     
+    // Map view outlet
     @IBOutlet weak var mapView: MKMapView!
     
     let locationManager = CLLocationManager()

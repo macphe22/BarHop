@@ -12,9 +12,20 @@ import AWSAuthUI
 import AWSDynamoDB
 
  class LoginVC: UIViewController {
-
+    
+    @IBOutlet weak var findBarBtn: UIButton!
+    @IBOutlet weak var activePassesBtn: UIButton!
+    @IBOutlet weak var registerBarBtn: UIButton!
+    @IBOutlet weak var signoutBtn: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        // Button Stuff
+        findBarBtn.heightAnchor.constraint(equalToConstant:  UIScreen.main.bounds.height * 0.25).isActive = true
+        activePassesBtn.heightAnchor.constraint(equalToConstant:  UIScreen.main.bounds.height * 0.25).isActive = true
+        registerBarBtn.heightAnchor.constraint(equalToConstant:  UIScreen.main.bounds.height * 0.25).isActive = true
+        signoutBtn.heightAnchor.constraint(equalToConstant:  UIScreen.main.bounds.height * 0.25).isActive = true
+
         // Do any additional setup after loading the view, typically from a nib.
         if !AWSSignInManager.sharedInstance().isLoggedIn {
             AWSAuthUIViewController
@@ -24,10 +35,9 @@ import AWSDynamoDB
                                         if error != nil {
                                             print("Error occurred: \(String(describing: error))")
                                         } else {
-//                                            // Sign in successful.
+                                            // Sign in successful.
                                         }
                 })
-
         }
     }
 //    override func viewDidLoad() {
@@ -63,17 +73,16 @@ import AWSDynamoDB
 //        })
 //    }
 
-
-    @IBAction func signOutButtonPress(_ sender: Any) {
-        //print("here")
+    
+    @IBAction func signOutBtnPressed(_ sender: Any) {
         AWSSignInManager.sharedInstance().logout(completionHandler: {(result: Any?, error: Error?) in
             self.viewDidLoad()
             //self.presentAuthUIViewController()
-           // print("Sign-out Successful: \(signInProvider.getDisplayName)");
-            
+            // print("Sign-out Successful: \(signInProvider.getDisplayName)");
         })
     }
     
+   
 //    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 //        if let identifier = segue.identifier {
 //            switch identifier{

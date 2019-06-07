@@ -8,7 +8,6 @@
 
 import UIKit
 import AWSMobileClient
-//import Stripe
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

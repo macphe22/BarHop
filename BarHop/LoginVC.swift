@@ -16,16 +16,23 @@ import AWSDynamoDB
     @IBOutlet weak var findBarBtn: UIButton!
     @IBOutlet weak var activePassesBtn: UIButton!
     @IBOutlet weak var registerBarBtn: UIButton!
-    @IBOutlet weak var signoutBtn: UIButton!
+    @IBOutlet weak var signOutBtn: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Button Stuff
-        findBarBtn.heightAnchor.constraint(equalToConstant:  UIScreen.main.bounds.height * 0.25).isActive = true
-        activePassesBtn.heightAnchor.constraint(equalToConstant:  UIScreen.main.bounds.height * 0.25).isActive = true
-        registerBarBtn.heightAnchor.constraint(equalToConstant:  UIScreen.main.bounds.height * 0.25).isActive = true
-        signoutBtn.heightAnchor.constraint(equalToConstant:  UIScreen.main.bounds.height * 0.25).isActive = true
-
+        // Button stuff
+        findBarBtn.layer.cornerRadius = 8
+        findBarBtn.layer.borderWidth = 1
+        findBarBtn.layer.borderColor = UIColor.white.cgColor
+        activePassesBtn.layer.cornerRadius = 8
+        activePassesBtn.layer.borderWidth = 1
+        activePassesBtn.layer.borderColor = UIColor.white.cgColor
+        registerBarBtn.layer.cornerRadius = 8
+        registerBarBtn.layer.borderWidth = 1
+        registerBarBtn.layer.borderColor = UIColor.white.cgColor
+        signOutBtn.layer.cornerRadius = 8
+        signOutBtn.layer.borderWidth = 1
+        signOutBtn.layer.borderColor = UIColor.white.cgColor
         // Do any additional setup after loading the view, typically from a nib.
         if !AWSSignInManager.sharedInstance().isLoggedIn {
             AWSAuthUIViewController
@@ -40,6 +47,7 @@ import AWSDynamoDB
                 })
         }
     }
+    
 //    override func viewDidLoad() {
 //        super.viewDidLoad()
 //        if !AWSSignInManager.sharedInstance().isLoggedIn {
@@ -73,7 +81,6 @@ import AWSDynamoDB
 //        })
 //    }
 
-    
     @IBAction func signOutBtnPressed(_ sender: Any) {
         AWSSignInManager.sharedInstance().logout(completionHandler: {(result: Any?, error: Error?) in
             self.viewDidLoad()
@@ -81,7 +88,6 @@ import AWSDynamoDB
             // print("Sign-out Successful: \(signInProvider.getDisplayName)");
         })
     }
-    
    
 //    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 //        if let identifier = segue.identifier {

@@ -18,11 +18,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Scv-9r-MWV">
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="Scv-9r-MWV">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MdA-j0-avd">
-                                        <rect key="frame" x="8" y="8" width="359" height="141"/>
+                                        <rect key="frame" x="15" y="15" width="345" height="132"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
                                         <state key="normal" title="Find a Bar">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -32,14 +32,14 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="laJ-7K-phc">
-                                        <rect key="frame" x="8" y="157" width="359" height="140.5"/>
+                                        <rect key="frame" x="15" y="162" width="345" height="132"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
                                         <state key="normal" title="Active Passes">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i4Q-Oj-kgX">
-                                        <rect key="frame" x="8" y="305.5" width="359" height="141"/>
+                                        <rect key="frame" x="15" y="309" width="345" height="132"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
                                         <state key="normal" title="Register a Bar">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -49,7 +49,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pDe-fp-h0L">
-                                        <rect key="frame" x="8" y="454.5" width="359" height="140.5"/>
+                                        <rect key="frame" x="15" y="456" width="345" height="132"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
                                         <state key="normal" title="Sign Out">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -59,10 +59,11 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
+                                <color key="backgroundColor" red="0.12549019607843137" green="0.0" blue="0.12549019607843137" alpha="1" colorSpace="calibratedRGB"/>
+                                <edgeInsets key="layoutMargins" top="15" left="15" bottom="15" right="15"/>
                             </stackView>
                         </subviews>
-                        <color key="backgroundColor" red="0.1142979452" green="0.17104559080000001" blue="0.22137200339999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.062745098039215685" green="0.0" blue="0.12549019607843137" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="Scv-9r-MWV" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="Fm0-Nk-hBF"/>
                             <constraint firstItem="Scv-9r-MWV" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Xl5-X7-j7I"/>
@@ -83,10 +84,25 @@
             </objects>
             <point key="canvasLocation" x="2772" y="-89.505247376311857"/>
         </scene>
-        <!--RegisterBarVC-->
+        <!--View Controller-->
+        <scene sceneID="YrO-Mk-ByE">
+            <objects>
+                <viewController id="dbc-Ut-vJH" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="4j3-9f-VdB">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="cDS-fK-fdG"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="29Q-2h-fba" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3905" y="-231"/>
+        </scene>
+        <!--Register With Us-->
         <scene sceneID="YPB-yo-qdA">
             <objects>
-                <viewController title="RegisterBarVC" id="7IF-4C-a5S" sceneMemberID="viewController">
+                <viewController title="Register With Us" id="7IF-4C-a5S" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hX3-v8-AKG">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -94,11 +110,11 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thank you for your interest in registering a location with BarHop. Please email barhopios@gmail.com to discuss details." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="10" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iXn-mh-7p9">
                                 <rect key="frame" x="16" y="64" width="343" height="583"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="textColor" red="0.96862745100000003" green="0.95686274510000002" blue="0.91372549020000005" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="0.1142979452" green="0.17104559080000001" blue="0.22137200339999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.1137254902" green="0.1137254902" blue="0.17254901959999999" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="iXn-mh-7p9" firstAttribute="top" secondItem="2PP-cE-SPz" secondAttribute="top" id="6Tp-dD-VUl"/>
                             <constraint firstItem="2PP-cE-SPz" firstAttribute="trailing" secondItem="iXn-mh-7p9" secondAttribute="trailing" constant="16" id="EQI-Qo-QiF"/>
@@ -112,10 +128,10 @@
             </objects>
             <point key="canvasLocation" x="3905" y="498"/>
         </scene>
-        <!--Map SearchVC-->
+        <!--Find a Bar-->
         <scene sceneID="NUc-xa-ScR">
             <objects>
-                <viewController id="Mlw-XS-gie" customClass="MapSearchVC" customModule="BarHop" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Find a Bar" id="Mlw-XS-gie" customClass="MapSearchVC" customModule="BarHop" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="a0I-n0-gn2">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -161,73 +177,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ItZ-V0-hCB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1578" y="-90"/>
-        </scene>
-        <!--LoginVC-->
-        <scene sceneID="cNI-px-qHS">
-            <objects>
-                <viewController id="NJa-I3-aJh" customClass="LoginVC" customModule="BarHop" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Z8m-35-hiw">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="R5h-ap-ger">
-                                <rect key="frame" x="0.0" y="20" width="375" height="627"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K8Q-Nm-eR7">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="157"/>
-                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
-                                        <state key="normal" title="Find a Bar">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Awq-W0-oLg">
-                                        <rect key="frame" x="0.0" y="157" width="375" height="156.5"/>
-                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
-                                        <state key="normal" title="Active Passes">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PpA-MI-8JO">
-                                        <rect key="frame" x="0.0" y="313.5" width="375" height="157"/>
-                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
-                                        <state key="normal" title="Register a Bar">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="So6-AH-tf1">
-                                        <rect key="frame" x="0.0" y="470.5" width="375" height="156.5"/>
-                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
-                                        <state key="normal" title="Sign Out">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="signOutBtnPressed:" destination="NJa-I3-aJh" eventType="touchUpInside" id="NRV-gs-XNe"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                            </stackView>
-                        </subviews>
-                        <color key="backgroundColor" red="0.1142979452" green="0.17104559080000001" blue="0.22137200339999999" alpha="1" colorSpace="calibratedRGB"/>
-                        <constraints>
-                            <constraint firstItem="4bY-Ji-3pe" firstAttribute="bottom" secondItem="R5h-ap-ger" secondAttribute="bottom" constant="20" id="6qE-cO-b5h"/>
-                            <constraint firstItem="R5h-ap-ger" firstAttribute="leading" secondItem="4bY-Ji-3pe" secondAttribute="leading" id="AEU-kB-uds"/>
-                            <constraint firstItem="R5h-ap-ger" firstAttribute="trailing" secondItem="4bY-Ji-3pe" secondAttribute="trailing" id="bB6-Pm-5gZ"/>
-                            <constraint firstItem="R5h-ap-ger" firstAttribute="top" secondItem="4bY-Ji-3pe" secondAttribute="top" id="gYR-l9-bjq"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="4bY-Ji-3pe"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="UUY-sY-uoZ"/>
-                    <connections>
-                        <outlet property="activePassesBtn" destination="Awq-W0-oLg" id="RfG-dh-bXV"/>
-                        <outlet property="findBarBtn" destination="K8Q-Nm-eR7" id="vry-UK-9tD"/>
-                        <outlet property="registerBarBtn" destination="PpA-MI-8JO" id="36S-3V-2Er"/>
-                        <outlet property="signOutBtn" destination="So6-AH-tf1" id="weH-bO-lsf"/>
-                        <outlet property="stackView" destination="R5h-ap-ger" id="57j-mT-cOT"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="FLO-zk-GYr" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2772" y="-89.505247376311857"/>
         </scene>
     </scenes>
 </document>

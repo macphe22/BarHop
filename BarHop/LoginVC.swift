@@ -21,31 +21,54 @@ import AWSDynamoDB
     override func viewDidLoad() {
         super.viewDidLoad()
         // Button stuff
+        let darkPurple = UIColor(red: 54/255, green: 33/255, blue: 62/255, alpha: 1)
+        let midPurple = UIColor(red: 85/255, green: 73/255, blue: 113/255, alpha: 1)
+        let dullBlue = UIColor(red: 99/255, green: 118/255, blue: 141/255, alpha: 1)
+        let dullSkyBlue = UIColor(red: 138/255, green: 198/255, blue: 208/255, alpha: 1)
+        
         findBarBtn.layer.cornerRadius = 8
         findBarBtn.layer.borderWidth = 1
-        findBarBtn.layer.borderColor = UIColor.white.cgColor
+        findBarBtn.backgroundColor = darkPurple
+        findBarBtn.layer.borderColor = UIColor(white: 1, alpha: 1).cgColor
+        findBarBtn.titleLabel?.textColor = UIColor(white: 1, alpha: 1)
         activePassesBtn.layer.cornerRadius = 8
         activePassesBtn.layer.borderWidth = 1
-        activePassesBtn.layer.borderColor = UIColor.white.cgColor
+        activePassesBtn.backgroundColor = midPurple
+        activePassesBtn.layer.borderColor = UIColor(white: 1, alpha: 1).cgColor
+        activePassesBtn.titleLabel?.textColor = UIColor(white: 1, alpha: 1)
         registerBarBtn.layer.cornerRadius = 8
         registerBarBtn.layer.borderWidth = 1
-        registerBarBtn.layer.borderColor = UIColor.white.cgColor
+        registerBarBtn.backgroundColor = dullBlue
+        registerBarBtn.layer.borderColor = UIColor(white: 1, alpha: 1).cgColor
+        registerBarBtn.titleLabel?.textColor = UIColor(white: 1, alpha: 1)
         signOutBtn.layer.cornerRadius = 8
         signOutBtn.layer.borderWidth = 1
-        signOutBtn.layer.borderColor = UIColor.white.cgColor
+        signOutBtn.backgroundColor = dullSkyBlue
+        signOutBtn.layer.borderColor = UIColor(white: 1, alpha: 1).cgColor
+        signOutBtn.titleLabel?.textColor = UIColor(white: 1, alpha: 1)
         // Do any additional setup after loading the view, typically from a nib.
         if !AWSSignInManager.sharedInstance().isLoggedIn {
-            AWSAuthUIViewController
-                .presentViewController(with: self.navigationController!,
-                                       configuration: nil,
-                                       completionHandler: { (provider: AWSSignInProvider, error: Error?) in
-                                        if error != nil {
-                                            print("Error occurred: \(String(describing: error))")
-                                        } else {
-                                            // Sign in successful.
-                                        }
-                })
+            presentAuthUIViewController()
         }
+    }
+    
+    func presentAuthUIViewController() {
+        let config = AWSAuthUIConfiguration()
+        config.enableUserPoolsUI = true
+        let darkPurple = UIColor(red: 54/255, green: 33/255, blue: 62/255, alpha: 1)
+        config.backgroundColor = darkPurple
+        config.isBackgroundColorFullScreen = true
+        config.logoImage = UIImage(named: "logo.png")
+        
+        AWSAuthUIViewController.presentViewController(
+            with: self.navigationController!,
+            configuration: config, completionHandler: { (provider: AWSSignInProvider, error: Error?) in
+                if error == nil {
+                    // SignIn succeeded.
+                } else {
+                    // end user faced error while loggin in, take any required action here.
+                }
+        })
     }
     
 //    override func viewDidLoad() {

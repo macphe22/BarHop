@@ -10,8 +10,15 @@ target :'BarHop' do
   pod 'AWSUserPoolsSignIn', '~> 2.6.13'
   pod 'AWSAuthUI', '~> 2.6.13'
   pod 'AWSDynamoDB', '~> 2.6.13'
+  
+  # Venmo Pod
+  pod 'Braintree'
+  pod 'Braintree/Venmo'
+  pod 'Braintree/Venmo'
+  pod 'Braintree/Apple-Pay'
+  pod 'BraintreeDropIn'
+  
   # Pods for BarHop
-
   target 'BarHopTests' do
     inherit! :search_paths
     # Pods for testing

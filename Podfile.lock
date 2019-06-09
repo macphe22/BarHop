@@ -16,12 +16,60 @@ PODS:
   - AWSUserPoolsSignIn (2.6.35):
     - AWSAuthCore (= 2.6.35)
     - AWSCognitoIdentityProvider (= 2.6.35)
+  - Braintree (4.23.0):
+    - Braintree/Card (= 4.23.0)
+    - Braintree/Core (= 4.23.0)
+    - Braintree/PayPal (= 4.23.0)
+    - Braintree/UI (= 4.23.0)
+  - Braintree/Apple-Pay (4.23.0):
+    - Braintree/Core
+  - Braintree/Card (4.23.0):
+    - Braintree/Core
+  - Braintree/Core (4.23.0)
+  - Braintree/PaymentFlow (4.23.0):
+    - Braintree/Card
+    - Braintree/Core
+    - Braintree/PayPalOneTouch
+  - Braintree/PayPal (4.23.0):
+    - Braintree/Core
+    - Braintree/PayPalOneTouch
+  - Braintree/PayPalDataCollector (4.23.0):
+    - Braintree/Core
+    - Braintree/PayPalUtils
+  - Braintree/PayPalOneTouch (4.23.0):
+    - Braintree/Core
+    - Braintree/PayPalDataCollector
+    - Braintree/PayPalUtils
+  - Braintree/PayPalUtils (4.23.0)
+  - Braintree/UI (4.23.0):
+    - Braintree/Card
+    - Braintree/Core
+  - Braintree/UnionPay (4.23.0):
+    - Braintree/Card
+    - Braintree/Core
+  - Braintree/Venmo (4.23.0):
+    - Braintree/Core
+    - Braintree/PayPalDataCollector
+  - BraintreeDropIn (7.1.0):
+    - BraintreeDropIn/DropIn (= 7.1.0)
+  - BraintreeDropIn/DropIn (7.1.0):
+    - Braintree/Card (~> 4.23)
+    - Braintree/Core (~> 4.23)
+    - Braintree/PaymentFlow (~> 4.23)
+    - Braintree/PayPal (~> 4.23)
+    - Braintree/UnionPay (~> 4.23)
+    - BraintreeDropIn/UIKit
+  - BraintreeDropIn/UIKit (7.1.0)
 
 DEPENDENCIES:
   - AWSAuthUI (~> 2.6.13)
   - AWSDynamoDB (~> 2.6.13)
   - AWSMobileClient (~> 2.6.13)
   - AWSUserPoolsSignIn (~> 2.6.13)
+  - Braintree
+  - Braintree/Apple-Pay
+  - Braintree/Venmo
+  - BraintreeDropIn
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -33,6 +81,8 @@ SPEC REPOS:
     - AWSDynamoDB
     - AWSMobileClient
     - AWSUserPoolsSignIn
+    - Braintree
+    - BraintreeDropIn
 
 SPEC CHECKSUMS:
   AWSAuthCore: 386e045a341acebf2409425467e907ae1a45ed63
@@ -43,7 +93,9 @@ SPEC CHECKSUMS:
   AWSDynamoDB: f4902fc37384dcf9547e2d8a32a5b208d4d1d996
   AWSMobileClient: f89a36e0d95fc354a9d3b50d347371788c542449
   AWSUserPoolsSignIn: cf3293cf2c423922e628082a9b09e77473afc8b0
+  Braintree: b5841b9b1c1dadc86959db3e29d36099b67f91bf
+  BraintreeDropIn: a019fcbf4edb87c55780ec01d5db3998b19164ce
 
-PODFILE CHECKSUM: 5cfe67e4f66327602f1234613f5b9230b80d505e
+PODFILE CHECKSUM: 9b54032d30ec8f1c9d3dec1ae6bd48a62239f80d
 
 COCOAPODS: 1.6.1

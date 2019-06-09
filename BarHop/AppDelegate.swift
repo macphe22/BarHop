@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Braintree
 import AWSMobileClient
 
 @UIApplicationMain
@@ -16,22 +17,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     // Add a AWSMobileClient call in application:didFinishLaunching
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        // Change navigation bar color
+        UINavigationBar.appearance().barTintColor = UIColor(red: 54/255, green: 33/255, blue: 62/255, alpha: 1)
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor:UIColor(white: 1, alpha: 1)]
+        UINavigationBar.appearance().tintColor = .white
+
+        BTAppSwitch.setReturnURLScheme("com.barhop.barhop.payments")
         // Override point for customization after application launch.
         return AWSMobileClient.sharedInstance().interceptApplication(
             application,
             didFinishLaunchingWithOptions: launchOptions)
     }
+    
     // Add a AWSMobileClient call in application:open url
     func application(_ application: UIApplication, open url: URL,
                      sourceApplication: String?, annotation: Any) -> Bool {
-        
+        // Make sure this return statement works...
+        // Attempts to return both the AWSMobileClient call and the BrainTree for
+        // iOS payment authorization URL
         return AWSMobileClient.sharedInstance().interceptApplication(
             application, open: url,
             sourceApplication: sourceApplication,
-            annotation: annotation)
-        
+            annotation: annotation) &&
+            BTAppSwitch.handleOpen(url, sourceApplication: sourceApplication)
     }
-    
     // Add a AWSMobileClient call in application:didFinishLaunching
 
     

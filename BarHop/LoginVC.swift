@@ -58,7 +58,7 @@ import AWSDynamoDB
         let darkPurple = UIColor(red: 54/255, green: 33/255, blue: 62/255, alpha: 1)
         config.backgroundColor = darkPurple
         config.isBackgroundColorFullScreen = true
-        config.logoImage = UIImage(named: "logo.png")
+        config.logoImage = UIImage(named: "beer-2424943_960_720")
         
         AWSAuthUIViewController.presentViewController(
             with: self.navigationController!,

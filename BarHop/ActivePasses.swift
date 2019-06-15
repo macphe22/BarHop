@@ -21,7 +21,6 @@ class ActivePasses: UIViewController {
     // Function to handle queries to the Customer database
     func getQuery() {
         // Create a query expression
-        let queryExpression = AWSDynamoDBQueryExpression()
 
         
     }

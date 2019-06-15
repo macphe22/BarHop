@@ -1,0 +1,71 @@
+{
+    "Table": {
+        "TableArn": "arn:aws:dynamodb:us-east-2:109396588293:table/barhop-mobilehub-1353656554-Bars", 
+        "AttributeDefinitions": [
+            {
+                "AttributeName": "category", 
+                "AttributeType": "S"
+            }, 
+            {
+                "AttributeName": "itemId", 
+                "AttributeType": "S"
+            }, 
+            {
+                "AttributeName": "longitude", 
+                "AttributeType": "N"
+            }, 
+            {
+                "AttributeName": "userId", 
+                "AttributeType": "S"
+            }
+        ], 
+        "GlobalSecondaryIndexes": [
+            {
+                "IndexSizeBytes": 0, 
+                "IndexName": "Categories", 
+                "Projection": {
+                    "ProjectionType": "ALL"
+                }, 
+                "ProvisionedThroughput": {
+                    "NumberOfDecreasesToday": 0, 
+                    "WriteCapacityUnits": 3, 
+                    "ReadCapacityUnits": 3
+                }, 
+                "IndexStatus": "ACTIVE", 
+                "KeySchema": [
+                    {
+                        "KeyType": "HASH", 
+                        "AttributeName": "category"
+                    }, 
+                    {
+                        "KeyType": "RANGE", 
+                        "AttributeName": "longitude"
+                    }
+                ], 
+                "IndexArn": "arn:aws:dynamodb:us-east-2:109396588293:table/barhop-mobilehub-1353656554-Bars/index/Categories", 
+                "ItemCount": 0
+            }
+        ], 
+        "ProvisionedThroughput": {
+            "NumberOfDecreasesToday": 0, 
+            "WriteCapacityUnits": 3, 
+            "ReadCapacityUnits": 3
+        }, 
+        "TableSizeBytes": 0, 
+        "TableName": "barhop-mobilehub-1353656554-Bars", 
+        "TableStatus": "ACTIVE", 
+        "TableId": "9d8eaa53-7bca-4435-a006-5cbef9e19f5c", 
+        "KeySchema": [
+            {
+                "KeyType": "HASH", 
+                "AttributeName": "userId"
+            }, 
+            {
+                "KeyType": "RANGE", 
+                "AttributeName": "itemId"
+            }
+        ], 
+        "ItemCount": 0, 
+        "CreationDateTime": 1546882183.054
+    }
+}

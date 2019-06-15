@@ -1,0 +1,9 @@
+This text file specifies the current color scheme for the project. While there
+is likely a very easy way to implement this into my actual xcode project, this
+file is also very simple and accessible to use for reference.
+
+#36213E     Dark Purple
+#554971     Mid Purple
+#63768D     Dull Blue
+#8AC6D0     Dull Sky Blue
+#B8F3FF     Bright Blue

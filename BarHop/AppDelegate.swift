@@ -21,8 +21,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().barTintColor = UIColor(red: 54/255, green: 33/255, blue: 62/255, alpha: 1)
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor:UIColor(white: 1, alpha: 1)]
         UINavigationBar.appearance().tintColor = .white
-
-        BTAppSwitch.setReturnURLScheme("com.barhop.barhop.payments")
+        // Run App Switch
+        BTAppSwitch.setReturnURLScheme("com.barhop.barhop.payments") 
         // Override point for customization after application launch.
         return AWSMobileClient.sharedInstance().interceptApplication(
             application,

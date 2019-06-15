@@ -37,6 +37,9 @@
                                         <state key="normal" title="Active Passes">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <segue destination="dbc-Ut-vJH" kind="show" id="5aQ-Qv-1gz"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i4Q-Oj-kgX">
                                         <rect key="frame" x="15" y="309" width="345" height="132"/>
@@ -82,22 +85,68 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2772" y="-89.505247376311857"/>
+            <point key="canvasLocation" x="2772" y="-124"/>
         </scene>
-        <!--View Controller-->
+        <!--Pay View Controller-->
         <scene sceneID="YrO-Mk-ByE">
             <objects>
-                <viewController id="dbc-Ut-vJH" sceneMemberID="viewController">
+                <viewController id="dbc-Ut-vJH" customClass="PayViewController" customModule="BarHop" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="4j3-9f-VdB">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="EWQ-LZ-Hc6">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uIL-hZ-Xyo">
+                                        <rect key="frame" x="15" y="15" width="345" height="78.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gWw-wL-Jdy">
+                                        <rect key="frame" x="15" y="113.5" width="345" height="78.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9rY-DO-rQf">
+                                        <rect key="frame" x="15" y="212" width="345" height="138"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
+                                        <state key="normal" title="Pay"/>
+                                        <connections>
+                                            <action selector="payBtnClicked:" destination="dbc-Ut-vJH" eventType="touchUpInside" id="LJi-JC-ELH"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n1Z-1N-Vvx">
+                                        <rect key="frame" x="15" y="370" width="345" height="218"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <edgeInsets key="layoutMargins" top="15" left="15" bottom="15" right="15"/>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.062745098040000002" green="0.0" blue="0.12549019610000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="EWQ-LZ-Hc6" firstAttribute="trailing" secondItem="cDS-fK-fdG" secondAttribute="trailing" id="BAD-ih-I2U"/>
+                            <constraint firstItem="EWQ-LZ-Hc6" firstAttribute="top" secondItem="cDS-fK-fdG" secondAttribute="top" id="P70-5B-EAL"/>
+                            <constraint firstItem="EWQ-LZ-Hc6" firstAttribute="bottom" secondItem="cDS-fK-fdG" secondAttribute="bottom" id="STs-7u-b3r"/>
+                            <constraint firstItem="EWQ-LZ-Hc6" firstAttribute="leading" secondItem="cDS-fK-fdG" secondAttribute="leading" id="cJx-vx-cSe"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="cDS-fK-fdG"/>
                     </view>
+                    <connections>
+                        <outlet property="barLabel" destination="uIL-hZ-Xyo" id="Z4N-Be-fOQ"/>
+                        <outlet property="disclaimerLabel" destination="n1Z-1N-Vvx" id="8oy-id-52b"/>
+                        <outlet property="numPassesLabel" destination="gWw-wL-Jdy" id="fye-bV-255"/>
+                        <outlet property="payBtn" destination="9rY-DO-rQf" id="35O-k8-73d"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="29Q-2h-fba" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3905" y="-231"/>
+            <point key="canvasLocation" x="3872.8000000000002" y="852.3238380809596"/>
         </scene>
         <!--Register With Us-->
         <scene sceneID="YPB-yo-qdA">
@@ -114,7 +163,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="0.1137254902" green="0.1137254902" blue="0.17254901959999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.062745098040000002" green="0.0" blue="0.12549019610000001" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="iXn-mh-7p9" firstAttribute="top" secondItem="2PP-cE-SPz" secondAttribute="top" id="6Tp-dD-VUl"/>
                             <constraint firstItem="2PP-cE-SPz" firstAttribute="trailing" secondItem="iXn-mh-7p9" secondAttribute="trailing" constant="16" id="EQI-Qo-QiF"/>
@@ -126,7 +175,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LcM-ZC-adV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3905" y="498"/>
+            <point key="canvasLocation" x="3873" y="87"/>
         </scene>
         <!--Find a Bar-->
         <scene sceneID="NUc-xa-ScR">

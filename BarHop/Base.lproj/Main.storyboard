@@ -37,9 +37,6 @@
                                         <state key="normal" title="Active Passes">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
-                                        <connections>
-                                            <segue destination="dbc-Ut-vJH" kind="show" id="5aQ-Qv-1gz"/>
-                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i4Q-Oj-kgX">
                                         <rect key="frame" x="15" y="309" width="345" height="132"/>
@@ -146,7 +143,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="29Q-2h-fba" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3872.8000000000002" y="852.3238380809596"/>
+            <point key="canvasLocation" x="4751" y="-195"/>
         </scene>
         <!--Register With Us-->
         <scene sceneID="YPB-yo-qdA">
@@ -175,7 +172,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LcM-ZC-adV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3873" y="87"/>
+            <point key="canvasLocation" x="2772" y="690"/>
         </scene>
         <!--Find a Bar-->
         <scene sceneID="NUc-xa-ScR">
@@ -191,6 +188,14 @@
                                     <outlet property="delegate" destination="Mlw-XS-gie" id="Z7q-dA-XPQ"/>
                                 </connections>
                             </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ynH-7b-J6q">
+                                <rect key="frame" x="0.0" y="558" width="375" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <segue destination="dbc-Ut-vJH" kind="show" id="7fQ-XR-cBL"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -202,12 +207,13 @@
                         <viewLayoutGuide key="safeArea" id="LHU-94-xiJ"/>
                     </view>
                     <connections>
+                        <outlet property="button" destination="ynH-7b-J6q" id="DOf-o4-9ul"/>
                         <outlet property="mapView" destination="VQa-xN-hcG" id="MBz-fU-MxR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="t8i-H5-GP8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2772" y="660"/>
+            <point key="canvasLocation" x="3845.5999999999999" y="-194.75262368815595"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ZAF-pf-JVC">

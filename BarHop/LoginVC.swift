@@ -132,7 +132,7 @@ import AWSDynamoDB
         let newCust:Customer = Customer()
         //initialize values for attributes for new customer
         let barSet: Set<String> = ["Harpers"]
-        newCust._userId = AWSIdentityManager.default().identityId
+        newCust._userId = AWSIdentityManager.default().identityId //_userId represents the partition key
         newCust._tripsTaken = 0
         newCust._activeTrips = barSet
         //Save a new item

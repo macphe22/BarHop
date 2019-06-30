@@ -19,8 +19,38 @@ class ActivePasses: UIViewController {
     }
     
     // Function to handle queries to the Customer database
-    func getQuery() {
+    func getQuery() -> [String]{
         // Create a query expression
+        var usersActivePasses: [String] = [];
+        let dynamoDbObjectMapper = AWSDynamoDBObjectMapper.default()
+        let userId: String = (UIDevice.current.identifierForVendor?.uuidString)!
+        let queryExpression = AWSDynamoDBQueryExpression()
+        queryExpression.keyConditionExpression = "#userId = :userId"
+        queryExpression.expressionAttributeValues = [
+            "#userId" : "userId",
+        ]
+        dynamoDbObjectMapper.query(Customer.self, expression: queryExpression, completionHandler: {(response: AWSDynamoDBPaginatedOutput?, error: Error?) -> Void in
+            if let error = error {
+                print("Amazon DynamoDB query error: \(error)")
+                return
+            }
+            if response != nil {
+                if response?.items.count == 0 {
+                    print("Got a response but didn't return successfully")
+                } else{
+                    for item in (response?.items)! {
+                        usersActivePasses = item.value(forKey: "_activeTrips") as! [String]
+                        
+                    }
+                    
+                    
+                }
+            }
+            
+        })
+        
+        self.activePasses = usersActivePasses;
+        return usersActivePasses;
 
         
     }

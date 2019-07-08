@@ -10,18 +10,40 @@ import UIKit
 import MapKit
 import CoreLocation
 
+// Map Search View Controller
 class MapSearchVC: UIViewController {
     
     // Map view outlet
     @IBOutlet weak var mapView: MKMapView!
+    // Button and label
+    @IBOutlet weak var button: UIButton!
     
     let locationManager = CLLocationManager()
     let regionSpan: Double = 10000
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // Make the view controller the mapView's delegate
+        mapView.delegate = self as MKMapViewDelegate
         // Call check location services
         checkLocationServices()
+        // Set button and label to invisible
+        button.isHidden = true
+    }
+    
+    // Function to add custom pins to the mapview
+    private func addPins() {
+        // For now, we will simply add a couple of pins manually, however, this
+        // is where the query should be inserted to find bars within the view
+        let bondBar = MKPointAnnotation()
+        bondBar.title = "Bond Bar"
+        bondBar.coordinate = CLLocationCoordinate2D(latitude: 37.7648, longitude: -122.4213)
+        mapView.addAnnotation(bondBar)
+        
+        let theStud = MKPointAnnotation()
+        theStud.title = "The Stud"
+        theStud.coordinate = CLLocationCoordinate2D(latitude: 37.7728, longitude: -122.4101)
+        mapView.addAnnotation(theStud)
     }
     
     // Function to set up the location manager
@@ -82,6 +104,19 @@ class MapSearchVC: UIViewController {
         }
     }
     
+    // Handles button and label properties
+    private func addPinInfo(name: String) {
+        // Button
+        let midPurple = UIColor(red: 85/255, green: 73/255, blue: 113/255, alpha: 1)
+        button.isHidden = false
+        button.frame = CGRect(x: 10, y: UIScreen.main.bounds.height*7/8, width: UIScreen.main.bounds.width - 20, height: UIScreen.main.bounds.height/12 - 10)
+        button.setTitleColor(UIColor(white: 1, alpha: 1), for: .normal)
+        button.setTitle("Go to \(name)", for: .normal)
+        button.layer.cornerRadius = 8
+        button.layer.backgroundColor = midPurple.cgColor
+        button.titleLabel?.textColor = UIColor(white: 1, alpha: 1)
+        mapView.addSubview(button)
+    }
 }
 
 // Allow extension from CLLocationManagerDelegate
@@ -96,11 +131,20 @@ extension MapSearchVC: CLLocationManagerDelegate {
         let region = MKCoordinateRegion.init(center: center, latitudinalMeters: regionSpan, longitudinalMeters: regionSpan)
         // Set the mapView to be on that region
         mapView.setRegion(region, animated: true)
+        // Call addPins to actually see our pins
+        addPins()
     }
     
     // Handles permission authorization changes, simply calls checkLocationAuthorization()
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         checkLocationAuthorization()
     }
-    
+}
+
+extension MapSearchVC: MKMapViewDelegate {
+    // Function that runs when an annotation is clicked
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        // Modally present a new view label and button to go to the correct screen
+        addPinInfo(name: (view.annotation?.title)! ?? "Bar")
+    }
 }

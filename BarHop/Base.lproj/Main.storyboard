@@ -37,7 +37,7 @@
                                         <state key="normal" title="Active Passes">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
-<<<<<<< HEAD
+
                                         <connections>
                                             <segue destination="pSo-Gd-JYq" kind="show" identifier="activePassesSegue" id="E91-EW-wVI"/>
                                         </connections>

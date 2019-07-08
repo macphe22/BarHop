@@ -79,7 +79,8 @@ class PayViewController: UIViewController {
         URLSession.shared.dataTask(with: clientTokenRequest as URLRequest) { (data, response, error) -> Void in
             // TODO: Handle errors
             let clientToken = String(data: data!, encoding: String.Encoding.utf8)
-            
+            // Dark mode
+            BTUIKAppearance.darkTheme()
             // As an example, you may wish to present Drop-in at this point.
             // Continue to the next section to learn more...
             self.showDropIn(clientTokenOrTokenizationKey: clientToken ?? "nil")

@@ -35,11 +35,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Make sure this return statement works...
         // Attempts to return both the AWSMobileClient call and the BrainTree for
         // iOS payment authorization URL
-        return AWSMobileClient.sharedInstance().interceptApplication(
-            application, open: url,
-            sourceApplication: sourceApplication,
-            annotation: annotation) &&
-            BTAppSwitch.handleOpen(url, sourceApplication: sourceApplication)
+        if url.scheme?.localizedCaseInsensitiveCompare("com.barhop.barhop.payments") == .orderedSame {
+            return AWSMobileClient.sharedInstance().interceptApplication(
+                application, open: url,
+                sourceApplication: sourceApplication,
+                annotation: annotation) &&
+                BTAppSwitch.handleOpen(url, sourceApplication: sourceApplication)
+        } else {
+            return AWSMobileClient.sharedInstance().interceptApplication(
+                application, open: url,
+                sourceApplication: sourceApplication,
+                annotation: annotation)
+        }
     }
     // Add a AWSMobileClient call in application:didFinishLaunching
 

@@ -1,7 +1,7 @@
 //
 //  ActivePasses.swift
 //  BarHop
-//
+//  A file to provide the data for the view cell for active passes
 //  Created by John Landy on 5/7/19.
 //  Copyright © 2019 Scott Macpherson. All rights reserved.
 //

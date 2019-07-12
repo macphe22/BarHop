@@ -18,7 +18,8 @@ class ActivePassCellTableViewCell: UITableViewCell {
     @IBOutlet weak var barLabel: UILabel!
     
     func setActivePassLabel(bar: String){
-        barLabel.text = bar;
+        //print(bar)
+        barLabel?.text = bar;
         
     }
     

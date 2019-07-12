@@ -13,14 +13,27 @@ import AWSAuthCore
 
 class ActivePassesTableViewController: UITableViewController {
     var activePasses: [String] = [];
+    var temporaryPasses = ["Harpers", "Ricks", "P.T. O'malies"];
     
     func constructActivePassesArray() -> Void {
         self.activePasses = self.getQuery();
     }
+    ///************For testing purposes only *************
+    func testingPasses(){
+        print(self.temporaryPasses)
+        for bar in self.temporaryPasses{
+            //print(bar)
+            let newCell = ActivePassCellTableViewCell();
+            newCell.setActivePassLabel(bar: bar);
+        }
+        
+        
+    }
+ //******************************************************/
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.constructActivePassesArray();
-        print(self.activePasses)
+        //self.constructActivePassesArray();
+        self.testingPasses();
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -37,14 +50,14 @@ class ActivePassesTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return activePasses.count;
+        return temporaryPasses.count;
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let activePass = activePasses[indexPath.row];
+        let temporaryPass = temporaryPasses[indexPath.row];
         let cell = tableView.dequeueReusableCell(withIdentifier: "ActivePassItem", for: indexPath) as! ActivePassCellTableViewCell
-        cell.setActivePassLabel(bar: activePass) //sets cell label
+        cell.setActivePassLabel(bar: temporaryPass) //sets cell label
         // Configure the cell...
 
         return cell

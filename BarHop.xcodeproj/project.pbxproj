@@ -22,10 +22,11 @@
 		A1CE3F7422ADF124007268EA /* logopng.pdf in Resources */ = {isa = PBXBuildFile; fileRef = A1CE3F7322ADF124007268EA /* logopng.pdf */; };
 		A1CE3F7622ADF190007268EA /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = A1CE3F7522ADF190007268EA /* logo.png */; };
 		D2F8EF42B222F0757748BFA8 /* Pods_BarHopUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4EED81701FD3D85B34B8A5EE /* Pods_BarHopUITests.framework */; };
+		D31F281F22EA77C8007B9F27 /* ActivePassTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31F281E22EA77C8007B9F27 /* ActivePassTableViewCell.swift */; };
+		D31F282122EA7F56007B9F27 /* ActivePassTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31F282022EA7F56007B9F27 /* ActivePassTableViewController.swift */; };
 		D334D11321DEAA5600A3046B /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D334D11221DEAA5600A3046B /* Customer.swift */; };
 		D334D11721E3C59800A3046B /* Bars.swift in Sources */ = {isa = PBXBuildFile; fileRef = D334D11621E3C59800A3046B /* Bars.swift */; };
 		D3D949E822CACD3C00DB09C0 /* ActivePassesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D949E722CACD3C00DB09C0 /* ActivePassesTableViewController.swift */; };
-		D3D949EA22CAD7C500DB09C0 /* ActivePassCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D949E922CAD7C500DB09C0 /* ActivePassCellTableViewCell.swift */; };
 		D3DDFAD121D0818F0071B437 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DDFAD021D0818F0071B437 /* AppDelegate.swift */; };
 		D3DDFAD321D0818F0071B437 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DDFAD221D0818F0071B437 /* LoginVC.swift */; };
 		D3DDFAD621D0818F0071B437 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D3DDFAD421D0818F0071B437 /* Main.storyboard */; };
@@ -74,10 +75,11 @@
 		C5D202D4ED592C981B7CDAA5 /* Pods_BarHopTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BarHopTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C67E0742891493879B60DACB /* Pods-BarHopTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BarHopTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BarHopTests/Pods-BarHopTests.debug.xcconfig"; sourceTree = "<group>"; };
 		CE04E9D2B68AE6C9FAA3D31A /* Pods-BarHop.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BarHop.release.xcconfig"; path = "Pods/Target Support Files/Pods-BarHop/Pods-BarHop.release.xcconfig"; sourceTree = "<group>"; };
+		D31F281E22EA77C8007B9F27 /* ActivePassTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivePassTableViewCell.swift; sourceTree = "<group>"; };
+		D31F282022EA7F56007B9F27 /* ActivePassTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivePassTableViewController.swift; sourceTree = "<group>"; };
 		D334D11221DEAA5600A3046B /* Customer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Customer.swift; sourceTree = "<group>"; };
 		D334D11621E3C59800A3046B /* Bars.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bars.swift; sourceTree = "<group>"; };
 		D3D949E722CACD3C00DB09C0 /* ActivePassesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivePassesTableViewController.swift; sourceTree = "<group>"; };
-		D3D949E922CAD7C500DB09C0 /* ActivePassCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivePassCellTableViewCell.swift; sourceTree = "<group>"; };
 		D3DDFACD21D0818F0071B437 /* BarHop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BarHop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3DDFAD021D0818F0071B437 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D3DDFAD221D0818F0071B437 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
@@ -197,11 +199,12 @@
 				D3DDFAD921D081910071B437 /* LaunchScreen.storyboard */,
 				D3DDFAD221D0818F0071B437 /* LoginVC.swift */,
 				D3DDFAD421D0818F0071B437 /* Main.storyboard */,
+				D31F282022EA7F56007B9F27 /* ActivePassTableViewController.swift */,
 				A1893E182280DE5D008473C7 /* MapSearchVC.swift */,
 				A1A642FD22AC8EC30004F0B0 /* PayViewController.swift */,
 				A1A642FA22A9FDA60004F0B0 /* TableViewCell.swift */,
 				D3D949E722CACD3C00DB09C0 /* ActivePassesTableViewController.swift */,
-				D3D949E922CAD7C500DB09C0 /* ActivePassCellTableViewCell.swift */,
+				D31F281E22EA77C8007B9F27 /* ActivePassTableViewCell.swift */,
 			);
 			path = BarHop;
 			sourceTree = "<group>";
@@ -468,11 +471,12 @@
 				A1A642FC22A9FDA60004F0B0 /* TableViewCell.swift in Sources */,
 				D3D949E822CACD3C00DB09C0 /* ActivePassesTableViewController.swift in Sources */,
 				A1893E192280DE5D008473C7 /* MapSearchVC.swift in Sources */,
+				D31F282122EA7F56007B9F27 /* ActivePassTableViewController.swift in Sources */,
+				D31F281F22EA77C8007B9F27 /* ActivePassTableViewCell.swift in Sources */,
 				A1A642FE22AC8EC30004F0B0 /* PayViewController.swift in Sources */,
 				A1A642FB22A9FDA60004F0B0 /* ActivePasses.swift in Sources */,
 				D334D11721E3C59800A3046B /* Bars.swift in Sources */,
 				D3DDFAD121D0818F0071B437 /* AppDelegate.swift in Sources */,
-				D3D949EA22CAD7C500DB09C0 /* ActivePassCellTableViewCell.swift in Sources */,
 				D334D11321DEAA5600A3046B /* Customer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

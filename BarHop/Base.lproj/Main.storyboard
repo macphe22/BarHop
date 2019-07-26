@@ -38,7 +38,7 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
-                                            <segue destination="pSo-Gd-JYq" kind="show" identifier="activePassesSegue" id="E91-EW-wVI"/>
+                                            <segue destination="IJA-de-QJh" kind="show" id="V6X-KR-5Sv"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i4Q-Oj-kgX">
@@ -86,55 +86,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2772" y="-124"/>
-        </scene>
-        <!--Active Passes Table View Controller-->
-        <scene sceneID="KvZ-bV-8Ek">
-            <objects>
-                <tableViewController id="pSo-Gd-JYq" customClass="ActivePassesTableViewController" customModule="BarHop" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="AKt-vM-NiV">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ActivePassItem" rowHeight="90" id="5vF-Jr-75l" customClass="ActivePassCellTableViewCell" customModule="BarHop" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="90"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="5vF-Jr-75l" id="hdh-n3-MZV" customClass="ActivePassCellTableViewCell" customModule="BarHop" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="89.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="Agb-9m-UwX">
-                                            <rect key="frame" x="28" y="34.5" width="319" height="21"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" relation="lessThanOrEqual" constant="25" id="QyO-s5-2FW"/>
-                                                <constraint firstAttribute="height" constant="21" id="kEw-y1-cn0"/>
-                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="25" id="sGW-gT-Oyc"/>
-                                            </constraints>
-                                            <fontDescription key="fontDescription" name="AppleColorEmoji" family="Apple Color Emoji" pointSize="19"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="Agb-9m-UwX" firstAttribute="centerY" secondItem="hdh-n3-MZV" secondAttribute="centerY" id="fB4-W7-Wh3"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="Agb-9m-UwX" secondAttribute="trailing" constant="12" id="iZp-KF-FUL"/>
-                                        <constraint firstItem="Agb-9m-UwX" firstAttribute="leading" secondItem="hdh-n3-MZV" secondAttribute="leadingMargin" constant="12" id="rMP-yr-3sj"/>
-                                    </constraints>
-                                </tableViewCellContentView>
-                                <connections>
-                                    <outlet property="barLabel" destination="Agb-9m-UwX" id="yeg-Im-2bC"/>
-                                </connections>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="pSo-Gd-JYq" id="q0w-Hl-iLV"/>
-                            <outlet property="delegate" destination="pSo-Gd-JYq" id="Gww-iL-QVI"/>
-                        </connections>
-                    </tableView>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="QEB-ib-hNb" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3846" y="-878"/>
         </scene>
         <!--Pay View Controller-->
         <scene sceneID="YrO-Mk-ByE">
@@ -225,6 +176,46 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LcM-ZC-adV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2772" y="690"/>
+        </scene>
+        <!--Active Pass Table View Controller-->
+        <scene sceneID="jlj-Q0-mPV">
+            <objects>
+                <tableViewController id="IJA-de-QJh" customClass="ActivePassTableViewController" customModule="BarHop" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="90" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="UzD-pA-SvL">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ActivePassTableViewCell" rowHeight="90" id="Bb2-vb-DY5" customClass="ActivePassTableViewCell" customModule="BarHop" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="90"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Bb2-vb-DY5" id="cJc-x8-a2b">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="89.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hyj-0f-3rs">
+                                            <rect key="frame" x="37" y="11" width="322" height="68"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="barLabel" destination="Hyj-0f-3rs" id="ka9-6l-oF5"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="IJA-de-QJh" id="XW7-7x-gt8"/>
+                            <outlet property="delegate" destination="IJA-de-QJh" id="alv-eo-kjV"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EAa-T0-chK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3845.5999999999999" y="-896.40179910044981"/>
         </scene>
         <!--Find a Bar-->
         <scene sceneID="NUc-xa-ScR">

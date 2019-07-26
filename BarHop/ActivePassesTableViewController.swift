@@ -15,6 +15,7 @@ class ActivePassesTableViewController: UITableViewController {
     var activePasses: [String] = [];
     var temporaryPasses = ["Harpers", "Ricks", "P.T. O'malies"];
     
+    
     func constructActivePassesArray() -> Void {
         self.activePasses = self.getQuery();
     }
@@ -23,8 +24,9 @@ class ActivePassesTableViewController: UITableViewController {
         print(self.temporaryPasses)
         for bar in self.temporaryPasses{
             //print(bar)
-            let newCell = ActivePassCellTableViewCell();
-            newCell.setActivePassLabel(bar: bar);
+            //let newCell = ActivePassCellTableViewCell();
+            //newCell.setActivePassLabel(bar: bar);
+            
         }
         
         
@@ -33,7 +35,8 @@ class ActivePassesTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         //self.constructActivePassesArray();
-        self.testingPasses();
+        
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -55,9 +58,10 @@ class ActivePassesTableViewController: UITableViewController {
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        print("here");
         let temporaryPass = temporaryPasses[indexPath.row];
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ActivePassItem", for: indexPath) as! ActivePassCellTableViewCell
-        cell.setActivePassLabel(bar: temporaryPass) //sets cell label
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ActivePassItem", for: indexPath) as! ActivePassTableViewCell
+        //cell.setActivePassLabel(bar: temporaryPass) //sets cell label
         // Configure the cell...
 
         return cell

@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // Add a AWSMobileClient call in application:didFinishLaunching
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Change navigation bar color
-        UINavigationBar.appearance().barTintColor = UIColor(red: 54/255, green: 33/255, blue: 62/255, alpha: 1)
+        UINavigationBar.appearance().barTintColor = UIColor(white: 0, alpha: 1)
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor:UIColor(white: 1, alpha: 1)]
         UINavigationBar.appearance().tintColor = .white
         // Run App Switch

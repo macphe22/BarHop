@@ -66,7 +66,7 @@
                                 <edgeInsets key="layoutMargins" top="15" left="15" bottom="15" right="15"/>
                             </stackView>
                         </subviews>
-                        <color key="backgroundColor" red="0.062745098039215685" green="0.0" blue="0.12549019607843137" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="Scv-9r-MWV" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="Fm0-Nk-hBF"/>
                             <constraint firstItem="Scv-9r-MWV" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Xl5-X7-j7I"/>
@@ -87,10 +87,10 @@
             </objects>
             <point key="canvasLocation" x="2772" y="-124"/>
         </scene>
-        <!--Active Passes Table View Controller-->
+        <!--Active Passes-->
         <scene sceneID="KvZ-bV-8Ek">
             <objects>
-                <tableViewController id="pSo-Gd-JYq" customClass="ActivePassesTableViewController" customModule="BarHop" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="Active Passes" id="pSo-Gd-JYq" customClass="ActivePassesTableViewController" customModule="BarHop" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="AKt-vM-NiV">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -177,7 +177,7 @@
                                 <edgeInsets key="layoutMargins" top="15" left="15" bottom="15" right="15"/>
                             </stackView>
                         </subviews>
-                        <color key="backgroundColor" red="0.062745098040000002" green="0.0" blue="0.12549019610000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="EWQ-LZ-Hc6" firstAttribute="trailing" secondItem="cDS-fK-fdG" secondAttribute="trailing" id="BAD-ih-I2U"/>
                             <constraint firstItem="EWQ-LZ-Hc6" firstAttribute="top" secondItem="cDS-fK-fdG" secondAttribute="top" id="P70-5B-EAL"/>
@@ -212,7 +212,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="0.062745098040000002" green="0.0" blue="0.12549019610000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="iXn-mh-7p9" firstAttribute="top" secondItem="2PP-cE-SPz" secondAttribute="top" id="6Tp-dD-VUl"/>
                             <constraint firstItem="2PP-cE-SPz" firstAttribute="trailing" secondItem="iXn-mh-7p9" secondAttribute="trailing" constant="16" id="EQI-Qo-QiF"/>

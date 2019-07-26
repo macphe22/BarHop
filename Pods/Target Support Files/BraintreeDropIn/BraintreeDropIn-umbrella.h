@@ -37,6 +37,7 @@
 #import "BTUIKPaymentOptionType.h"
 #import "BTUIKPostalCodeFormField.h"
 #import "BTUIKSecurityCodeFormField.h"
+#import "BTUIKSwitchFormField.h"
 #import "BTUIKTextField.h"
 #import "BTUIKUtil.h"
 #import "BTUIKVectorArtView.h"

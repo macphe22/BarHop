@@ -16,50 +16,50 @@ PODS:
   - AWSUserPoolsSignIn (2.6.35):
     - AWSAuthCore (= 2.6.35)
     - AWSCognitoIdentityProvider (= 2.6.35)
-  - Braintree (4.23.0):
-    - Braintree/Card (= 4.23.0)
-    - Braintree/Core (= 4.23.0)
-    - Braintree/PayPal (= 4.23.0)
-    - Braintree/UI (= 4.23.0)
-  - Braintree/Apple-Pay (4.23.0):
+  - Braintree (4.25.1):
+    - Braintree/Card (= 4.25.1)
+    - Braintree/Core (= 4.25.1)
+    - Braintree/PayPal (= 4.25.1)
+    - Braintree/UI (= 4.25.1)
+  - Braintree/Apple-Pay (4.25.1):
     - Braintree/Core
-  - Braintree/Card (4.23.0):
+  - Braintree/Card (4.25.1):
     - Braintree/Core
-  - Braintree/Core (4.23.0)
-  - Braintree/PaymentFlow (4.23.0):
+  - Braintree/Core (4.25.1)
+  - Braintree/PaymentFlow (4.25.1):
     - Braintree/Card
     - Braintree/Core
     - Braintree/PayPalOneTouch
-  - Braintree/PayPal (4.23.0):
+  - Braintree/PayPal (4.25.1):
     - Braintree/Core
     - Braintree/PayPalOneTouch
-  - Braintree/PayPalDataCollector (4.23.0):
+  - Braintree/PayPalDataCollector (4.25.1):
     - Braintree/Core
     - Braintree/PayPalUtils
-  - Braintree/PayPalOneTouch (4.23.0):
+  - Braintree/PayPalOneTouch (4.25.1):
     - Braintree/Core
     - Braintree/PayPalDataCollector
     - Braintree/PayPalUtils
-  - Braintree/PayPalUtils (4.23.0)
-  - Braintree/UI (4.23.0):
+  - Braintree/PayPalUtils (4.25.1)
+  - Braintree/UI (4.25.1):
     - Braintree/Card
     - Braintree/Core
-  - Braintree/UnionPay (4.23.0):
+  - Braintree/UnionPay (4.25.1):
     - Braintree/Card
     - Braintree/Core
-  - Braintree/Venmo (4.23.0):
+  - Braintree/Venmo (4.25.1):
     - Braintree/Core
     - Braintree/PayPalDataCollector
-  - BraintreeDropIn (7.1.0):
-    - BraintreeDropIn/DropIn (= 7.1.0)
-  - BraintreeDropIn/DropIn (7.1.0):
+  - BraintreeDropIn (7.2.0):
+    - BraintreeDropIn/DropIn (= 7.2.0)
+  - BraintreeDropIn/DropIn (7.2.0):
     - Braintree/Card (~> 4.23)
     - Braintree/Core (~> 4.23)
     - Braintree/PaymentFlow (~> 4.23)
     - Braintree/PayPal (~> 4.23)
     - Braintree/UnionPay (~> 4.23)
     - BraintreeDropIn/UIKit
-  - BraintreeDropIn/UIKit (7.1.0)
+  - BraintreeDropIn/UIKit (7.2.0)
 
 DEPENDENCIES:
   - AWSAuthUI (~> 2.6.13)
@@ -68,6 +68,7 @@ DEPENDENCIES:
   - AWSUserPoolsSignIn (~> 2.6.13)
   - Braintree
   - Braintree/Apple-Pay
+  - Braintree/PayPal
   - Braintree/Venmo
   - BraintreeDropIn
 
@@ -93,9 +94,9 @@ SPEC CHECKSUMS:
   AWSDynamoDB: f4902fc37384dcf9547e2d8a32a5b208d4d1d996
   AWSMobileClient: f89a36e0d95fc354a9d3b50d347371788c542449
   AWSUserPoolsSignIn: cf3293cf2c423922e628082a9b09e77473afc8b0
-  Braintree: b5841b9b1c1dadc86959db3e29d36099b67f91bf
-  BraintreeDropIn: a019fcbf4edb87c55780ec01d5db3998b19164ce
+  Braintree: ad6016e96c67c15a2c34b7e1eec87004560df618
+  BraintreeDropIn: b63750373474f7ec336118cee40cf767d198a977
 
-PODFILE CHECKSUM: 9b54032d30ec8f1c9d3dec1ae6bd48a62239f80d
+PODFILE CHECKSUM: da4e98dbbc2561d1a54e53470d30031eeb974afa
 
-COCOAPODS: 1.6.1
+COCOAPODS: 1.7.2

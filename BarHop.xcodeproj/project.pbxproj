@@ -26,7 +26,6 @@
 		D31F282122EA7F56007B9F27 /* ActivePassTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31F282022EA7F56007B9F27 /* ActivePassTableViewController.swift */; };
 		D334D11321DEAA5600A3046B /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D334D11221DEAA5600A3046B /* Customer.swift */; };
 		D334D11721E3C59800A3046B /* Bars.swift in Sources */ = {isa = PBXBuildFile; fileRef = D334D11621E3C59800A3046B /* Bars.swift */; };
-		D3D949E822CACD3C00DB09C0 /* ActivePassesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D949E722CACD3C00DB09C0 /* ActivePassesTableViewController.swift */; };
 		D3DDFAD121D0818F0071B437 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DDFAD021D0818F0071B437 /* AppDelegate.swift */; };
 		D3DDFAD321D0818F0071B437 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DDFAD221D0818F0071B437 /* LoginVC.swift */; };
 		D3DDFAD621D0818F0071B437 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D3DDFAD421D0818F0071B437 /* Main.storyboard */; };
@@ -79,7 +78,6 @@
 		D31F282022EA7F56007B9F27 /* ActivePassTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivePassTableViewController.swift; sourceTree = "<group>"; };
 		D334D11221DEAA5600A3046B /* Customer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Customer.swift; sourceTree = "<group>"; };
 		D334D11621E3C59800A3046B /* Bars.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bars.swift; sourceTree = "<group>"; };
-		D3D949E722CACD3C00DB09C0 /* ActivePassesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivePassesTableViewController.swift; sourceTree = "<group>"; };
 		D3DDFACD21D0818F0071B437 /* BarHop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BarHop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3DDFAD021D0818F0071B437 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D3DDFAD221D0818F0071B437 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
@@ -203,7 +201,6 @@
 				A1893E182280DE5D008473C7 /* MapSearchVC.swift */,
 				A1A642FD22AC8EC30004F0B0 /* PayViewController.swift */,
 				A1A642FA22A9FDA60004F0B0 /* TableViewCell.swift */,
-				D3D949E722CACD3C00DB09C0 /* ActivePassesTableViewController.swift */,
 				D31F281E22EA77C8007B9F27 /* ActivePassTableViewCell.swift */,
 			);
 			path = BarHop;
@@ -469,7 +466,6 @@
 			files = (
 				D3DDFAD321D0818F0071B437 /* LoginVC.swift in Sources */,
 				A1A642FC22A9FDA60004F0B0 /* TableViewCell.swift in Sources */,
-				D3D949E822CACD3C00DB09C0 /* ActivePassesTableViewController.swift in Sources */,
 				A1893E192280DE5D008473C7 /* MapSearchVC.swift in Sources */,
 				D31F282122EA7F56007B9F27 /* ActivePassTableViewController.swift in Sources */,
 				D31F281F22EA77C8007B9F27 /* ActivePassTableViewCell.swift in Sources */,

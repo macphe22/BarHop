@@ -17,9 +17,10 @@ import AWSDynamoDB
 
 class Customer: AWSDynamoDBObjectModel, AWSDynamoDBModeling {
     
-    var _userId: String?
-    var _tripsTaken: NSNumber?
-    var _activeTrips: Set<String>?
+    
+    @objc var _userId: String?
+    @objc var _tripsTaken: NSNumber?
+    @objc var _activeTrips: Set<String>?
     
     class func dynamoDBTableName() -> String {
 

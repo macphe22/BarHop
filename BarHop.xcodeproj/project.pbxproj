@@ -197,10 +197,10 @@
 				D3DDFAD921D081910071B437 /* LaunchScreen.storyboard */,
 				D3DDFAD221D0818F0071B437 /* LoginVC.swift */,
 				D3DDFAD421D0818F0071B437 /* Main.storyboard */,
-				D31F282022EA7F56007B9F27 /* ActivePassTableViewController.swift */,
 				A1893E182280DE5D008473C7 /* MapSearchVC.swift */,
 				A1A642FD22AC8EC30004F0B0 /* PayViewController.swift */,
 				A1A642FA22A9FDA60004F0B0 /* TableViewCell.swift */,
+				D31F282022EA7F56007B9F27 /* ActivePassTableViewController.swift */,
 				D31F281E22EA77C8007B9F27 /* ActivePassTableViewCell.swift */,
 			);
 			path = BarHop;

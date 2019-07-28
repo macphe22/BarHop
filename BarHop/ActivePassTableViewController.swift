@@ -13,6 +13,7 @@ import AWSAuthCore
 class ActivePassTableViewController: UITableViewController {
     //MARK: Properties
     var activePasses = [String]()
+    var returnedActivePasses = Set<String>()
     
     //MARK: Private Methods
     private func loadActivePasses() {
@@ -20,8 +21,10 @@ class ActivePassTableViewController: UITableViewController {
     }
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
-        loadActivePasses()
+        getCustomersActiveTrips()
+        
     }
 
     // MARK: - Table view data source
@@ -49,54 +52,38 @@ class ActivePassTableViewController: UITableViewController {
         return cell
     }
     
-    func getQuery() -> [String]{
+    func getCustomersActiveTrips() -> Void{
         // Create a query expression
-        
-        var usersActivePasses: [String] = [];
         let dynamoDbObjectMapper = AWSDynamoDBObjectMapper.default()
-        let userId:String = AWSIdentityManager.default().identityId!;
-        //let userId: String = (UIDevice.current.identifierForVendor?.uuidString)!
-        print(userId)
-        dynamoDbObjectMapper.load(Customer.self, hashKey: userId, rangeKey:nil).continueWith(block: { (task:AWSTask<AnyObject>!) -> Any? in
-            if let error = task.error as? NSError {
-                print("The request failed. Error: \(error)")
-            } else if let resultCustomer = task.result as? Customer {
-                // Do something with task.result.
-                let tempActiveTripsSet = resultCustomer._activeTrips;
-                self.activePasses = Array(tempActiveTripsSet!);
-            }
-            return nil
+        let customerItem: Customer = Customer();
+        customerItem._userId = AWSIdentityManager.default().identityId
+        customerItem._tripsTaken = 0
+        dynamoDbObjectMapper.load(Customer.self,
+                                  hashKey: customerItem._userId,
+                                  rangeKey: customerItem._tripsTaken,
+                                  completionHandler: {
+                                    (objectModel: AWSDynamoDBObjectModel?, error: Error?) -> Void in
+                                    if let error = error {
+                                        print("Amazon DynamoDB Read Error: \(error)")
+                                        return
+                                    }
+                                    else if let loadedCustomer = objectModel as? Customer{
+                                        self.returnedActivePasses = loadedCustomer._activeTrips ?? Set<String>()
+                                        self.mapReturnedActivePassesToActivePassesArray();
+                                    }
+                                    print("An item was read")
+                                    
         })
-        
-        //        let queryExpression = AWSDynamoDBQueryExpression()
-        //        queryExpression.keyConditionExpression = "#userId = :userId"
-        //        queryExpression.expressionAttributeValues = [
-        //            "#userId" : "userId",
-        //        ]
-        //        dynamoDbObjectMapper.query(Customer.self, expression: queryExpression, completionHandler: {(response: AWSDynamoDBPaginatedOutput?, error: Error?) -> Void in
-        //            if let error = error {
-        //                print("Amazon DynamoDB query error: \(error)")
-        //                return
-        //            }
-        //            if response != nil {
-        //                if response?.items.count == 0 {
-        //                    print("Got a response but didn't return successfully")
-        //                } else{
-        //                    for item in (response?.items)! {
-        //                        usersActivePasses = item.value(forKey: "_activeTrips") as! [String]
-        //
-        //                    }
-        //
-        //
-        //                }
-        //            }
-        //
-        //        })
-        
-        //self.activePasses = usersActivePasses;
-        return usersActivePasses;
+
         
         
+        
+    }
+    
+    func mapReturnedActivePassesToActivePassesArray(){
+        for activePass in self.returnedActivePasses{
+            self.activePasses.append(activePass);
+        }
     }
 
     /*

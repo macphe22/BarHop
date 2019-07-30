@@ -21,9 +21,12 @@ class ActivePassTableViewController: UITableViewController {
     }
     
     override func viewDidLoad() {
-        
         super.viewDidLoad()
         getCustomersActiveTrips()
+        print(activePasses)
+        //loadActivePasses()
+        print("In view did load")
+        
         
     }
 
@@ -41,6 +44,7 @@ class ActivePassTableViewController: UITableViewController {
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        print("here")
         let cellIdentifier = "ActivePassTableViewCell"
         guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? ActivePassTableViewCell  else {
             fatalError("The dequeued cell is not an instance of MealTableViewCell.")
@@ -52,8 +56,9 @@ class ActivePassTableViewController: UITableViewController {
         return cell
     }
     
-    func getCustomersActiveTrips() -> Void{
+    func getCustomersActiveTrips(){
         // Create a query expression
+        var returnedPasses = [String]();
         let dynamoDbObjectMapper = AWSDynamoDBObjectMapper.default()
         let customerItem: Customer = Customer();
         customerItem._userId = AWSIdentityManager.default().identityId
@@ -68,22 +73,29 @@ class ActivePassTableViewController: UITableViewController {
                                         return
                                     }
                                     else if let loadedCustomer = objectModel as? Customer{
+                                        
                                         self.returnedActivePasses = loadedCustomer._activeTrips ?? Set<String>()
-                                        self.mapReturnedActivePassesToActivePassesArray();
+                                        //print(self.returnedActivePasses)
+                                        returnedPasses = self.mapReturnedActivePassesToActivePassesArray();
+                                        self.activePasses = returnedPasses
                                     }
                                     print("An item was read")
                                     
         })
-
+        
         
         
         
     }
     
-    func mapReturnedActivePassesToActivePassesArray(){
+    func mapReturnedActivePassesToActivePassesArray() -> [String]{
+        var returnArray = [String]();
         for activePass in self.returnedActivePasses{
-            self.activePasses.append(activePass);
+            returnArray.append(activePass);
+            
         }
+        
+        return returnArray
     }
 
     /*

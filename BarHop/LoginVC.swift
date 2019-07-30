@@ -10,6 +10,7 @@ import UIKit
 import AWSAuthCore
 import AWSAuthUI
 import AWSDynamoDB
+import AWSMobileClient
 
  class LoginVC: UIViewController {
     
@@ -117,7 +118,7 @@ import AWSDynamoDB
     
     // Creating a new customer
     func createCustomer(){
-        print("Creating Customer")
+        //print("Creating Customer")
         let dynamoDbObjectMapper = AWSDynamoDBObjectMapper.default()
         let newCust:Customer = Customer()
         //initialize values for attributes for new customer

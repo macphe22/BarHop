@@ -38,7 +38,7 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
-                                            <segue destination="pSo-Gd-JYq" kind="show" identifier="activePassesSegue" id="E91-EW-wVI"/>
+                                            <segue destination="IJA-de-QJh" kind="show" id="V6X-KR-5Sv"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i4Q-Oj-kgX">
@@ -87,6 +87,7 @@
             </objects>
             <point key="canvasLocation" x="2772" y="-124"/>
         </scene>
+<<<<<<< HEAD
         <!--Active Passes-->
         <scene sceneID="KvZ-bV-8Ek">
             <objects>
@@ -136,6 +137,8 @@
             </objects>
             <point key="canvasLocation" x="3846" y="-878"/>
         </scene>
+=======
+>>>>>>> e72161ef468a60e3920dc6c89d9bbafb391fe777
         <!--Pay View Controller-->
         <scene sceneID="YrO-Mk-ByE">
             <objects>
@@ -225,6 +228,46 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LcM-ZC-adV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2772" y="690"/>
+        </scene>
+        <!--Active Pass Table View Controller-->
+        <scene sceneID="jlj-Q0-mPV">
+            <objects>
+                <tableViewController id="IJA-de-QJh" customClass="ActivePassTableViewController" customModule="BarHop" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="90" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="UzD-pA-SvL">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ActivePassTableViewCell" rowHeight="90" id="Bb2-vb-DY5" customClass="ActivePassTableViewCell" customModule="BarHop" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="90"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Bb2-vb-DY5" id="cJc-x8-a2b">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="89.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hyj-0f-3rs">
+                                            <rect key="frame" x="37" y="11" width="322" height="68"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="barLabel" destination="Hyj-0f-3rs" id="ka9-6l-oF5"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="IJA-de-QJh" id="XW7-7x-gt8"/>
+                            <outlet property="delegate" destination="IJA-de-QJh" id="alv-eo-kjV"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EAa-T0-chK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3845.5999999999999" y="-896.40179910044981"/>
         </scene>
         <!--Find a Bar-->
         <scene sceneID="NUc-xa-ScR">

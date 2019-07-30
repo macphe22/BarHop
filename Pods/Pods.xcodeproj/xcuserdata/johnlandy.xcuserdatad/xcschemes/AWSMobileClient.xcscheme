@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1020"
+   LastUpgradeVersion = "1100"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "16DF5955C3FFF0033633770E5BB89CDF"
+               BlueprintIdentifier = "6428ED7DAC8003D918A4F549769F079D"
                BuildableName = "AWSMobileClient.framework"
                BlueprintName = "AWSMobileClient"
                ReferencedContainer = "container:Pods.xcodeproj">

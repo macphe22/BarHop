@@ -107,13 +107,12 @@ class MapSearchVC: UIViewController {
     // Handles button and label properties
     private func addPinInfo(name: String) {
         // Button
-        let midPurple = UIColor(red: 85/255, green: 73/255, blue: 113/255, alpha: 1)
         button.isHidden = false
         button.frame = CGRect(x: 10, y: UIScreen.main.bounds.height*7/8, width: UIScreen.main.bounds.width - 20, height: UIScreen.main.bounds.height/12 - 10)
         button.setTitleColor(UIColor(white: 1, alpha: 1), for: .normal)
         button.setTitle("Go to \(name)", for: .normal)
         button.layer.cornerRadius = 8
-        button.layer.backgroundColor = midPurple.cgColor
+        button.layer.backgroundColor = UIColor(white: 0, alpha: 1).cgColor
         button.titleLabel?.textColor = UIColor(white: 1, alpha: 1)
         mapView.addSubview(button)
     }

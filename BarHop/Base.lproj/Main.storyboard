@@ -66,7 +66,7 @@
                                 <edgeInsets key="layoutMargins" top="15" left="15" bottom="15" right="15"/>
                             </stackView>
                         </subviews>
-                        <color key="backgroundColor" red="0.062745098039215685" green="0.0" blue="0.12549019607843137" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="Scv-9r-MWV" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="Fm0-Nk-hBF"/>
                             <constraint firstItem="Scv-9r-MWV" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Xl5-X7-j7I"/>
@@ -87,6 +87,58 @@
             </objects>
             <point key="canvasLocation" x="2772" y="-124"/>
         </scene>
+<<<<<<< HEAD
+        <!--Active Passes-->
+        <scene sceneID="KvZ-bV-8Ek">
+            <objects>
+                <tableViewController title="Active Passes" id="pSo-Gd-JYq" customClass="ActivePassesTableViewController" customModule="BarHop" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="AKt-vM-NiV">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ActivePassItem" rowHeight="90" id="5vF-Jr-75l" customClass="ActivePassCellTableViewCell" customModule="BarHop" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="90"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="5vF-Jr-75l" id="hdh-n3-MZV" customClass="ActivePassCellTableViewCell" customModule="BarHop" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="89.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="Agb-9m-UwX">
+                                            <rect key="frame" x="28" y="34.5" width="319" height="21"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" relation="lessThanOrEqual" constant="25" id="QyO-s5-2FW"/>
+                                                <constraint firstAttribute="height" constant="21" id="kEw-y1-cn0"/>
+                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="25" id="sGW-gT-Oyc"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" name="AppleColorEmoji" family="Apple Color Emoji" pointSize="19"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="Agb-9m-UwX" firstAttribute="centerY" secondItem="hdh-n3-MZV" secondAttribute="centerY" id="fB4-W7-Wh3"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="Agb-9m-UwX" secondAttribute="trailing" constant="12" id="iZp-KF-FUL"/>
+                                        <constraint firstItem="Agb-9m-UwX" firstAttribute="leading" secondItem="hdh-n3-MZV" secondAttribute="leadingMargin" constant="12" id="rMP-yr-3sj"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="barLabel" destination="Agb-9m-UwX" id="yeg-Im-2bC"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="pSo-Gd-JYq" id="q0w-Hl-iLV"/>
+                            <outlet property="delegate" destination="pSo-Gd-JYq" id="Gww-iL-QVI"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QEB-ib-hNb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3846" y="-878"/>
+        </scene>
+=======
+>>>>>>> e72161ef468a60e3920dc6c89d9bbafb391fe777
         <!--Pay View Controller-->
         <scene sceneID="YrO-Mk-ByE">
             <objects>
@@ -128,7 +180,7 @@
                                 <edgeInsets key="layoutMargins" top="15" left="15" bottom="15" right="15"/>
                             </stackView>
                         </subviews>
-                        <color key="backgroundColor" red="0.062745098040000002" green="0.0" blue="0.12549019610000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="EWQ-LZ-Hc6" firstAttribute="trailing" secondItem="cDS-fK-fdG" secondAttribute="trailing" id="BAD-ih-I2U"/>
                             <constraint firstItem="EWQ-LZ-Hc6" firstAttribute="top" secondItem="cDS-fK-fdG" secondAttribute="top" id="P70-5B-EAL"/>
@@ -163,7 +215,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="0.062745098040000002" green="0.0" blue="0.12549019610000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="iXn-mh-7p9" firstAttribute="top" secondItem="2PP-cE-SPz" secondAttribute="top" id="6Tp-dD-VUl"/>
                             <constraint firstItem="2PP-cE-SPz" firstAttribute="trailing" secondItem="iXn-mh-7p9" secondAttribute="trailing" constant="16" id="EQI-Qo-QiF"/>

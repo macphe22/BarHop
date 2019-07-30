@@ -16,38 +16,38 @@ PODS:
   - AWSUserPoolsSignIn (2.6.35):
     - AWSAuthCore (= 2.6.35)
     - AWSCognitoIdentityProvider (= 2.6.35)
-  - Braintree (4.25.1):
-    - Braintree/Card (= 4.25.1)
-    - Braintree/Core (= 4.25.1)
-    - Braintree/PayPal (= 4.25.1)
-    - Braintree/UI (= 4.25.1)
-  - Braintree/Apple-Pay (4.25.1):
+  - Braintree (4.26.1):
+    - Braintree/Card (= 4.26.1)
+    - Braintree/Core (= 4.26.1)
+    - Braintree/PayPal (= 4.26.1)
+    - Braintree/UI (= 4.26.1)
+  - Braintree/Apple-Pay (4.26.1):
     - Braintree/Core
-  - Braintree/Card (4.25.1):
+  - Braintree/Card (4.26.1):
     - Braintree/Core
-  - Braintree/Core (4.25.1)
-  - Braintree/PaymentFlow (4.25.1):
+  - Braintree/Core (4.26.1)
+  - Braintree/PaymentFlow (4.26.1):
     - Braintree/Card
     - Braintree/Core
     - Braintree/PayPalOneTouch
-  - Braintree/PayPal (4.25.1):
+  - Braintree/PayPal (4.26.1):
     - Braintree/Core
     - Braintree/PayPalOneTouch
-  - Braintree/PayPalDataCollector (4.25.1):
+  - Braintree/PayPalDataCollector (4.26.1):
     - Braintree/Core
     - Braintree/PayPalUtils
-  - Braintree/PayPalOneTouch (4.25.1):
+  - Braintree/PayPalOneTouch (4.26.1):
     - Braintree/Core
     - Braintree/PayPalDataCollector
     - Braintree/PayPalUtils
-  - Braintree/PayPalUtils (4.25.1)
-  - Braintree/UI (4.25.1):
+  - Braintree/PayPalUtils (4.26.1)
+  - Braintree/UI (4.26.1):
     - Braintree/Card
     - Braintree/Core
-  - Braintree/UnionPay (4.25.1):
+  - Braintree/UnionPay (4.26.1):
     - Braintree/Card
     - Braintree/Core
-  - Braintree/Venmo (4.25.1):
+  - Braintree/Venmo (4.26.1):
     - Braintree/Core
     - Braintree/PayPalDataCollector
   - BraintreeDropIn (7.2.0):
@@ -94,7 +94,7 @@ SPEC CHECKSUMS:
   AWSDynamoDB: f4902fc37384dcf9547e2d8a32a5b208d4d1d996
   AWSMobileClient: f89a36e0d95fc354a9d3b50d347371788c542449
   AWSUserPoolsSignIn: cf3293cf2c423922e628082a9b09e77473afc8b0
-  Braintree: ad6016e96c67c15a2c34b7e1eec87004560df618
+  Braintree: 33a9e6e304f5eb819e0b3e664684b7a449b6602e
   BraintreeDropIn: b63750373474f7ec336118cee40cf767d198a977
 
 PODFILE CHECKSUM: da4e98dbbc2561d1a54e53470d30031eeb974afa

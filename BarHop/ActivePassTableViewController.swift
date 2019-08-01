@@ -15,17 +15,19 @@ class ActivePassTableViewController: UITableViewController {
     var activePasses = [String]()
     var returnedActivePasses = Set<String>()
     
+
     //MARK: Private Methods
     private func loadActivePasses() {
         self.activePasses = ["Harpers", "Ricks", "Lou Harry's"]
+        print("Array has been constructed")
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         getCustomersActiveTrips()
-        print(activePasses)
-        //loadActivePasses()
-        print("In view did load")
+        print("In the view did load")
+        loadActivePasses()
+        
         
         
     }
@@ -44,7 +46,7 @@ class ActivePassTableViewController: UITableViewController {
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        print("here")
+        print("Constructing tableView rows now")
         let cellIdentifier = "ActivePassTableViewCell"
         guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? ActivePassTableViewCell  else {
             fatalError("The dequeued cell is not an instance of MealTableViewCell.")
@@ -78,14 +80,13 @@ class ActivePassTableViewController: UITableViewController {
                                         //print(self.returnedActivePasses)
                                         returnedPasses = self.mapReturnedActivePassesToActivePassesArray();
                                         self.activePasses = returnedPasses
+                                        
                                     }
                                     print("An item was read")
                                     
+                                    
         })
-        
-        
-        
-        
+  
     }
     
     func mapReturnedActivePassesToActivePassesArray() -> [String]{

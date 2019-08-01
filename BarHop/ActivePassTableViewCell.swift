@@ -13,6 +13,9 @@ class ActivePassTableViewCell: UITableViewCell {
     
     @IBOutlet weak var barLabel: UILabel!
     
+    @IBOutlet weak var barNameLabel: UILabel!
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -20,7 +23,7 @@ class ActivePassTableViewCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
         // Configure the view for the selected state
     }
 

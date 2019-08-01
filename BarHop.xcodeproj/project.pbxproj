@@ -24,6 +24,7 @@
 		D2F8EF42B222F0757748BFA8 /* Pods_BarHopUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4EED81701FD3D85B34B8A5EE /* Pods_BarHopUITests.framework */; };
 		D31F281F22EA77C8007B9F27 /* ActivePassTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31F281E22EA77C8007B9F27 /* ActivePassTableViewCell.swift */; };
 		D31F282122EA7F56007B9F27 /* ActivePassTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31F282022EA7F56007B9F27 /* ActivePassTableViewController.swift */; };
+		D31F282322F11E22007B9F27 /* ActivePassesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31F282222F11E22007B9F27 /* ActivePassesViewController.swift */; };
 		D334D11321DEAA5600A3046B /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D334D11221DEAA5600A3046B /* Customer.swift */; };
 		D334D11721E3C59800A3046B /* Bars.swift in Sources */ = {isa = PBXBuildFile; fileRef = D334D11621E3C59800A3046B /* Bars.swift */; };
 		D3DDFAD121D0818F0071B437 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DDFAD021D0818F0071B437 /* AppDelegate.swift */; };
@@ -76,6 +77,7 @@
 		CE04E9D2B68AE6C9FAA3D31A /* Pods-BarHop.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BarHop.release.xcconfig"; path = "Pods/Target Support Files/Pods-BarHop/Pods-BarHop.release.xcconfig"; sourceTree = "<group>"; };
 		D31F281E22EA77C8007B9F27 /* ActivePassTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivePassTableViewCell.swift; sourceTree = "<group>"; };
 		D31F282022EA7F56007B9F27 /* ActivePassTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivePassTableViewController.swift; sourceTree = "<group>"; };
+		D31F282222F11E22007B9F27 /* ActivePassesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivePassesViewController.swift; sourceTree = "<group>"; };
 		D334D11221DEAA5600A3046B /* Customer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Customer.swift; sourceTree = "<group>"; };
 		D334D11621E3C59800A3046B /* Bars.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bars.swift; sourceTree = "<group>"; };
 		D3DDFACD21D0818F0071B437 /* BarHop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BarHop.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -202,6 +204,7 @@
 				A1A642FA22A9FDA60004F0B0 /* TableViewCell.swift */,
 				D31F282022EA7F56007B9F27 /* ActivePassTableViewController.swift */,
 				D31F281E22EA77C8007B9F27 /* ActivePassTableViewCell.swift */,
+				D31F282222F11E22007B9F27 /* ActivePassesViewController.swift */,
 			);
 			path = BarHop;
 			sourceTree = "<group>";
@@ -452,6 +455,7 @@
 				D31F281F22EA77C8007B9F27 /* ActivePassTableViewCell.swift in Sources */,
 				A1A642FE22AC8EC30004F0B0 /* PayViewController.swift in Sources */,
 				A1A642FB22A9FDA60004F0B0 /* ActivePasses.swift in Sources */,
+				D31F282322F11E22007B9F27 /* ActivePassesViewController.swift in Sources */,
 				D334D11721E3C59800A3046B /* Bars.swift in Sources */,
 				D3DDFAD121D0818F0071B437 /* AppDelegate.swift in Sources */,
 				D334D11321DEAA5600A3046B /* Customer.swift in Sources */,

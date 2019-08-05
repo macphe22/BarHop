@@ -16,7 +16,7 @@ class PayViewController: UIViewController {
     @IBOutlet weak var numPassesLabel: UITextField!
     @IBOutlet weak var payBtn: UIButton!
     @IBOutlet weak var disclaimerLabel: UILabel!
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -63,7 +63,6 @@ class PayViewController: UIViewController {
                 // into the postNonceToServer() function below.
                 let cost = 12.99 // QUERY NEEDED HERE
                 self.postNonceToServer(paymentMethodNonce: result?.paymentMethod?.nonce ?? "fake-valid-nonce", amount: cost)
-                print(result?.paymentMethod?.nonce as Any);
             }
             controller.dismiss(animated: true, completion: nil)
         }
@@ -86,7 +85,7 @@ class PayViewController: UIViewController {
             self.showDropIn(token: clientToken ?? "nil")
         }.resume()
     }
-    
+   
     // Sends the payment nonce to the server via a post request on the /payment-methods route
     func postNonceToServer(paymentMethodNonce: String, amount: Double) {
         let paymentURL = URL(string: "https://mysterious-brook-47208.herokuapp.com/payment-methods")!
@@ -97,6 +96,13 @@ class PayViewController: UIViewController {
         
         URLSession.shared.dataTask(with: request) { (data, response, error) -> Void in
             // TODO: Handle success or failure
+            let result = String(data: data!, encoding: String.Encoding.utf8)
+            // Show the client their transaction results
+            // If the string is empty, we can assume it's false
+            let transMessage = (result == "true") ? "Your payment was processed successfully!" : "Oops, something went wrong with your payment, please try again"
+            let alert = UIAlertController(title: "Transaction Status", message: transMessage, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: nil))
+            self.present(alert, animated: true)
         }.resume()
     }
 }

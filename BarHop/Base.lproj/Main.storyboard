@@ -179,7 +179,6 @@
         <!--Active Pass Table View Controller-->
         <scene sceneID="jlj-Q0-mPV">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="EAa-T0-chK" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController id="IJA-de-QJh" customClass="ActivePassTableViewController" customModule="BarHop" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="90" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="UzD-pA-SvL">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
@@ -210,8 +209,9 @@
                         </connections>
                     </tableView>
                 </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EAa-T0-chK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4884" y="-1365"/>
+            <point key="canvasLocation" x="4521" y="-946"/>
         </scene>
         <!--Active Passes View Controller-->
         <scene sceneID="8mo-Lh-BWo">

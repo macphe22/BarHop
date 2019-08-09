@@ -9,6 +9,8 @@
 import UIKit
 import BraintreeDropIn
 import Braintree
+import AWSDynamoDB
+import AWSCore
 
 class PayViewController: UIViewController {
 
@@ -16,16 +18,25 @@ class PayViewController: UIViewController {
     @IBOutlet weak var numPassesLabel: UITextField!
     @IBOutlet weak var payBtn: UIButton!
     @IBOutlet weak var disclaimerLabel: UILabel!
-        
+    
+    var barName: String?
+    var cost: Int?
+    var numPassesText: String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         // Bar label
-        barLabel.text = "INSERT BAR CLICKED ON"
+        let textField = "\(barName!), $\(cost!)"
+        barLabel.text = textField
         barLabel.textColor = UIColor(white: 1, alpha: 1)
         barLabel.textAlignment = NSTextAlignment.center
         // Number of passes label
-        numPassesLabel.text = "INSERT NUM LEFT"
+        if (numPassesText == nil) {
+            numPassesLabel.text = "INSERT NUM LEFT"
+        } else {
+            numPassesLabel.text = "\(numPassesText!) passes left"
+        }
         // Change background color of label depending on number of passes left once query figured out
         numPassesLabel.textColor = UIColor(white: 1, alpha: 1)
         numPassesLabel.textAlignment = NSTextAlignment.center
@@ -36,19 +47,44 @@ class PayViewController: UIViewController {
         payBtn.layer.borderColor = midBlue.cgColor
         payBtn.titleLabel?.textColor = midBlue
         // Disclaimer Label
-        disclaimerLabel.text = "INSERT DISCLAIMER"
+        disclaimerLabel.text = "BarHop is not responsible for your entry into this venue; our services solely serve to reduce your time waiting in line. It is up to staff at each venue whether or not to permnit your entry, regardless of your legal ability to enter."
         disclaimerLabel.textColor = UIColor(white: 1, alpha: 1)
         disclaimerLabel.textAlignment = NSTextAlignment.center
     }
     
     @IBAction func payBtnClicked(_ sender: Any) {
+        handleCustomerCreation()
         fetchClientToken()
+    }
+    
+    // Function to handle finding the current user
+    func getUser() -> String {
+        let userId: String = (UIDevice.current.identifierForVendor?.uuidString)!
+        return userId
+    }
+    
+    // This function serves to ensure that the customer exists before fetching a client token
+    func handleCustomerCreation() {
+        let createURL = URL(string: "https://mysterious-brook-47208.herokuapp.com/create")!
+        var request = URLRequest(url: createURL)
+        // Save the current user in a variable
+        let userID = getUser()
+        // Make the body with the payment_method_nonce and the amount
+        request.httpBody = "customerId=\(userID)".data(using: String.Encoding.utf8)
+        request.httpMethod = "POST"
+        
+        URLSession.shared.dataTask(with: request) { (data, response, error) -> Void in
+            // TODO: Handle success or failure
+            let _ = String(data: data!, encoding: String.Encoding.utf8)
+        }.resume()
     }
     
     // Braintree function for Venmo payments through dropin UI which collects
     // customer's payment information and sends a nonce to your server
     func showDropIn(token: String) {
         let request =  BTDropInRequest()
+        request.vaultManager = true
+        request.paypalDisabled = true
         let dropIn = BTDropInController(authorization: token, request: request)
         { (controller, result, error) in
             if (error != nil) {
@@ -61,11 +97,12 @@ class PayViewController: UIViewController {
                 // When the user hits submit/pay, their information is processed by the Braintree
                 // servers and then the servers return a payment nonce, which we can use to pass
                 // into the postNonceToServer() function below.
-                let cost = 12.99 // QUERY NEEDED HERE
-                self.postNonceToServer(paymentMethodNonce: result?.paymentMethod?.nonce ?? "fake-valid-nonce", amount: cost)
+                let cost: Double = 10.99 // QUERY NEEDED HERE
+                self.postNonceToServer(paymentMethodNonce: result?.paymentMethod?.nonce ?? "fake-valid-nonce", amount: cost, venue: self.barName ?? "unknown")
             }
             controller.dismiss(animated: true, completion: nil)
         }
+        BTUIKAppearance.darkTheme()
         self.present(dropIn!, animated: true, completion: nil)
     }
     
@@ -74,24 +111,26 @@ class PayViewController: UIViewController {
         // STEP 1: Front-end requests a client token from the server and sets up the client-side SDK
         let clientTokenURL = NSURL(string: "https://mysterious-brook-47208.herokuapp.com/client_token")!
         let clientTokenRequest = NSMutableURLRequest(url: clientTokenURL as URL)
+        let customerId: String = getUser()
+        clientTokenRequest.addValue(customerId, forHTTPHeaderField: "id")
         clientTokenRequest.setValue("text/plain", forHTTPHeaderField: "Accept")
         
         URLSession.shared.dataTask(with: clientTokenRequest as URLRequest) { (data, response, error) -> Void in
             // TODO: Handle errors
             let clientToken = String(data: data!, encoding: String.Encoding.utf8)
-            // Dark mode
-            BTUIKAppearance.darkTheme()
             // Present drop in
             self.showDropIn(token: clientToken ?? "nil")
         }.resume()
     }
    
     // Sends the payment nonce to the server via a post request on the /payment-methods route
-    func postNonceToServer(paymentMethodNonce: String, amount: Double) {
+    func postNonceToServer(paymentMethodNonce: String, amount: Double, venue: String) {
         let paymentURL = URL(string: "https://mysterious-brook-47208.herokuapp.com/payment-methods")!
         var request = URLRequest(url: paymentURL)
+        // Save the current user in a variable
+        let userID = getUser()
         // Make the body with the payment_method_nonce and the amount
-        request.httpBody = "payment_method_nonce=\(paymentMethodNonce)&amount=\(amount)".data(using: String.Encoding.utf8)
+        request.httpBody = "payment_method_nonce=\(paymentMethodNonce)&amount=\(amount)&venue=\(venue)&customerId=\(userID)".data(using: String.Encoding.utf8)
         request.httpMethod = "POST"
         
         URLSession.shared.dataTask(with: request) { (data, response, error) -> Void in
@@ -101,7 +140,7 @@ class PayViewController: UIViewController {
             // If the string is empty, we can assume it's false
             let transMessage = (result == "true") ? "Your payment was processed successfully!" : "Oops, something went wrong with your payment, please try again"
             let alert = UIAlertController(title: "Transaction Status", message: transMessage, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: nil))
+            alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: nil))
             self.present(alert, animated: true)
         }.resume()
     }

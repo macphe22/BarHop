@@ -109,14 +109,13 @@ class PayViewController: UIViewController {
     // Function to fetch a client token from the server
     func fetchClientToken() {
         // STEP 1: Front-end requests a client token from the server and sets up the client-side SDK
-        let clientTokenURL = NSURL(string: "https://mysterious-brook-47208.herokuapp.com/client_token")!
-        let clientTokenRequest = NSMutableURLRequest(url: clientTokenURL as URL)
-        let customerId: String = getUser()
-        clientTokenRequest.addValue(customerId, forHTTPHeaderField: "id")
-        clientTokenRequest.setValue("text/plain", forHTTPHeaderField: "Accept")
+        let clientTokenURL = NSURLComponents(string: "https://mysterious-brook-47208.herokuapp.com/client_token")!
+        // Add query items to the GET request to allow data transferring in the form of customerId
+        clientTokenURL.queryItems = [URLQueryItem(name: "userId", value: getUser())]
+        // Create the URLRequest and downcast the NSURLComponents to a URL
+        let clientTokenRequest = URLRequest(url: clientTokenURL.url!)
         
         URLSession.shared.dataTask(with: clientTokenRequest as URLRequest) { (data, response, error) -> Void in
-            // TODO: Handle errors
             let clientToken = String(data: data!, encoding: String.Encoding.utf8)
             // Present drop in
             self.showDropIn(token: clientToken ?? "nil")
@@ -127,10 +126,8 @@ class PayViewController: UIViewController {
     func postNonceToServer(paymentMethodNonce: String, amount: Double, venue: String) {
         let paymentURL = URL(string: "https://mysterious-brook-47208.herokuapp.com/payment-methods")!
         var request = URLRequest(url: paymentURL)
-        // Save the current user in a variable
-        let userID = getUser()
         // Make the body with the payment_method_nonce and the amount
-        request.httpBody = "payment_method_nonce=\(paymentMethodNonce)&amount=\(amount)&venue=\(venue)&customerId=\(userID)".data(using: String.Encoding.utf8)
+        request.httpBody = "payment_method_nonce=\(paymentMethodNonce)&amount=\(amount)&venue=\(venue)".data(using: String.Encoding.utf8)
         request.httpMethod = "POST"
         
         URLSession.shared.dataTask(with: request) { (data, response, error) -> Void in

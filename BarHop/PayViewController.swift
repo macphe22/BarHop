@@ -10,6 +10,7 @@ import UIKit
 import BraintreeDropIn
 import Braintree
 import AWSDynamoDB
+import AWSMobileClient
 import AWSCore
 
 class PayViewController: UIViewController {
@@ -53,24 +54,25 @@ class PayViewController: UIViewController {
     }
     
     @IBAction func payBtnClicked(_ sender: Any) {
-        handleCustomerCreation()
+        handleCustomerCreation(userId: getUser())
         fetchClientToken()
     }
     
     // Function to handle finding the current user
     func getUser() -> String {
-        let userId: String = (UIDevice.current.identifierForVendor?.uuidString)!
+        var userId: String = AWSIdentityManager.default().identityId!
+        userId = userId.components(separatedBy: ":")[1] // Remove beginning
         return userId
     }
     
     // This function serves to ensure that the customer exists before fetching a client token
-    func handleCustomerCreation() {
+    func handleCustomerCreation(userId: String) {
         let createURL = URL(string: "https://mysterious-brook-47208.herokuapp.com/create")!
         var request = URLRequest(url: createURL)
         // Save the current user in a variable
-        let userID = getUser()
         // Make the body with the payment_method_nonce and the amount
-        request.httpBody = "customerId=\(userID)".data(using: String.Encoding.utf8)
+        let userId: String = getUser()
+        request.httpBody = "customerId=\(userId)".data(using: String.Encoding.utf8)
         request.httpMethod = "POST"
         
         URLSession.shared.dataTask(with: request) { (data, response, error) -> Void in

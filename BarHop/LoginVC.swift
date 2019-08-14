@@ -56,6 +56,7 @@ import AWSMobileClient
             configuration: config, completionHandler: { (provider: AWSSignInProvider, error: Error?) in
                 if error == nil {
                     // SignIn succeeded.
+                    self.createCustomer()
                 } else {
                     // end user faced error while loggin in, take any required action here.
                 }

@@ -100,6 +100,10 @@ class PayViewController: UIViewController {
                 // servers and then the servers return a payment nonce, which we can use to pass
                 // into the postNonceToServer() function below.
                 let cost: Double = 10.99 // QUERY NEEDED HERE
+                // If the user is paying with Venmo, we need to cast their nonce
+                if (result!.paymentOptionType.rawValue == 17) {
+                    // let result.paymentMethod.nonce as BTVenmoAccountNonce
+                }
                 self.postNonceToServer(paymentMethodNonce: result?.paymentMethod?.nonce ?? "fake-valid-nonce", amount: cost, venue: self.barName ?? "unknown")
             }
             controller.dismiss(animated: true, completion: nil)
@@ -129,7 +133,7 @@ class PayViewController: UIViewController {
         let paymentURL = URL(string: "https://mysterious-brook-47208.herokuapp.com/payment-methods")!
         var request = URLRequest(url: paymentURL)
         // Make the body with the payment_method_nonce and the amount
-        request.httpBody = "payment_method_nonce=\(paymentMethodNonce)&amount=\(amount)&venue=\(venue)".data(using: String.Encoding.utf8)
+        request.httpBody = "nonce=\(paymentMethodNonce)&amount=\(amount)&venue=\(venue)".data(using: String.Encoding.utf8)
         request.httpMethod = "POST"
         
         URLSession.shared.dataTask(with: request) { (data, response, error) -> Void in
@@ -141,6 +145,9 @@ class PayViewController: UIViewController {
             let alert = UIAlertController(title: "Transaction Status", message: transMessage, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: nil))
             self.present(alert, animated: true)
+            // Now that the user has paid, if the transaction was successful, we
+            // can add their new pass to their activePass set and subtract a remaining pass
+            // from the selected bar
         }.resume()
     }
 }

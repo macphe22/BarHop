@@ -25,12 +25,14 @@ class MapSearchVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // Set button and label to invisible
+        button.isHidden = true
         // Make the view controller the mapView's delegate
         mapView.delegate = self as MKMapViewDelegate
         // Call check location services
         checkLocationServices()
-        // Set button and label to invisible
-        button.isHidden = true
+        // Add our pins here
+        addPins()
     }
     
     // Function to handle moving on to PayVC and handling data forwarding
@@ -61,14 +63,7 @@ class MapSearchVC: UIViewController {
         theStud.coordinate = CLLocationCoordinate2D(latitude: 37.7728, longitude: -122.4101)
         mapView.addAnnotation(theStud)
     }
-    
-    // Function to set up the location manager
-    func setUpLocationManager() {
-        // Set our delegate (below extension stuff) so we can use the methods below
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-    }
-    
+        
     // Function that centers the map on the user's location
     func centerViewOnUserLocation() {
         // Need if let and ? because location is an optional variable
@@ -83,8 +78,6 @@ class MapSearchVC: UIViewController {
         // If location services are already on, continue forward with pinning user
         // location. Otherwise, request that the user turn them on
         if CLLocationManager.locationServicesEnabled() {
-            // Set up our location manager
-            setUpLocationManager()
             // Check location authorization
             checkLocationAuthorization()
         } else {
@@ -154,20 +147,6 @@ class MapSearchVC: UIViewController {
 
 // Allow extension from CLLocationManagerDelegate
 extension MapSearchVC: CLLocationManagerDelegate {
-    // Handles location updates
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        // Guard against no locations available: locations.last could be nil
-        guard let location = locations.last else { return }
-        // Create a center for the mapView
-        let center = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-        // Create a region based on the center and the desired regionSpan distance
-        let region = MKCoordinateRegion.init(center: center, latitudinalMeters: regionSpan, longitudinalMeters: regionSpan)
-        // Set the mapView to be on that region
-        mapView.setRegion(region, animated: true)
-        // Call addPins to actually see our pins
-        addPins()
-    }
-    
     // Handles permission authorization changes, simply calls checkLocationAuthorization()
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         checkLocationAuthorization()

@@ -14,9 +14,8 @@ target :'BarHop' do
   # Braintree Pods
   pod 'Braintree'
   pod 'BraintreeDropIn'
-  pod 'Braintree/PayPal'
   pod 'Braintree/Venmo'
-  pod 'Braintree/Apple-Pay'
+  pod 'Braintree/DataCollector'
 
   # Pods for BarHop
   target 'BarHopTests' do

@@ -23,6 +23,7 @@ class PayViewController: UIViewController {
     var barName: String?
     var cost: Int?
     var numPassesText: String?
+    var backgroundTask: UIBackgroundTaskIdentifier?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,14 +49,40 @@ class PayViewController: UIViewController {
         payBtn.layer.borderColor = midBlue.cgColor
         payBtn.titleLabel?.textColor = midBlue
         // Disclaimer Label
-        disclaimerLabel.text = "BarHop is not responsible for your entry into this venue; our services solely serve to reduce your time waiting in line. It is up to staff at each venue whether or not to permnit your entry, regardless of your legal ability to enter."
+        disclaimerLabel.text = "BarHop is not responsible for your entry into this venue; our services solely serve to reduce your time waiting in line. It is up to staff at each venue whether or not to permnit your entry, regardless of your legal ability to enter. Please drink responsibly."
         disclaimerLabel.textColor = UIColor(white: 1, alpha: 1)
         disclaimerLabel.textAlignment = NSTextAlignment.center
     }
     
     @IBAction func payBtnClicked(_ sender: Any) {
-        handleCustomerCreation(userId: getUser())
-        fetchClientToken()
+        // Start running the process in the background
+        DispatchQueue.global().async {
+            // Request the task assertion and save the ID.
+            self.backgroundTask = UIApplication.shared.beginBackgroundTask (withName: "Finish Network Tasks") {
+                // End the task if time expires.
+                UIApplication.shared.endBackgroundTask(self.backgroundTask!)
+                self.backgroundTask = UIBackgroundTaskIdentifier.invalid
+            }
+            // Perform the actual task
+            self.handleCustomerCreation(userId: self.getUser())
+            // End the task assertion.
+            UIApplication.shared.endBackgroundTask(self.backgroundTask!)
+            self.backgroundTask = UIBackgroundTaskIdentifier.invalid
+        }
+        // Start running the process in the background
+        DispatchQueue.global().async {
+            // Request the task assertion and save the ID.
+            self.backgroundTask = UIApplication.shared.beginBackgroundTask (withName: "Finish Network Tasks") {
+                // End the task if time expires.
+                UIApplication.shared.endBackgroundTask(self.backgroundTask!)
+                self.backgroundTask = UIBackgroundTaskIdentifier.invalid
+            }
+            // Perform the actual task
+            self.fetchClientToken()
+            // End the task assertion.
+            UIApplication.shared.endBackgroundTask(self.backgroundTask!)
+            self.backgroundTask = UIBackgroundTaskIdentifier.invalid
+        }
     }
     
     // Function to handle finding the current user
@@ -100,11 +127,16 @@ class PayViewController: UIViewController {
                 // servers and then the servers return a payment nonce, which we can use to pass
                 // into the postNonceToServer() function below.
                 let cost: Double = 10.99 // QUERY NEEDED HERE
-                // If the user is paying with Venmo, we need to cast their nonce
+                // If the user is paying with Venmo, we need to cast their nonce into a BTVenmoAccountNonce
+                // and then use the username property instead of the typical card transaction nonce
                 if (result!.paymentOptionType.rawValue == 17) {
-                    // let result.paymentMethod.nonce as BTVenmoAccountNonce
+                    let nonce = result?.paymentMethod as! BTVenmoAccountNonce
+                    // Check the below line to ensure that the username property of
+                    // the VenmoAccountNonce is what should be passed in here
+                    self.postNonceToServer(paymentMethodNonce: nonce.username ?? "", amount: cost, venue: self.barName ?? "unknown")
+                } else {
+                    self.postNonceToServer(paymentMethodNonce: result?.paymentMethod?.nonce ?? "", amount: cost, venue: self.barName ?? "unknown")
                 }
-                self.postNonceToServer(paymentMethodNonce: result?.paymentMethod?.nonce ?? "fake-valid-nonce", amount: cost, venue: self.barName ?? "unknown")
             }
             controller.dismiss(animated: true, completion: nil)
         }

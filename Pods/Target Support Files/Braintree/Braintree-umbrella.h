@@ -10,10 +10,6 @@
 #endif
 #endif
 
-#import "BraintreeApplePay.h"
-#import "BTApplePayCardNonce.h"
-#import "BTApplePayClient.h"
-#import "BTConfiguration+ApplePay.h"
 #import "BraintreeCard.h"
 #import "BTCard.h"
 #import "BTCardClient.h"
@@ -37,6 +33,9 @@
 #import "BTPostalAddress.h"
 #import "BTTokenizationService.h"
 #import "BTViewControllerPresentingDelegate.h"
+#import "BraintreeDataCollector.h"
+#import "BTConfiguration+DataCollector.h"
+#import "BTDataCollector.h"
 #import "BraintreePayPal.h"
 #import "BTConfiguration+PayPal.h"
 #import "BTPayPalAccountNonce.h"

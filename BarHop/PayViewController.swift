@@ -65,20 +65,8 @@ class PayViewController: UIViewController {
             }
             // Perform the actual task
             self.handleCustomerCreation(userId: self.getUser())
-            // End the task assertion.
-            UIApplication.shared.endBackgroundTask(self.backgroundTask!)
-            self.backgroundTask = UIBackgroundTaskIdentifier.invalid
-        }
-        // Start running the process in the background
-        DispatchQueue.global().async {
-            // Request the task assertion and save the ID.
-            self.backgroundTask = UIApplication.shared.beginBackgroundTask (withName: "Finish Network Tasks") {
-                // End the task if time expires.
-                UIApplication.shared.endBackgroundTask(self.backgroundTask!)
-                self.backgroundTask = UIBackgroundTaskIdentifier.invalid
-            }
-            // Perform the actual task
             self.fetchClientToken()
+
             // End the task assertion.
             UIApplication.shared.endBackgroundTask(self.backgroundTask!)
             self.backgroundTask = UIBackgroundTaskIdentifier.invalid
@@ -126,14 +114,13 @@ class PayViewController: UIViewController {
                 // When the user hits submit/pay, their information is processed by the Braintree
                 // servers and then the servers return a payment nonce, which we can use to pass
                 // into the postNonceToServer() function below.
-                let cost: Double = 10.99 // QUERY NEEDED HERE
+                let cost: Double = 10.99
                 // If the user is paying with Venmo, we need to cast their nonce into a BTVenmoAccountNonce
                 // and then use the username property instead of the typical card transaction nonce
                 if (result!.paymentOptionType.rawValue == 17) {
-                    let nonce = result?.paymentMethod as! BTVenmoAccountNonce
                     // Check the below line to ensure that the username property of
                     // the VenmoAccountNonce is what should be passed in here
-                    self.postNonceToServer(paymentMethodNonce: nonce.username ?? "", amount: cost, venue: self.barName ?? "unknown")
+                    self.postNonceToServer(paymentMethodNonce: result?.paymentMethod?.nonce ?? "", amount: cost, venue: self.barName ?? "unknown")
                 } else {
                     self.postNonceToServer(paymentMethodNonce: result?.paymentMethod?.nonce ?? "", amount: cost, venue: self.barName ?? "unknown")
                 }

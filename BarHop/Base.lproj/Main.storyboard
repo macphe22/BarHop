@@ -47,7 +47,7 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
-                                            <segue destination="7IF-4C-a5S" kind="show" id="WdN-q4-ai2"/>
+                                            <segue destination="Kzh-2R-IAO" kind="show" id="SgH-wl-2kG"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pDe-fp-h0L">
@@ -156,7 +156,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thank you for your interest in registering a location with BarHop. Please email barhopios@gmail.com to discuss details." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="10" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iXn-mh-7p9">
-                                <rect key="frame" x="16" y="64" width="343" height="583"/>
+                                <rect key="frame" x="16" y="20" width="343" height="627"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.96862745100000003" green="0.95686274510000002" blue="0.91372549020000005" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -278,7 +278,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UMR-Yv-IuF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3586" y="-945"/>
+            <point key="canvasLocation" x="3577" y="-973"/>
         </scene>
         <!--Find a Bar-->
         <scene sceneID="NUc-xa-ScR">
@@ -321,6 +321,92 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="t8i-H5-GP8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3845.5999999999999" y="-194.75262368815595"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="d4T-qh-E8v">
+            <objects>
+                <viewController id="Kzh-2R-IAO" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Rre-yp-zfl">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ITF-5n-i5Q">
+                                <rect key="frame" x="0.0" y="64" width="375" height="936"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hUk-8z-bWw">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Let's figure out where you are first" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KbW-2K-SLD">
+                                                <rect key="frame" x="16" y="24" width="342" height="28"/>
+                                                <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="20"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What's your street address?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rq5-cP-JJw">
+                                                <rect key="frame" x="16" y="112" width="342" height="31"/>
+                                                <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="22"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Street Address" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="i6N-DI-qVR">
+                                                <rect key="frame" x="16" y="178" width="342" height="30"/>
+                                                <nil key="textColor"/>
+                                                <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="17"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="What city is your bar in?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KyN-pC-Tle">
+                                                <rect key="frame" x="16" y="267" width="342" height="31"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="22"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="City" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ouz-Ku-asd">
+                                                <rect key="frame" x="16" y="324" width="342" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <nil key="textColor"/>
+                                                <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="17"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="KbW-2K-SLD" firstAttribute="leading" secondItem="hUk-8z-bWw" secondAttribute="leading" constant="16" id="14c-ce-X8C"/>
+                                            <constraint firstItem="i6N-DI-qVR" firstAttribute="leading" secondItem="hUk-8z-bWw" secondAttribute="leading" constant="16" id="HFg-qb-Z3h"/>
+                                            <constraint firstItem="rq5-cP-JJw" firstAttribute="top" secondItem="KbW-2K-SLD" secondAttribute="bottom" constant="60" id="N7n-Pp-NEI"/>
+                                            <constraint firstItem="i6N-DI-qVR" firstAttribute="top" secondItem="rq5-cP-JJw" secondAttribute="bottom" constant="35" id="P2V-S0-aRx"/>
+                                            <constraint firstItem="rq5-cP-JJw" firstAttribute="leading" secondItem="hUk-8z-bWw" secondAttribute="leading" constant="16" id="RcC-Ya-XN9"/>
+                                            <constraint firstItem="KbW-2K-SLD" firstAttribute="top" secondItem="hUk-8z-bWw" secondAttribute="top" constant="24" id="Sen-56-dQ6"/>
+                                            <constraint firstAttribute="trailing" secondItem="rq5-cP-JJw" secondAttribute="trailing" constant="17" id="Sj0-M2-Z5R"/>
+                                            <constraint firstAttribute="trailing" secondItem="KbW-2K-SLD" secondAttribute="trailing" constant="17" id="SzT-fx-fHt"/>
+                                            <constraint firstAttribute="height" constant="1000" id="aKH-xz-ntI"/>
+                                            <constraint firstAttribute="trailing" secondItem="i6N-DI-qVR" secondAttribute="trailing" constant="17" id="osS-tY-vcn"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="hUk-8z-bWw" firstAttribute="top" secondItem="ITF-5n-i5Q" secondAttribute="top" id="5ba-gl-aaj"/>
+                                    <constraint firstItem="hUk-8z-bWw" firstAttribute="leading" secondItem="ITF-5n-i5Q" secondAttribute="leading" id="CiC-qN-mY3"/>
+                                    <constraint firstAttribute="trailing" secondItem="hUk-8z-bWw" secondAttribute="trailing" id="CzJ-62-f1e"/>
+                                    <constraint firstAttribute="bottom" secondItem="hUk-8z-bWw" secondAttribute="bottom" id="u49-RC-5iw"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.064119170984455964" green="0.064119170984455964" blue="0.064119170984455964" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <constraints>
+                            <constraint firstItem="CoJ-Jy-b6N" firstAttribute="bottom" secondItem="ITF-5n-i5Q" secondAttribute="bottom" id="ItQ-be-uQD"/>
+                            <constraint firstItem="ITF-5n-i5Q" firstAttribute="top" secondItem="CoJ-Jy-b6N" secondAttribute="top" id="TOV-JZ-3Sg"/>
+                            <constraint firstItem="CoJ-Jy-b6N" firstAttribute="trailing" secondItem="ITF-5n-i5Q" secondAttribute="trailing" id="fIV-TR-dHV"/>
+                            <constraint firstItem="ITF-5n-i5Q" firstAttribute="leading" secondItem="CoJ-Jy-b6N" secondAttribute="leading" id="q3j-e3-7lp"/>
+                            <constraint firstItem="hUk-8z-bWw" firstAttribute="width" secondItem="Rre-yp-zfl" secondAttribute="width" id="xKX-Kk-1Gw"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="CoJ-Jy-b6N"/>
+                    </view>
+                    <size key="freeformSize" width="375" height="1000"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fA1-rQ-Tq7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3845.5999999999999" y="794.30284857571223"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ZAF-pf-JVC">

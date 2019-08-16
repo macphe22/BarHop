@@ -164,8 +164,10 @@ class PayViewController: UIViewController {
     func postNonceToServer(paymentMethodNonce: String, amount: Double, venue: String) {
         let paymentURL = URL(string: "https://mysterious-brook-47208.herokuapp.com/payment-methods")!
         var request = URLRequest(url: paymentURL)
+        // Handle device data collection
+        let deviceData = PPDataCollector.collectPayPalDeviceData()
         // Make the body with the payment_method_nonce and the amount
-        request.httpBody = "nonce=\(paymentMethodNonce)&amount=\(amount)&venue=\(venue)".data(using: String.Encoding.utf8)
+        request.httpBody = "nonce=\(paymentMethodNonce)&amount=\(amount)&venue=\(venue)&device_data=\(deviceData)".data(using: String.Encoding.utf8)
         request.httpMethod = "POST"
         
         URLSession.shared.dataTask(with: request) { (data, response, error) -> Void in

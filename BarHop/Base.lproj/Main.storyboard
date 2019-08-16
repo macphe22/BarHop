@@ -98,19 +98,19 @@
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uIL-hZ-Xyo">
-                                        <rect key="frame" x="15" y="15" width="345" height="465.5"/>
+                                        <rect key="frame" x="15" y="15" width="345" height="466"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gWw-wL-Jdy">
-                                        <rect key="frame" x="15" y="500.5" width="345" height="20.5"/>
+                                        <rect key="frame" x="15" y="501" width="345" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9rY-DO-rQf">
-                                        <rect key="frame" x="15" y="541" width="345" height="27"/>
+                                        <rect key="frame" x="15" y="541.5" width="345" height="26.5"/>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
                                         <state key="normal" title="Pay"/>
                                         <connections>
@@ -322,10 +322,10 @@
             </objects>
             <point key="canvasLocation" x="3845.5999999999999" y="-194.75262368815595"/>
         </scene>
-        <!--View Controller-->
+        <!--Register Bar View Controller-->
         <scene sceneID="d4T-qh-E8v">
             <objects>
-                <viewController id="Kzh-2R-IAO" sceneMemberID="viewController">
+                <viewController id="Kzh-2R-IAO" customClass="RegisterBarViewController" customModule="BarHop" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Rre-yp-zfl">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -348,39 +348,71 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Street Address" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="i6N-DI-qVR">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Street Address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="i6N-DI-qVR">
                                                 <rect key="frame" x="16" y="178" width="342" height="30"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="17"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="What city is your bar in?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KyN-pC-Tle">
-                                                <rect key="frame" x="16" y="267" width="342" height="31"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What city is your bar in?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KyN-pC-Tle">
+                                                <rect key="frame" x="16" y="268" width="342" height="31"/>
                                                 <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="22"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="City" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ouz-Ku-asd">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="City" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ouz-Ku-asd">
                                                 <rect key="frame" x="16" y="324" width="342" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="17"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What state is your bar in?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HAg-pF-LAB">
+                                                <rect key="frame" x="16" y="414" width="342" height="31"/>
+                                                <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="22"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="State" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4Dc-2Q-I1e">
+                                                <rect key="frame" x="16" y="470" width="342" height="30"/>
+                                                <nil key="textColor"/>
+                                                <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="17"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vhg-WQ-NQ7">
+                                                <rect key="frame" x="77" y="559" width="210" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="Submit"/>
+                                                <connections>
+                                                    <action selector="submitAction:" destination="Kzh-2R-IAO" eventType="touchUpInside" id="zk0-IZ-Xf1"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="KyN-pC-Tle" secondAttribute="trailing" constant="17" id="0sW-zp-afJ"/>
                                             <constraint firstItem="KbW-2K-SLD" firstAttribute="leading" secondItem="hUk-8z-bWw" secondAttribute="leading" constant="16" id="14c-ce-X8C"/>
+                                            <constraint firstItem="KyN-pC-Tle" firstAttribute="top" secondItem="i6N-DI-qVR" secondAttribute="bottom" constant="60" id="1cz-O4-J0h"/>
+                                            <constraint firstItem="HAg-pF-LAB" firstAttribute="top" secondItem="Ouz-Ku-asd" secondAttribute="bottom" constant="60" id="1jO-xx-RJU"/>
+                                            <constraint firstItem="4Dc-2Q-I1e" firstAttribute="leading" secondItem="hUk-8z-bWw" secondAttribute="leading" constant="16" id="7zJ-ce-6uU"/>
+                                            <constraint firstItem="HAg-pF-LAB" firstAttribute="leading" secondItem="hUk-8z-bWw" secondAttribute="leading" constant="16" id="EWa-Up-CpY"/>
                                             <constraint firstItem="i6N-DI-qVR" firstAttribute="leading" secondItem="hUk-8z-bWw" secondAttribute="leading" constant="16" id="HFg-qb-Z3h"/>
                                             <constraint firstItem="rq5-cP-JJw" firstAttribute="top" secondItem="KbW-2K-SLD" secondAttribute="bottom" constant="60" id="N7n-Pp-NEI"/>
                                             <constraint firstItem="i6N-DI-qVR" firstAttribute="top" secondItem="rq5-cP-JJw" secondAttribute="bottom" constant="35" id="P2V-S0-aRx"/>
+                                            <constraint firstItem="Ouz-Ku-asd" firstAttribute="leading" secondItem="hUk-8z-bWw" secondAttribute="leading" constant="16" id="PcM-fP-dUl"/>
                                             <constraint firstItem="rq5-cP-JJw" firstAttribute="leading" secondItem="hUk-8z-bWw" secondAttribute="leading" constant="16" id="RcC-Ya-XN9"/>
+                                            <constraint firstItem="Ouz-Ku-asd" firstAttribute="top" secondItem="KyN-pC-Tle" secondAttribute="bottom" constant="25" id="Rfw-Xv-s0f"/>
                                             <constraint firstItem="KbW-2K-SLD" firstAttribute="top" secondItem="hUk-8z-bWw" secondAttribute="top" constant="24" id="Sen-56-dQ6"/>
                                             <constraint firstAttribute="trailing" secondItem="rq5-cP-JJw" secondAttribute="trailing" constant="17" id="Sj0-M2-Z5R"/>
                                             <constraint firstAttribute="trailing" secondItem="KbW-2K-SLD" secondAttribute="trailing" constant="17" id="SzT-fx-fHt"/>
+                                            <constraint firstItem="HAg-pF-LAB" firstAttribute="top" secondItem="Ouz-Ku-asd" secondAttribute="bottom" constant="60" id="W40-2A-IbM"/>
+                                            <constraint firstAttribute="trailing" secondItem="Ouz-Ku-asd" secondAttribute="trailing" constant="17" id="YWJ-D0-Kfo"/>
                                             <constraint firstAttribute="height" constant="1000" id="aKH-xz-ntI"/>
+                                            <constraint firstItem="Ouz-Ku-asd" firstAttribute="top" secondItem="KyN-pC-Tle" secondAttribute="bottom" constant="25" id="ePt-vG-nBG"/>
+                                            <constraint firstItem="4Dc-2Q-I1e" firstAttribute="top" secondItem="HAg-pF-LAB" secondAttribute="bottom" constant="25" id="h9q-Hd-r90"/>
+                                            <constraint firstAttribute="trailing" secondItem="4Dc-2Q-I1e" secondAttribute="trailing" constant="17" id="jA7-hS-HZd"/>
+                                            <constraint firstItem="KyN-pC-Tle" firstAttribute="leading" secondItem="hUk-8z-bWw" secondAttribute="leading" constant="16" id="kZE-GG-LtS"/>
                                             <constraint firstAttribute="trailing" secondItem="i6N-DI-qVR" secondAttribute="trailing" constant="17" id="osS-tY-vcn"/>
+                                            <constraint firstAttribute="trailing" secondItem="HAg-pF-LAB" secondAttribute="trailing" constant="17" id="vV4-SF-bw5"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -403,6 +435,11 @@
                         <viewLayoutGuide key="safeArea" id="CoJ-Jy-b6N"/>
                     </view>
                     <size key="freeformSize" width="375" height="1000"/>
+                    <connections>
+                        <outlet property="city" destination="Ouz-Ku-asd" id="wWj-Q9-Wm3"/>
+                        <outlet property="state" destination="4Dc-2Q-I1e" id="1mc-Xr-SgL"/>
+                        <outlet property="streetAddress" destination="i6N-DI-qVR" id="gfe-xc-9SU"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fA1-rQ-Tq7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

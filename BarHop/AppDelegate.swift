@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor:UIColor(white: 1, alpha: 1)]
         UINavigationBar.appearance().tintColor = .white
         // Run App Switch
-        BTAppSwitch.setReturnURLScheme("com.barhop.barhop.payments") 
+        BTAppSwitch.setReturnURLScheme("com.ScottMacpherson.BarHop.payments")
         // Override point for customization after application launch.
         return AWSMobileClient.sharedInstance().interceptApplication(
             application,
@@ -35,7 +35,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Make sure this return statement works...
         // Attempts to return both the AWSMobileClient call and the BrainTree for
         // iOS payment authorization URL
-        if url.scheme?.localizedCaseInsensitiveCompare("com.barhop.barhop.payments") == .orderedSame {
+        if url.scheme?.localizedCaseInsensitiveCompare("com.ScottMacpherson.BarHop.payments") == .orderedSame {
             return AWSMobileClient.sharedInstance().interceptApplication(
                 application, open: url,
                 sourceApplication: sourceApplication,

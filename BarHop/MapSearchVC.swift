@@ -15,20 +15,38 @@ class MapSearchVC: UIViewController {
     
     // Map view outlet
     @IBOutlet weak var mapView: MKMapView!
-    // Button and label
+    // Button and label outlet
     @IBOutlet weak var button: UIButton!
+    
+    var barName = ""
     
     let locationManager = CLLocationManager()
     let regionSpan: Double = 10000
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // Set button and label to invisible
+        button.isHidden = true
         // Make the view controller the mapView's delegate
         mapView.delegate = self as MKMapViewDelegate
         // Call check location services
         checkLocationServices()
-        // Set button and label to invisible
-        button.isHidden = true
+        // Add our pins here
+        addPins()
+    }
+    
+    // Function to handle moving on to PayVC and handling data forwarding
+    @IBAction func barBtnClicked(_ sender: Any) {
+        self.performSegue(withIdentifier: "pushPayVC", sender: self)
+    }
+    
+    // Override the prepare for segue function to handle data forwarding
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let payVC = segue.destination as! PayViewController
+        let price = 25 // Need a query here
+        payVC.barName = barName
+        payVC.cost = price
+        payVC.numPassesText = "10" // Need a query here
     }
     
     // Function to add custom pins to the mapview
@@ -45,14 +63,7 @@ class MapSearchVC: UIViewController {
         theStud.coordinate = CLLocationCoordinate2D(latitude: 37.7728, longitude: -122.4101)
         mapView.addAnnotation(theStud)
     }
-    
-    // Function to set up the location manager
-    func setUpLocationManager() {
-        // Set our delegate (below extension stuff) so we can use the methods below
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-    }
-    
+        
     // Function that centers the map on the user's location
     func centerViewOnUserLocation() {
         // Need if let and ? because location is an optional variable
@@ -64,14 +75,28 @@ class MapSearchVC: UIViewController {
     
     // Function to check if location services are enabled on device
     func checkLocationServices() {
-        
+        // If location services are already on, continue forward with pinning user
+        // location. Otherwise, request that the user turn them on
         if CLLocationManager.locationServicesEnabled() {
-            // Set up our location manager
-            setUpLocationManager()
             // Check location authorization
             checkLocationAuthorization()
         } else {
             // Here we need to show an alert letting the user know they have to turn these on
+            let transMessage = "Go to settings to enable location"
+            let alert = UIAlertController(title: "Location Services", message: transMessage, preferredStyle: .alert)
+            // Add a Dismiss choice if the user wishes to leave location services off
+            alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: nil))
+            // Add an option to navigate directly to settings
+            let settingsAction = UIAlertAction(title: "Settings", style: .default) { (_) -> Void in
+                guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else { return }
+                if UIApplication.shared.canOpenURL(settingsUrl) {
+                    UIApplication.shared.open(settingsUrl, completionHandler: { (success) in
+                        print("Settings opened: \(success)") // Prints true
+                    })
+                }
+            }
+            alert.addAction(settingsAction)
+            self.present(alert, animated: true)
         }
     }
     
@@ -106,6 +131,8 @@ class MapSearchVC: UIViewController {
     
     // Handles button and label properties
     private func addPinInfo(name: String) {
+        // Set barName variable for later use
+        barName = name
         // Button
         button.isHidden = false
         button.frame = CGRect(x: 10, y: UIScreen.main.bounds.height*7/8, width: UIScreen.main.bounds.width - 20, height: UIScreen.main.bounds.height/12 - 10)
@@ -120,20 +147,6 @@ class MapSearchVC: UIViewController {
 
 // Allow extension from CLLocationManagerDelegate
 extension MapSearchVC: CLLocationManagerDelegate {
-    // Handles location updates
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        // Guard against no locations available: locations.last could be nil
-        guard let location = locations.last else { return }
-        // Create a center for the mapView
-        let center = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-        // Create a region based on the center and the desired regionSpan distance
-        let region = MKCoordinateRegion.init(center: center, latitudinalMeters: regionSpan, longitudinalMeters: regionSpan)
-        // Set the mapView to be on that region
-        mapView.setRegion(region, animated: true)
-        // Call addPins to actually see our pins
-        addPins()
-    }
-    
     // Handles permission authorization changes, simply calls checkLocationAuthorization()
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         checkLocationAuthorization()
@@ -144,6 +157,8 @@ extension MapSearchVC: MKMapViewDelegate {
     // Function that runs when an annotation is clicked
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         // Modally present a new view label and button to go to the correct screen
-        addPinInfo(name: (view.annotation?.title)! ?? "Bar")
+        if (view.annotation?.title != "My Location") {
+            addPinInfo(name: (view.annotation?.title)! ?? "Bar")
+        }
     }
 }

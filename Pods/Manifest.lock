@@ -21,11 +21,11 @@ PODS:
     - Braintree/Core (= 4.26.1)
     - Braintree/PayPal (= 4.26.1)
     - Braintree/UI (= 4.26.1)
-  - Braintree/Apple-Pay (4.26.1):
-    - Braintree/Core
   - Braintree/Card (4.26.1):
     - Braintree/Core
   - Braintree/Core (4.26.1)
+  - Braintree/DataCollector (4.26.1):
+    - Braintree/Core
   - Braintree/PaymentFlow (4.26.1):
     - Braintree/Card
     - Braintree/Core
@@ -67,8 +67,7 @@ DEPENDENCIES:
   - AWSMobileClient (~> 2.6.13)
   - AWSUserPoolsSignIn (~> 2.6.13)
   - Braintree
-  - Braintree/Apple-Pay
-  - Braintree/PayPal
+  - Braintree/DataCollector
   - Braintree/Venmo
   - BraintreeDropIn
 
@@ -97,6 +96,6 @@ SPEC CHECKSUMS:
   Braintree: 33a9e6e304f5eb819e0b3e664684b7a449b6602e
   BraintreeDropIn: b63750373474f7ec336118cee40cf767d198a977
 
-PODFILE CHECKSUM: da4e98dbbc2561d1a54e53470d30031eeb974afa
+PODFILE CHECKSUM: 0bda413075e0b533f21c8567a4f78a43925b53f4
 
 COCOAPODS: 1.7.2

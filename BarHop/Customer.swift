@@ -21,10 +21,11 @@ class Customer: AWSDynamoDBObjectModel, AWSDynamoDBModeling {
     @objc var _userId: String?
     @objc var _tripsTaken: NSNumber?
     @objc var _activeTrips: Set<String>?
+    @objc var _braintreeId: NSNumber?
     
     class func dynamoDBTableName() -> String {
 
-        return "barhop-mobilehub-1353656554-Customer"
+        return "barhop-mobilehub-1353656554-Customers"
     }
     
     class func hashKeyAttribute() -> String {
@@ -32,16 +33,17 @@ class Customer: AWSDynamoDBObjectModel, AWSDynamoDBModeling {
         return "_userId"
     }
     
-    class func rangeKeyAttribute() -> String {
-
-        return "_tripsTaken"
-    }
+//    class func rangeKeyAttribute() -> String {
+//
+//        return "_tripsTaken"
+//    }
     
     override class func jsonKeyPathsByPropertyKey() -> [AnyHashable: Any] {
         return [
                "_userId" : "userId",
                "_tripsTaken" : "TripsTaken",
                "_activeTrips" : "ActiveTrips",
+               "_braintreeId" : "BraintreeId",
         ]
     }
 }

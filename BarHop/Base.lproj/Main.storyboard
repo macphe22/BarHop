@@ -176,11 +176,11 @@
             </objects>
             <point key="canvasLocation" x="4516" y="-973.76311844077964"/>
         </scene>
-        <!--LoginVC-->
+        <!--Tab Bar Controller-->
         <scene sceneID="S7Q-f8-72U">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eQA-u7-VYS" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tabBarController id="vtu-bn-pgs" customClass="LoginVC" customModule="BarHop" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController id="vtu-bn-pgs" sceneMemberID="viewController">
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics" barStyle="black" translucent="NO"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" translucent="NO" id="xjy-vZ-Vle">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
@@ -233,7 +233,7 @@
                     <navigationItem key="navigationItem" title="Bars" id="j2c-ha-PzH">
                         <barButtonItem key="rightBarButtonItem" style="plain" id="sjf-IV-qMN">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="bA0-Cy-0er">
-                                <rect key="frame" x="245" y="0.0" width="114" height="30"/>
+                                <rect key="frame" x="245" y="7" width="114" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="104-Vc-HEh"/>

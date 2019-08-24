@@ -68,12 +68,33 @@ class MapSearchVC: UIViewController {
         
         AWSAuthUIViewController.presentViewController(with: self.navigationController!,
                                                       configuration: config, completionHandler: { (provider: AWSSignInProvider, error: Error?) in
-                                                        if error == nil {
-                                                            // SignIn succeeded.
-                                                            self.createCustomer()
-                                                        } else {
-                                                            // end user faced error while loggin in, take any required action here.
-                                                        }
+            if error == nil {
+                // SignIn succeeded.
+                // We can check to see if the customer with the provided information is in the database
+                // already, and if not, create a new customer object
+                self.findCustomer(userId: AWSIdentityManager.default().identityId!)
+            } else {
+                // end user faced error while loggin in, take any required action here.
+            }
+        })
+    }
+    
+    // Function to handle searching for customer
+    func findCustomer(userId: String) {
+        let customerItem: Customer = Customer();
+        customerItem._userId = userId
+        let dynamoDBObjectMapper = AWSDynamoDBObjectMapper.default()
+        dynamoDBObjectMapper.load(Customer.self, hashKey: customerItem._userId!,
+                                  rangeKey: nil, completionHandler: {
+                                    (objectModel: AWSDynamoDBObjectModel?, error: Error?) -> Void in
+            if error != nil {
+                // An error has occurred
+            } else if (objectModel as? Customer) != nil {
+                // The customer already exists; we don't need to do anything here
+            } else if (objectModel as? Customer) == nil {
+                // The customer was not found, we can create the customer
+                self.createCustomer()
+            }
         })
     }
     

@@ -98,8 +98,9 @@ extension ActivePassesViewController: UITableViewDataSource, UITableViewDelegate
         }
         let activePass = activePasses[indexPath.row]
         // Configure the cell...
-        cell.barNameLabel.text = activePass
-        
+        // The active pass id has both the range key and the hash key, but we only want
+        // to display the hash key to the user
+        cell.barNameLabel.text = activePass.components(separatedBy: ",")[0]
         return cell
     }
 }

@@ -57,7 +57,7 @@ class ActivePassesViewController: UIViewController {
         let customerItem: Customer = Customer();
         customerItem._userId = AWSIdentityManager.default().identityId
         customerItem._tripsTaken = 0
-        dynamoDbObjectMapper.load(Customer.self, hashKey: customerItem._userId,
+        dynamoDbObjectMapper.load(Customer.self, hashKey: customerItem._userId!,
                                   rangeKey: nil, completionHandler: {
                                     (objectModel: AWSDynamoDBObjectModel?, error: Error?) -> Void in
             if let error = error {

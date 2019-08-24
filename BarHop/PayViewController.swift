@@ -26,6 +26,8 @@ class PayViewController: UIViewController {
     var numPassesText: Int?
     var backgroundTask: UIBackgroundTaskIdentifier?
     var braintree: NSNumber?
+    var activePasses: Set<String>?
+    var userHasPass: Bool = false
     
     let dispatchGroup = DispatchGroup()
     
@@ -48,17 +50,63 @@ class PayViewController: UIViewController {
         numPassesLabel.textColor = UIColor(white: 1, alpha: 1)
         numPassesLabel.textAlignment = NSTextAlignment.center
         // Pay button
-        let midBlue = UIColor(red: 0, green: 191/255, blue: 255/255, alpha: 1)
-        payBtn.layer.cornerRadius = 8
-        payBtn.layer.borderWidth = 1
-        payBtn.layer.borderColor = midBlue.cgColor
-        payBtn.titleLabel?.textColor = midBlue
-        // Disclaimer Label
-        disclaimerLabel.text = "BarHop is not responsible for your entry into this venue; our services solely serve to reduce your time waiting in line. It is up to staff at each venue whether or not to permnit your entry, regardless of your legal ability to enter. Please drink responsibly."
-        disclaimerLabel.textColor = UIColor(white: 1, alpha: 1)
-        disclaimerLabel.textAlignment = NSTextAlignment.center
+        // Check the user's active passes against the current venue
+        checkPasses()
+        // Need a dispatch group here because we are querying to check if the user has already gotten a pass here
+        dispatchGroup.notify(queue: .main) {
+            let midBlue = UIColor(red: 0, green: 191/255, blue: 255/255, alpha: 1)
+            self.payBtn.layer.cornerRadius = 8
+            self.payBtn.layer.borderWidth = 1
+            if (self.numPassesText! == 0) {
+                self.payBtn.layer.borderColor = UIColor(red: 1, green: 0, blue: 0, alpha: 1).cgColor
+                self.payBtn.setTitle("No remaining passes available", for: .normal)
+                self.payBtn.setTitleColor(UIColor(red: 1, green: 0, blue: 0, alpha: 1), for: .normal)
+                self.payBtn.isEnabled = false
+            } else if (self.userHasPass) {
+                self.payBtn.layer.borderColor = UIColor(red: 1, green: 0, blue: 0, alpha: 1).cgColor
+                self.payBtn.setTitle("You have an active pass at this venue", for: .normal)
+                self.payBtn.setTitleColor(UIColor(red: 1, green: 0, blue: 0, alpha: 1), for: .normal)
+                self.payBtn.isEnabled = false
+            } else {
+                self.payBtn.layer.borderColor = midBlue.cgColor
+                self.payBtn.titleLabel?.textColor = midBlue
+            }
+            // Disclaimer Label
+            self.disclaimerLabel.text = "BarHop is not responsible for your entry into this venue; our services solely serve to reduce your time waiting in line. It is up to staff at each venue whether or not to permnit your entry, regardless of your legal ability to enter. Please drink responsibly."
+            self.disclaimerLabel.textColor = UIColor(white: 1, alpha: 1)
+            self.disclaimerLabel.textAlignment = NSTextAlignment.center
+        }
     }
     
+    // Function that queries to see if the user already has an active pass at the selected venue
+    func checkPasses() {
+        // Create a query expression
+        self.dispatchGroup.enter()
+        let dynamoDbObjectMapper = AWSDynamoDBObjectMapper.default()
+        let customerItem: Customer = Customer();
+        customerItem._userId = AWSIdentityManager.default().identityId
+        customerItem._tripsTaken = 0
+        dynamoDbObjectMapper.load(Customer.self, hashKey: customerItem._userId!,
+                                  rangeKey: nil, completionHandler: {
+                                    (objectModel: AWSDynamoDBObjectModel?, error: Error?) -> Void in
+            if let error = error {
+                print("Amazon DynamoDB Read Error: \(error)")
+                return
+            }
+            else if let loadedCustomer = objectModel as? Customer {
+                self.activePasses = loadedCustomer._activeTrips!
+            }
+            // Now that we have finished retrieving the user's active passes, we can return whether or not
+            // we have found the user's active passes contain the current venue
+            let passName: String = self.barUserId! + "," + self.barItemId!
+            if ((self.activePasses?.contains(passName))!) {
+                self.userHasPass = true
+            }
+            self.dispatchGroup.leave()
+        })
+    }
+    
+    // Function that handles updating a Bar's remaining passes
     func updatePasses() {
         let dynamoDBObjectMapper = AWSDynamoDBObjectMapper.default()
 

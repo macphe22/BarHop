@@ -16,6 +16,7 @@ class ActivePassTableViewCell: UITableViewCell {
     @IBOutlet weak var barNameLabel: UILabel!
     @IBOutlet weak var redeemBtn: UIButton!
     
+    var barUniqueId: String?
     var ActivePassVC = ActivePassesViewController()
     
     override func awakeFromNib() {
@@ -34,8 +35,8 @@ class ActivePassTableViewCell: UITableViewCell {
     @IBAction func redeemBtnClicked(_ sender: Any) {
         // This retreival will decrement the number of active passes for the logged in user
         // This first block is handling the retreival of the current customer in the database
-        let customerItem: Customer = Customer();
-        let uniqueId = self.barNameLabel.text!
+        let customerItem: Customer = Customer()
+        let uniqueId = self.barUniqueId!
         let dynamoDBObjectMapper = AWSDynamoDBObjectMapper.default()
         customerItem._userId = AWSIdentityManager.default().identityId
         dynamoDBObjectMapper.load(Customer.self, hashKey: customerItem._userId!,

@@ -70,43 +70,6 @@
             </objects>
             <point key="canvasLocation" x="5688.8000000000002" y="-195.6521739130435"/>
         </scene>
-        <!--Active Pass Table View Controller-->
-        <scene sceneID="jlj-Q0-mPV">
-            <objects>
-                <tableViewController id="IJA-de-QJh" customClass="ActivePassTableViewController" customModule="BarHop" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="90" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="UzD-pA-SvL">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ActivePassTableViewCell" rowHeight="90" id="Bb2-vb-DY5" customClass="ActivePassTableViewCell" customModule="BarHop" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="90"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Bb2-vb-DY5" id="cJc-x8-a2b">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="89.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hyj-0f-3rs">
-                                            <rect key="frame" x="37" y="11" width="322" height="68"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="IJA-de-QJh" id="XW7-7x-gt8"/>
-                            <outlet property="delegate" destination="IJA-de-QJh" id="alv-eo-kjV"/>
-                        </connections>
-                    </tableView>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="EAa-T0-chK" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="5460" y="-946.77661169415296"/>
-        </scene>
         <!--Active Passes-->
         <scene sceneID="8mo-Lh-BWo">
             <objects>
@@ -135,16 +98,34 @@
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="09g-HP-G7D">
+                                                            <rect key="frame" x="267" y="21" width="93" height="48"/>
+                                                            <color key="backgroundColor" red="0.0" green="0.97680455450000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="93" id="FcG-jw-5ld"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                                            <state key="normal" title="Redeem">
+                                                                <color key="titleColor" name="selectedMenuItemTextColor" catalog="System" colorSpace="catalog"/>
+                                                            </state>
+                                                            <connections>
+                                                                <action selector="redeemBtnClicked:" destination="pbh-jn-Wxy" eventType="touchUpInside" id="xoF-G7-ML4"/>
+                                                            </connections>
+                                                        </button>
                                                     </subviews>
                                                     <constraints>
+                                                        <constraint firstItem="09g-HP-G7D" firstAttribute="top" secondItem="Ajn-sd-w0U" secondAttribute="topMargin" constant="10" id="7PU-ot-Tpv"/>
                                                         <constraint firstItem="0e3-Gt-eXs" firstAttribute="leading" secondItem="Ajn-sd-w0U" secondAttribute="leadingMargin" constant="10" id="EaZ-3y-fp6"/>
                                                         <constraint firstItem="0e3-Gt-eXs" firstAttribute="top" secondItem="Ajn-sd-w0U" secondAttribute="topMargin" constant="10" id="PNA-z8-pvZ"/>
+                                                        <constraint firstItem="09g-HP-G7D" firstAttribute="trailing" secondItem="Ajn-sd-w0U" secondAttribute="trailingMargin" id="QkC-CZ-yLv"/>
                                                         <constraint firstAttribute="bottomMargin" secondItem="0e3-Gt-eXs" secondAttribute="bottom" constant="10" id="o2q-4b-MfA"/>
                                                         <constraint firstAttribute="trailingMargin" secondItem="0e3-Gt-eXs" secondAttribute="trailing" constant="60" id="u7S-yG-6bQ"/>
+                                                        <constraint firstAttribute="bottomMargin" secondItem="09g-HP-G7D" secondAttribute="bottom" constant="10" id="zjH-Do-48t"/>
                                                     </constraints>
                                                 </tableViewCellContentView>
                                                 <connections>
                                                     <outlet property="barNameLabel" destination="0e3-Gt-eXs" id="5ns-gq-Saa"/>
+                                                    <outlet property="redeemBtn" destination="09g-HP-G7D" id="wh4-Rw-2ki"/>
                                                 </connections>
                                             </tableViewCell>
                                         </prototypes>

@@ -13,8 +13,10 @@ import AWSAuthCore
 
 class ActivePassesViewController: UIViewController {
     
-    @IBOutlet weak var activePassesLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
+    
+    var activePasses = [String]()
+    var returnedActivePasses = Set<String>()
     
     let dispatchGroup = DispatchGroup()
     
@@ -22,23 +24,29 @@ class ActivePassesViewController: UIViewController {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
+        // First we call our query
         getCustomersActiveTrips()
+        // Then when we exit the dispatch group, we can display the passes retrieved
         dispatchGroup.notify(queue: .main)
         {
             self.displayPasses()
         }
     }
     
-    func displayPasses(){
-        self.tableView?.reloadData();
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        // First we call our query
+        getCustomersActiveTrips()
+        // Then when we exit the dispatch group, we can display the passes retrieved
+        dispatchGroup.notify(queue: .main)
+        {
+            self.displayPasses()
+        }
     }
-
-    //Mark: - Data
-    var activePasses = [String]()
-    var returnedActivePasses = Set<String>();
     
-    func createDataArray(){
-        activePasses = ["Harpers", "Ricks", "Pt O'Malies"]
+    // This function handles local reloads of data
+    func displayPasses() {
+        self.tableView?.reloadData()
     }
     
     func getCustomersActiveTrips(){
@@ -57,13 +65,11 @@ class ActivePassesViewController: UIViewController {
                 return
             }
             else if let loadedCustomer = objectModel as? Customer{
-                
                 self.returnedActivePasses = loadedCustomer._activeTrips ?? Set<String>()
                 //print(self.returnedActivePasses)
                 returnedPasses = self.mapReturnedActivePassesToActivePassesArray();
                 self.activePasses = returnedPasses
             }
-            print("An item was read")
             self.dispatchGroup.leave()
         })
     }
@@ -76,11 +82,10 @@ class ActivePassesViewController: UIViewController {
                 returnArray.append(activePass);
             }
         }
-        
         return returnArray
     }
-
 }
+
 extension ActivePassesViewController: UITableViewDataSource, UITableViewDelegate{
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -91,7 +96,6 @@ extension ActivePassesViewController: UITableViewDataSource, UITableViewDelegate
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        print("Constructing tableView rows now")
         let cellIdentifier = "ActivePassTableViewCell"
         guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? ActivePassTableViewCell  else {
             fatalError("The dequeued cell is not an instance of MealTableViewCell.")
@@ -100,7 +104,8 @@ extension ActivePassesViewController: UITableViewDataSource, UITableViewDelegate
         // Configure the cell...
         // The active pass id has both the range key and the hash key, but we only want
         // to display the hash key to the user
-        cell.barNameLabel.text = activePass.components(separatedBy: ",")[0]
+//        cell.barNameLabel.text = activePass.components(separatedBy: ",")[0]
+        cell.barNameLabel.text = activePass
         return cell
     }
 }

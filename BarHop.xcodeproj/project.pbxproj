@@ -10,7 +10,6 @@
 		1EF4BBAF8E1314AD1B103805 /* Pods_BarHop.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6454501B7B68AEF7AE8CD7B8 /* Pods_BarHop.framework */; };
 		388839B0F42A3C1C5E694C2D /* Pods_BarHopTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5D202D4ED592C981B7CDAA5 /* Pods_BarHopTests.framework */; };
 		A1893E192280DE5D008473C7 /* MapSearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1893E182280DE5D008473C7 /* MapSearchVC.swift */; };
-		A1A642FB22A9FDA60004F0B0 /* ActivePasses.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A642F922A9FDA60004F0B0 /* ActivePasses.swift */; };
 		A1A642FE22AC8EC30004F0B0 /* PayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A642FD22AC8EC30004F0B0 /* PayViewController.swift */; };
 		A1A6430022ADB92F0004F0B0 /* colors.txt in Resources */ = {isa = PBXBuildFile; fileRef = A1A642FF22ADB92F0004F0B0 /* colors.txt */; };
 		A1CE3F6E22ADCDE2007268EA /* Screen Shot 2018-12-27 at 5.00.02 PM.png in Resources */ = {isa = PBXBuildFile; fileRef = A1CE3F6922ADCDE2007268EA /* Screen Shot 2018-12-27 at 5.00.02 PM.png */; };
@@ -22,10 +21,7 @@
 		A1CE3F7622ADF190007268EA /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = A1CE3F7522ADF190007268EA /* logo.png */; };
 		D2F8EF42B222F0757748BFA8 /* Pods_BarHopUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4EED81701FD3D85B34B8A5EE /* Pods_BarHopUITests.framework */; };
 		D31F281F22EA77C8007B9F27 /* ActivePassTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31F281E22EA77C8007B9F27 /* ActivePassTableViewCell.swift */; };
-		D31F282122EA7F56007B9F27 /* ActivePassTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31F282022EA7F56007B9F27 /* ActivePassTableViewController.swift */; };
 		D31F282322F11E22007B9F27 /* ActivePassesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31F282222F11E22007B9F27 /* ActivePassesViewController.swift */; };
-		D31F282522F788BB007B9F27 /* AbstractRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31F282422F788BB007B9F27 /* AbstractRepository.swift */; };
-		D31F282722F7A202007B9F27 /* BarRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31F282622F7A202007B9F27 /* BarRepository.swift */; };
 		D334D11321DEAA5600A3046B /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D334D11221DEAA5600A3046B /* Customer.swift */; };
 		D334D11721E3C59800A3046B /* Bars.swift in Sources */ = {isa = PBXBuildFile; fileRef = D334D11621E3C59800A3046B /* Bars.swift */; };
 		D35ABDB52307505900D5BB78 /* RegisterBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35ABDB42307505900D5BB78 /* RegisterBarViewController.swift */; };
@@ -60,7 +56,6 @@
 		6454501B7B68AEF7AE8CD7B8 /* Pods_BarHop.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BarHop.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		83E6392AB7F36F4E69E100AA /* Pods-BarHop.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BarHop.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BarHop/Pods-BarHop.debug.xcconfig"; sourceTree = "<group>"; };
 		A1893E182280DE5D008473C7 /* MapSearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapSearchVC.swift; sourceTree = "<group>"; };
-		A1A642F922A9FDA60004F0B0 /* ActivePasses.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivePasses.swift; sourceTree = "<group>"; };
 		A1A642FD22AC8EC30004F0B0 /* PayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayViewController.swift; sourceTree = "<group>"; };
 		A1A642FF22ADB92F0004F0B0 /* colors.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = colors.txt; sourceTree = "<group>"; };
 		A1CE3F6922ADCDE2007268EA /* Screen Shot 2018-12-27 at 5.00.02 PM.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Screen Shot 2018-12-27 at 5.00.02 PM.png"; sourceTree = "<group>"; };
@@ -76,10 +71,7 @@
 		C67E0742891493879B60DACB /* Pods-BarHopTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BarHopTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BarHopTests/Pods-BarHopTests.debug.xcconfig"; sourceTree = "<group>"; };
 		CE04E9D2B68AE6C9FAA3D31A /* Pods-BarHop.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BarHop.release.xcconfig"; path = "Pods/Target Support Files/Pods-BarHop/Pods-BarHop.release.xcconfig"; sourceTree = "<group>"; };
 		D31F281E22EA77C8007B9F27 /* ActivePassTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivePassTableViewCell.swift; sourceTree = "<group>"; };
-		D31F282022EA7F56007B9F27 /* ActivePassTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivePassTableViewController.swift; sourceTree = "<group>"; };
 		D31F282222F11E22007B9F27 /* ActivePassesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivePassesViewController.swift; sourceTree = "<group>"; };
-		D31F282422F788BB007B9F27 /* AbstractRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractRepository.swift; sourceTree = "<group>"; };
-		D31F282622F7A202007B9F27 /* BarRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarRepository.swift; sourceTree = "<group>"; };
 		D334D11221DEAA5600A3046B /* Customer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Customer.swift; sourceTree = "<group>"; };
 		D334D11621E3C59800A3046B /* Bars.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bars.swift; sourceTree = "<group>"; };
 		D35ABDB42307505900D5BB78 /* RegisterBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterBarViewController.swift; sourceTree = "<group>"; };
@@ -190,7 +182,8 @@
 		D3DDFACF21D0818F0071B437 /* BarHop */ = {
 			isa = PBXGroup;
 			children = (
-				A1A642F922A9FDA60004F0B0 /* ActivePasses.swift */,
+				D31F282222F11E22007B9F27 /* ActivePassesViewController.swift */,
+				D31F281E22EA77C8007B9F27 /* ActivePassTableViewCell.swift */,
 				D3DDFAD021D0818F0071B437 /* AppDelegate.swift */,
 				D3DDFAD721D081910071B437 /* Assets.xcassets */,
 				D3DDFAFE21D0823F0071B437 /* awsconfiguration.json */,
@@ -202,11 +195,6 @@
 				D3DDFAD421D0818F0071B437 /* Main.storyboard */,
 				A1893E182280DE5D008473C7 /* MapSearchVC.swift */,
 				A1A642FD22AC8EC30004F0B0 /* PayViewController.swift */,
-				D31F282022EA7F56007B9F27 /* ActivePassTableViewController.swift */,
-				D31F281E22EA77C8007B9F27 /* ActivePassTableViewCell.swift */,
-				D31F282222F11E22007B9F27 /* ActivePassesViewController.swift */,
-				D31F282422F788BB007B9F27 /* AbstractRepository.swift */,
-				D31F282622F7A202007B9F27 /* BarRepository.swift */,
 				D35ABDB42307505900D5BB78 /* RegisterBarViewController.swift */,
 			);
 			path = BarHop;
@@ -453,12 +441,8 @@
 			files = (
 				A1893E192280DE5D008473C7 /* MapSearchVC.swift in Sources */,
 				D35ABDB52307505900D5BB78 /* RegisterBarViewController.swift in Sources */,
-				D31F282522F788BB007B9F27 /* AbstractRepository.swift in Sources */,
-				D31F282122EA7F56007B9F27 /* ActivePassTableViewController.swift in Sources */,
 				D31F281F22EA77C8007B9F27 /* ActivePassTableViewCell.swift in Sources */,
 				A1A642FE22AC8EC30004F0B0 /* PayViewController.swift in Sources */,
-				D31F282722F7A202007B9F27 /* BarRepository.swift in Sources */,
-				A1A642FB22A9FDA60004F0B0 /* ActivePasses.swift in Sources */,
 				D31F282322F11E22007B9F27 /* ActivePassesViewController.swift in Sources */,
 				D334D11721E3C59800A3046B /* Bars.swift in Sources */,
 				D3DDFAD121D0818F0071B437 /* AppDelegate.swift in Sources */,

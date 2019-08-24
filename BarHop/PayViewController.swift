@@ -28,7 +28,8 @@ class PayViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        // Call function to update how many passes are left over
+        updatePasses()
         // Bar label
         let textField = "\(barUserId!), $\(cost!)"
         barLabel.text = textField
@@ -53,6 +54,25 @@ class PayViewController: UIViewController {
         disclaimerLabel.text = "BarHop is not responsible for your entry into this venue; our services solely serve to reduce your time waiting in line. It is up to staff at each venue whether or not to permnit your entry, regardless of your legal ability to enter. Please drink responsibly."
         disclaimerLabel.textColor = UIColor(white: 1, alpha: 1)
         disclaimerLabel.textAlignment = NSTextAlignment.center
+    }
+    
+    func updatePasses() {
+        let dynamoDBObjectMapper = AWSDynamoDBObjectMapper.default()
+
+        dynamoDBObjectMapper.load(Bars.self, hashKey: barUserId!, rangeKey:
+             barItemId).continueWith(block: { (task:AWSTask<AnyObject>!) -> Any? in
+                if let error = task.error as NSError? {
+                print("The request failed. Error: \(error)")
+            } else if let resultBook = task.result as? Bars {
+                // Update our variable to current value
+                self.numPassesText = resultBook._numPassesLeft! as? Int
+                // Here we can also update the label itself
+                DispatchQueue.main.async {
+                    self.numPassesLabel.text = "\((resultBook._numPassesLeft! as? Int)!) passes left"
+                }
+            }
+            return nil
+        })
     }
     
     @IBAction func payBtnClicked(_ sender: Any) {
@@ -153,29 +173,40 @@ class PayViewController: UIViewController {
         // First create an instance of the object mapper
         let dynamoDBObjectMapper = AWSDynamoDBObjectMapper.default()
         // This first retreival and write will decrement the number of remaining passes for the given bar
-        dynamoDBObjectMapper.load(Bars.self, hashKey: self.barUserId!, rangeKey: self.barItemId).continueWith(block: { (task:AWSTask<AnyObject>!) -> Any? in
+        dynamoDBObjectMapper.load(Bars.self, hashKey: self.barUserId!, rangeKey: self.barItemId).continueWith(block: { (task:AWSTask<AnyObject>!) -> Void in
             if let error = task.error as NSError? {
                 print("The request failed. Error: \(error)")
             } else if let resultBar = task.result as? Bars {
                 // We can now change the number of passes on the given bar to one less than before
                 resultBar._numPassesLeft = Int(truncating: resultBar._numPassesLeft!) - 1 as NSNumber
+                // Now that we have retreived the element, we can save it back into the database
+                dynamoDBObjectMapper.save(resultBar).continueWith(block: { (task:AWSTask<AnyObject>!) -> Void in
+                    if let error = task.error as NSError? {
+                        print("The request failed. Error: \(error)")
+                    }
+                })
             }
-            return nil
         })
         // This second retreival will increment the number of active passes for the logged in user
-        let dynamoDbObjectMapper = AWSDynamoDBObjectMapper.default()
+        // This first block is handling the retreival of the current customer in the database
         let customerItem: Customer = Customer();
         customerItem._userId = AWSIdentityManager.default().identityId
-        customerItem._tripsTaken = 0
-        dynamoDbObjectMapper.load(Customer.self, hashKey: customerItem._userId!,
+        dynamoDBObjectMapper.load(Customer.self, hashKey: customerItem._userId!,
                                   rangeKey: customerItem._tripsTaken, completionHandler: {
                                     (objectModel: AWSDynamoDBObjectModel?, error: Error?) -> Void in
             if let error = error {
                 print("Amazon DynamoDB Read Error: \(error)")
                 return
             }
-            else if let loadedCustomer = objectModel as? Customer{
-                loadedCustomer._activeTrips?.insert(self.barItemId!)
+            else if let customer = objectModel as? Customer {
+                customer._activeTrips?.insert(self.barItemId!)
+                customer._tripsTaken = Int(truncating: customer._tripsTaken!) + 1 as NSNumber
+                // Now that we have retreived the Customer, we can save it back into the database
+                dynamoDBObjectMapper.save(customer).continueWith(block: { (task:AWSTask<AnyObject>!) -> Void in
+                    if let error = task.error as NSError? {
+                        print("The request failed. Error: \(error)")
+                    }
+                })
             }
         })
     }
@@ -204,6 +235,7 @@ class PayViewController: UIViewController {
             // from the selected bar
             if (result == "true") {
                 self.alterDatabase()
+                self.updatePasses()
             }
         }.resume()
     }

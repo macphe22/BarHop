@@ -23,7 +23,8 @@ class ActivePassesViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         getCustomersActiveTrips()
-        dispatchGroup.notify(queue: .main) {
+        dispatchGroup.notify(queue: .main)
+        {
             self.displayPasses()
         }
     }

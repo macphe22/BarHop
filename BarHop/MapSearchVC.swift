@@ -11,6 +11,8 @@ import MapKit
 import CoreLocation
 import AWSDynamoDB
 import AWSAuthCore
+import AWSAuthUI
+import AWSMobileClient
 
 // Map Search View Controller
 class MapSearchVC: UIViewController {
@@ -37,6 +39,16 @@ class MapSearchVC: UIViewController {
         button.isHidden = true
         // Make the view controller the mapView's delegate
         mapView.delegate = self as MKMapViewDelegate
+        // Handle sign in here
+        if !AWSSignInManager.sharedInstance().isLoggedIn {
+            presentAuthUIViewController()
+        } else {
+            postAuth()
+        }
+    }
+    
+    // Function that handles post-authorization
+    func postAuth() {
         // Call check location services
         checkLocationServices()
         // Add our pins here
@@ -46,9 +58,56 @@ class MapSearchVC: UIViewController {
         }
     }
     
+    // Present the view controller responsible for user login and signup
+    func presentAuthUIViewController() {
+        let config = AWSAuthUIConfiguration()
+        config.enableUserPoolsUI = true
+        config.backgroundColor = UIColor(white: 0, alpha: 1)
+        config.isBackgroundColorFullScreen = true
+        config.logoImage = UIImage(named: "beer-2424943_960_720")
+        
+        AWSAuthUIViewController.presentViewController(with: self.navigationController!,
+                                                      configuration: config, completionHandler: { (provider: AWSSignInProvider, error: Error?) in
+                                                        if error == nil {
+                                                            // SignIn succeeded.
+                                                            self.createCustomer()
+                                                        } else {
+                                                            // end user faced error while loggin in, take any required action here.
+                                                        }
+        })
+    }
+    
+    // Creating a new customer
+    func createCustomer(){
+        //print("Creating Customer")
+        let dynamoDbObjectMapper = AWSDynamoDBObjectMapper.default()
+        let newCust:Customer = Customer()
+        //initialize values for attributes for new customer
+        let barSet: Set<String> = ["EMPTY_STRING"]
+        newCust._userId = AWSIdentityManager.default().identityId //_userId represents the partition key
+        newCust._tripsTaken = 0
+        newCust._activeTrips = barSet
+        //Save a new item
+        dynamoDbObjectMapper.save(newCust, completionHandler: { (error: Error?) -> Void in
+            if let error = error {
+                print("Amazon DynamoDB Save Error: \(error)")
+                return
+            }
+            print("An item was saved.")
+            self.postAuth()
+        })
+    }
+    
     // Function to handle moving on to PayVC and handling data forwarding
     @IBAction func barBtnClicked(_ sender: Any) {
         self.performSegue(withIdentifier: "pushPayVC", sender: self)
+    }
+    
+    // Handle sign out
+    @IBAction func signOutBtnPressed(_ sender: Any) {
+        AWSSignInManager.sharedInstance().logout(completionHandler: {(result: Any?, error: Error?) in
+            self.viewDidLoad()
+        })
     }
     
     // Override the prepare for segue function to handle data forwarding

@@ -230,7 +230,25 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="LHU-94-xiJ"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Bars" id="j2c-ha-PzH"/>
+                    <navigationItem key="navigationItem" title="Bars" id="j2c-ha-PzH">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="sjf-IV-qMN">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="bA0-Cy-0er">
+                                <rect key="frame" x="245" y="0.0" width="114" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="104-Vc-HEh"/>
+                                    <constraint firstAttribute="width" constant="114" id="ZdW-24-ILE"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                                <state key="normal" title="Sign Out">
+                                    <color key="titleColor" name="selectedMenuItemTextColor" catalog="System" colorSpace="catalog"/>
+                                </state>
+                                <connections>
+                                    <action selector="signOutBtnPressed:" destination="Mlw-XS-gie" eventType="touchUpInside" id="OWr-GP-uxS"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" translucent="NO" prompted="NO"/>
                     <connections>
                         <outlet property="button" destination="ynH-7b-J6q" id="DOf-o4-9ul"/>

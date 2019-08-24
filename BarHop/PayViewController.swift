@@ -191,6 +191,7 @@ class PayViewController: UIViewController {
         // This first block is handling the retreival of the current customer in the database
         let customerItem: Customer = Customer();
         customerItem._userId = AWSIdentityManager.default().identityId
+        customerItem._tripsTaken = 0
         dynamoDBObjectMapper.load(Customer.self, hashKey: customerItem._userId!,
                                   rangeKey: customerItem._tripsTaken, completionHandler: {
                                     (objectModel: AWSDynamoDBObjectModel?, error: Error?) -> Void in

@@ -30,7 +30,6 @@
 		D334D11721E3C59800A3046B /* Bars.swift in Sources */ = {isa = PBXBuildFile; fileRef = D334D11621E3C59800A3046B /* Bars.swift */; };
 		D35ABDB52307505900D5BB78 /* RegisterBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35ABDB42307505900D5BB78 /* RegisterBarViewController.swift */; };
 		D3DDFAD121D0818F0071B437 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DDFAD021D0818F0071B437 /* AppDelegate.swift */; };
-		D3DDFAD321D0818F0071B437 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DDFAD221D0818F0071B437 /* LoginVC.swift */; };
 		D3DDFAD621D0818F0071B437 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D3DDFAD421D0818F0071B437 /* Main.storyboard */; };
 		D3DDFAD821D081910071B437 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3DDFAD721D081910071B437 /* Assets.xcassets */; };
 		D3DDFADB21D081910071B437 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D3DDFAD921D081910071B437 /* LaunchScreen.storyboard */; };
@@ -86,7 +85,6 @@
 		D35ABDB42307505900D5BB78 /* RegisterBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterBarViewController.swift; sourceTree = "<group>"; };
 		D3DDFACD21D0818F0071B437 /* BarHop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BarHop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3DDFAD021D0818F0071B437 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		D3DDFAD221D0818F0071B437 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		D3DDFAD521D0818F0071B437 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D3DDFAD721D081910071B437 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D3DDFADA21D081910071B437 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -201,7 +199,6 @@
 				D334D11221DEAA5600A3046B /* Customer.swift */,
 				D3DDFADC21D081910071B437 /* Info.plist */,
 				D3DDFAD921D081910071B437 /* LaunchScreen.storyboard */,
-				D3DDFAD221D0818F0071B437 /* LoginVC.swift */,
 				D3DDFAD421D0818F0071B437 /* Main.storyboard */,
 				A1893E182280DE5D008473C7 /* MapSearchVC.swift */,
 				A1A642FD22AC8EC30004F0B0 /* PayViewController.swift */,
@@ -454,7 +451,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D3DDFAD321D0818F0071B437 /* LoginVC.swift in Sources */,
 				A1893E192280DE5D008473C7 /* MapSearchVC.swift in Sources */,
 				D35ABDB52307505900D5BB78 /* RegisterBarViewController.swift in Sources */,
 				D31F282522F788BB007B9F27 /* AbstractRepository.swift in Sources */,

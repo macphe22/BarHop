@@ -71,7 +71,10 @@ class ActivePassesViewController: UIViewController {
     func mapReturnedActivePassesToActivePassesArray() -> [String]{
         var returnArray = [String]();
         for activePass in self.returnedActivePasses{
-            returnArray.append(activePass);
+            // We must take into account the constant string
+            if (activePass != "EMPTY_STRING") {
+                returnArray.append(activePass);
+            }
         }
         
         return returnArray

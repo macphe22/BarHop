@@ -104,6 +104,8 @@ extension ActivePassesViewController: UITableViewDataSource, UITableViewDelegate
         // Configure the cell...
         // The active pass id has both the range key and the hash key, but we only want
         // to display the hash key to the user
+        cell.backgroundColor = UIColor(white: 0, alpha: 1)
+        cell.barNameLabel.textColor = UIColor(white: 1, alpha: 1)
         cell.barNameLabel.text = activePass.components(separatedBy: ",")[0]
         cell.barUniqueId = activePass
         return cell

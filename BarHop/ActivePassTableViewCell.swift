@@ -22,6 +22,10 @@ class ActivePassTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        let midBlue = UIColor(red: 0, green: 191/255, blue: 255/255, alpha: 1)
+        redeemBtn.titleLabel?.textColor = midBlue
+        redeemBtn.layer.borderWidth = 1
+        redeemBtn.layer.borderColor = midBlue.cgColor
         redeemBtn.layer.cornerRadius = 5
     }
 

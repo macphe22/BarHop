@@ -173,7 +173,7 @@
                     <connections>
                         <segue destination="i9Z-we-9ng" kind="relationship" relationship="viewControllers" id="hsQ-pU-8pi"/>
                         <segue destination="ZjI-y6-BpD" kind="relationship" relationship="viewControllers" id="hWv-ZF-rg7"/>
-                        <segue destination="wM0-0f-omj" kind="relationship" relationship="viewControllers" id="saB-cw-dkS"/>
+                        <segue destination="YoM-W2-0Ci" kind="relationship" relationship="viewControllers" id="cRT-5z-mxI"/>
                     </connections>
                 </tabBarController>
             </objects>
@@ -242,16 +242,47 @@
             </objects>
             <point key="canvasLocation" x="4784.8000000000002" y="-194.75262368815595"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="prJ-EK-ME8">
+            <objects>
+                <viewController id="cwx-Ea-O1z" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="fdJ-0u-QJl">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uVf-wY-XCx">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
+                                <string key="text">Thank you for your interest in partnering a venue with our services. Please send an email to barhopios@gmail.com with your venue's name, full address, and phone number, and we will reach out to you soon!</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" name="selectedMenuItemTextColor" catalog="System" colorSpace="catalog"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="uVf-wY-XCx" firstAttribute="top" secondItem="BgI-Vu-1yO" secondAttribute="top" id="LfB-uW-cMB"/>
+                            <constraint firstItem="uVf-wY-XCx" firstAttribute="leading" secondItem="BgI-Vu-1yO" secondAttribute="leading" id="fbF-U2-6gb"/>
+                            <constraint firstItem="uVf-wY-XCx" firstAttribute="bottom" secondItem="BgI-Vu-1yO" secondAttribute="bottom" id="fwD-Jn-Gcb"/>
+                            <constraint firstItem="uVf-wY-XCx" firstAttribute="trailing" secondItem="BgI-Vu-1yO" secondAttribute="trailing" id="uHr-uN-QlY"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="BgI-Vu-1yO"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="nfR-Df-MXh"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3yY-lm-gjH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4448.8000000000002" y="643.62818590704649"/>
+        </scene>
         <!--Register-->
         <scene sceneID="d4T-qh-E8v">
             <objects>
                 <viewController id="Kzh-2R-IAO" customClass="RegisterBarViewController" customModule="BarHop" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Rre-yp-zfl">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="887"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="936"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ITF-5n-i5Q">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="887"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="936"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hUk-8z-bWw">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
@@ -365,7 +396,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fA1-rQ-Tq7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4784.8000000000002" y="794.30284857571223"/>
+            <point key="canvasLocation" x="5724" y="794.30284857571223"/>
         </scene>
         <!--Passes-->
         <scene sceneID="sS9-XA-Kac">
@@ -410,25 +441,24 @@
             <point key="canvasLocation" x="3845.5999999999999" y="-194.75262368815595"/>
         </scene>
         <!--Register-->
-        <scene sceneID="LRK-D8-eaD">
+        <scene sceneID="wlI-7q-CNi">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="wM0-0f-omj" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Register" id="jEM-b8-jHm">
-                        <color key="badgeColor" name="selectedMenuItemTextColor" catalog="System" colorSpace="catalog"/>
-                    </tabBarItem>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="YoM-W2-0Ci" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Register" id="4gQ-7F-S61"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ufj-ZE-M68">
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" translucent="NO" prompted="NO"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" translucent="NO" id="nm9-7A-YhC">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="Kzh-2R-IAO" kind="relationship" relationship="rootViewController" id="F2x-FI-7EO"/>
+                        <segue destination="cwx-Ea-O1z" kind="relationship" relationship="rootViewController" id="pAF-Yh-XaO"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Wu8-qd-rRI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cIe-uy-Zpj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3845.5999999999999" y="793.8530734632684"/>
+            <point key="canvasLocation" x="3509.5999999999999" y="643.62818590704649"/>
         </scene>
     </scenes>
 </document>

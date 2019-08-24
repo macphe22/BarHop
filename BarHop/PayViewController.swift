@@ -177,7 +177,7 @@ class PayViewController: UIViewController {
         var request = URLRequest(url: createURL)
         // Save the current user in a variable
         // Make the body with the payment_method_nonce and the amount
-        request.httpBody = "customerId=\(userId)".data(using: String.Encoding.utf8)
+        request.httpBody = "customerId=\(userId.stringValue)".data(using: String.Encoding.utf8)
         request.httpMethod = "POST"
         
         URLSession.shared.dataTask(with: request) { (data, response, error) -> Void in
@@ -306,6 +306,12 @@ class PayViewController: UIViewController {
             if (result == "true") {
                 self.alterDatabase()
                 self.updatePasses()
+                // Now that the user has bought a pass successfully, we should make sure they
+                // don't accidentally buy a second pass and disable the pay button on this screen
+                self.payBtn.layer.borderColor = UIColor(red: 1, green: 0, blue: 0, alpha: 1).cgColor
+                self.payBtn.setTitle("You have an active pass at this venue", for: .normal)
+                self.payBtn.setTitleColor(UIColor(red: 1, green: 0, blue: 0, alpha: 1), for: .normal)
+                self.payBtn.isEnabled = false
             }
         }.resume()
     }

@@ -98,6 +98,29 @@ class MapSearchVC: UIViewController {
         })
     }
     
+    // Function to retrieve the size of the customers table in order to provide a uniqueId to be
+    // used for processing payments via braintree
+    func getTableSize() -> NSNumber {
+        // First enter the dispatch group
+        self.dispatchGroup.enter()
+        // Then we can begin our scan
+        let dynamoDBObjectMapper = AWSDynamoDBObjectMapper.default()
+        let scanExpression = AWSDynamoDBScanExpression()
+        var count: NSNumber = 0
+        dynamoDBObjectMapper.scan(Customer.self, expression: scanExpression).continueWith(block: { (task:AWSTask<AWSDynamoDBPaginatedOutput>!) -> Void in
+            if let error = task.error as NSError? {
+                print("The request failed. Error: \(error)")
+            } else if let paginatedOutput = task.result {
+                for _ in paginatedOutput.items as! [Customer] {
+                    count = (Int(truncating: count) + 1) as NSNumber
+                }
+            }
+            // We can leave our dispatch group once we finish retrieving customers
+            self.dispatchGroup.leave()
+        })
+        return count
+    }
+    
     // Creating a new customer
     func createCustomer(){
         //print("Creating Customer")
@@ -108,15 +131,20 @@ class MapSearchVC: UIViewController {
         newCust._userId = AWSIdentityManager.default().identityId //_userId represents the partition key
         newCust._tripsTaken = 0
         newCust._activeTrips = barSet
-        //Save a new item
-        dynamoDbObjectMapper.save(newCust, completionHandler: { (error: Error?) -> Void in
-            if let error = error {
-                print("Amazon DynamoDB Save Error: \(error)")
-                return
-            }
-            print("An item was saved.")
-            self.postAuth()
-        })
+        // Also add in the customer's unique id (we need to use dispatch queues to do this)
+        let count: NSNumber = getTableSize()
+        dispatchGroup.notify(queue: .main) {
+            newCust._braintreeId = count
+            //Save a new item (notice how we save inside of the dispatch notify)
+            dynamoDbObjectMapper.save(newCust, completionHandler: { (error: Error?) -> Void in
+                if let error = error {
+                    print("Amazon DynamoDB Save Error: \(error)")
+                    return
+                }
+                print("An item was saved.")
+                self.postAuth()
+            })
+        }
     }
     
     // Function to handle moving on to PayVC and handling data forwarding

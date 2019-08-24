@@ -25,6 +25,9 @@ class PayViewController: UIViewController {
     var cost: Int?
     var numPassesText: Int?
     var backgroundTask: UIBackgroundTaskIdentifier?
+    var braintree: NSNumber?
+    
+    let dispatchGroup = DispatchGroup()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -76,38 +79,56 @@ class PayViewController: UIViewController {
     }
     
     @IBAction func payBtnClicked(_ sender: Any) {
-        // Start running the process in the background
-        DispatchQueue.global().async {
-            // Request the task assertion and save the ID.
-            self.backgroundTask = UIApplication.shared.beginBackgroundTask (withName: "Finish Network Tasks") {
-                // End the task if time expires.
+        // First we get the user's unique braintree id
+        getUser()
+        // Then we can use the results of this to handle payments processing
+        dispatchGroup.notify(queue: .main) {
+            // Start running the process in the background
+            DispatchQueue.global().async {
+                // Request the task assertion and save the ID.
+                self.backgroundTask = UIApplication.shared.beginBackgroundTask (withName: "Finish Network Tasks") {
+                    // End the task if time expires.
+                    UIApplication.shared.endBackgroundTask(self.backgroundTask!)
+                    self.backgroundTask = UIBackgroundTaskIdentifier.invalid
+                }
+                // Perform the actual task
+                self.handleCustomerCreation(userId: self.braintree!)
+                self.fetchClientToken()
+                
+                // End the task assertion.
                 UIApplication.shared.endBackgroundTask(self.backgroundTask!)
                 self.backgroundTask = UIBackgroundTaskIdentifier.invalid
             }
-            // Perform the actual task
-            self.handleCustomerCreation(userId: self.getUser())
-            self.fetchClientToken()
-
-            // End the task assertion.
-            UIApplication.shared.endBackgroundTask(self.backgroundTask!)
-            self.backgroundTask = UIBackgroundTaskIdentifier.invalid
         }
     }
     
-    // Function to handle finding the current user
-    func getUser() -> String {
-        var userId: String = AWSIdentityManager.default().identityId!
-        userId = userId.components(separatedBy: ":")[1] // Remove beginning
-        return userId
+    // Function to handle finding the braintreeId of the current user
+    func getUser() {
+        // Create a query expression
+        self.dispatchGroup.enter()
+        let dynamoDbObjectMapper = AWSDynamoDBObjectMapper.default()
+        let customerItem: Customer = Customer();
+        customerItem._userId = AWSIdentityManager.default().identityId
+        dynamoDbObjectMapper.load(Customer.self, hashKey: customerItem._userId!,
+                                  rangeKey: nil, completionHandler: {
+                                    (objectModel: AWSDynamoDBObjectModel?, error: Error?) -> Void in
+            if let error = error {
+                print("Amazon DynamoDB Read Error: \(error)")
+                return
+            }
+            else if let loadedCustomer = objectModel as? Customer{
+                self.braintree = loadedCustomer._braintreeId!
+            }
+            self.dispatchGroup.leave()
+        })
     }
     
     // This function serves to ensure that the customer exists before fetching a client token
-    func handleCustomerCreation(userId: String) {
+    func handleCustomerCreation(userId: NSNumber) {
         let createURL = URL(string: "https://mysterious-brook-47208.herokuapp.com/create")!
         var request = URLRequest(url: createURL)
         // Save the current user in a variable
         // Make the body with the payment_method_nonce and the amount
-        let userId: String = getUser()
         request.httpBody = "customerId=\(userId)".data(using: String.Encoding.utf8)
         request.httpMethod = "POST"
         
@@ -157,7 +178,7 @@ class PayViewController: UIViewController {
         // STEP 1: Front-end requests a client token from the server and sets up the client-side SDK
         let clientTokenURL = NSURLComponents(string: "https://mysterious-brook-47208.herokuapp.com/client_token")!
         // Add query items to the GET request to allow data transferring in the form of customerId
-        clientTokenURL.queryItems = [URLQueryItem(name: "userId", value: getUser())]
+        clientTokenURL.queryItems = [URLQueryItem(name: "userId", value: braintree?.stringValue)]
         // Create the URLRequest and downcast the NSURLComponents to a URL
         let clientTokenRequest = URLRequest(url: clientTokenURL.url!)
         

@@ -20,16 +20,17 @@ class PayViewController: UIViewController {
     @IBOutlet weak var payBtn: UIButton!
     @IBOutlet weak var disclaimerLabel: UILabel!
     
-    var barName: String?
+    var barUserId: String?
+    var barItemId: String?
     var cost: Int?
-    var numPassesText: String?
+    var numPassesText: Int?
     var backgroundTask: UIBackgroundTaskIdentifier?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         // Bar label
-        let textField = "\(barName!), $\(cost!)"
+        let textField = "\(barUserId!), $\(cost!)"
         barLabel.text = textField
         barLabel.textColor = UIColor(white: 1, alpha: 1)
         barLabel.textAlignment = NSTextAlignment.center
@@ -120,9 +121,9 @@ class PayViewController: UIViewController {
                 if (result!.paymentOptionType.rawValue == 17) {
                     // Check the below line to ensure that the username property of
                     // the VenmoAccountNonce is what should be passed in here
-                    self.postNonceToServer(paymentMethodNonce: result?.paymentMethod?.nonce ?? "", amount: cost, venue: self.barName ?? "unknown")
+                    self.postNonceToServer(paymentMethodNonce: result?.paymentMethod?.nonce ?? "", amount: cost, venue: self.barUserId ?? "unknown")
                 } else {
-                    self.postNonceToServer(paymentMethodNonce: result?.paymentMethod?.nonce ?? "", amount: cost, venue: self.barName ?? "unknown")
+                    self.postNonceToServer(paymentMethodNonce: result?.paymentMethod?.nonce ?? "", amount: cost, venue: self.barUserId ?? "unknown")
                 }
             }
             controller.dismiss(animated: true, completion: nil)
@@ -145,6 +146,38 @@ class PayViewController: UIViewController {
             // Present drop in
             self.showDropIn(token: clientToken ?? "nil")
         }.resume()
+    }
+    
+    // This function handles altering the databases when a user purchases a new pass
+    func alterDatabase() {
+        // First create an instance of the object mapper
+        let dynamoDBObjectMapper = AWSDynamoDBObjectMapper.default()
+        // This first retreival and write will decrement the number of remaining passes for the given bar
+        dynamoDBObjectMapper.load(Bars.self, hashKey: self.barUserId!, rangeKey: self.barItemId).continueWith(block: { (task:AWSTask<AnyObject>!) -> Any? in
+            if let error = task.error as NSError? {
+                print("The request failed. Error: \(error)")
+            } else if let resultBar = task.result as? Bars {
+                // We can now change the number of passes on the given bar to one less than before
+                resultBar._numPassesLeft = Int(truncating: resultBar._numPassesLeft!) - 1 as NSNumber
+            }
+            return nil
+        })
+        // This second retreival will increment the number of active passes for the logged in user
+        let dynamoDbObjectMapper = AWSDynamoDBObjectMapper.default()
+        let customerItem: Customer = Customer();
+        customerItem._userId = AWSIdentityManager.default().identityId
+        customerItem._tripsTaken = 0
+        dynamoDbObjectMapper.load(Customer.self, hashKey: customerItem._userId!,
+                                  rangeKey: customerItem._tripsTaken, completionHandler: {
+                                    (objectModel: AWSDynamoDBObjectModel?, error: Error?) -> Void in
+            if let error = error {
+                print("Amazon DynamoDB Read Error: \(error)")
+                return
+            }
+            else if let loadedCustomer = objectModel as? Customer{
+                loadedCustomer._activeTrips?.insert(self.barItemId!)
+            }
+        })
     }
    
     // Sends the payment nonce to the server via a post request on the /payment-methods route
@@ -169,6 +202,9 @@ class PayViewController: UIViewController {
             // Now that the user has paid, if the transaction was successful, we
             // can add their new pass to their activePass set and subtract a remaining pass
             // from the selected bar
+            if (result == "true") {
+                self.alterDatabase()
+            }
         }.resume()
     }
 }

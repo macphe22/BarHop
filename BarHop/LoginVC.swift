@@ -12,32 +12,10 @@ import AWSAuthUI
 import AWSDynamoDB
 import AWSMobileClient
 
- class LoginVC: UIViewController {
-    
-    @IBOutlet weak var findBarBtn: UIButton!
-    @IBOutlet weak var activePassesBtn: UIButton!
-    @IBOutlet weak var registerBarBtn: UIButton!
-    @IBOutlet weak var signOutBtn: UIButton!
+ class LoginVC: UITabBarController {
     
     override func viewDidLoad() {
-        super.viewDidLoad()
-        // Button stuff
-        findBarBtn.layer.cornerRadius = 8
-        findBarBtn.layer.borderWidth = 1
-        findBarBtn.layer.borderColor = UIColor(white: 1, alpha: 1).cgColor
-        findBarBtn.titleLabel?.textColor = UIColor(white: 1, alpha: 1)
-        activePassesBtn.layer.cornerRadius = 8
-        activePassesBtn.layer.borderWidth = 1
-        activePassesBtn.layer.borderColor = UIColor(white: 1, alpha: 1).cgColor
-        activePassesBtn.titleLabel?.textColor = UIColor(white: 1, alpha: 1)
-        registerBarBtn.layer.cornerRadius = 8
-        registerBarBtn.layer.borderWidth = 1
-        registerBarBtn.layer.borderColor = UIColor(white: 1, alpha: 1).cgColor
-        registerBarBtn.titleLabel?.textColor = UIColor(white: 1, alpha: 1)
-        signOutBtn.layer.cornerRadius = 8
-        signOutBtn.layer.borderWidth = 1
-        signOutBtn.layer.borderColor = UIColor(red: 1, green: 0, blue: 0, alpha: 1).cgColor
-        signOutBtn.titleLabel?.textColor = UIColor(red: 1, green: 0, blue: 0, alpha: 1)
+        super.viewDidLoad()        
         // Do any additional setup after loading the view, typically from a nib.
         if !AWSSignInManager.sharedInstance().isLoggedIn {
             presentAuthUIViewController()

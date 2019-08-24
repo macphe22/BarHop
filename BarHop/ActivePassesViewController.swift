@@ -12,17 +12,18 @@ import AWSAuthCore
 
 
 class ActivePassesViewController: UIViewController {
+    
     @IBOutlet weak var activePassesLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     
-    let dispatchGroup = DispatchGroup();
+    let dispatchGroup = DispatchGroup()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
         getCustomersActiveTrips()
-        dispatchGroup.notify(queue: .main)
-        {
+        dispatchGroup.notify(queue: .main) {
             self.displayPasses()
         }
     }
@@ -34,48 +35,42 @@ class ActivePassesViewController: UIViewController {
     //Mark: - Data
     var activePasses = [String]()
     var returnedActivePasses = Set<String>();
+    
     func createDataArray(){
         activePasses = ["Harpers", "Ricks", "Pt O'Malies"]
     }
+    
     func getCustomersActiveTrips(){
         // Create a query expression
-        self.dispatchGroup.enter();
-        var returnedPasses = [String]();
+        self.dispatchGroup.enter()
+        var returnedPasses = [String]()
         let dynamoDbObjectMapper = AWSDynamoDBObjectMapper.default()
         let customerItem: Customer = Customer();
         customerItem._userId = AWSIdentityManager.default().identityId
         customerItem._tripsTaken = 0
-        dynamoDbObjectMapper.load(Customer.self,
-                                  hashKey: customerItem._userId,
-                                  rangeKey: customerItem._tripsTaken,
-                                  completionHandler: {
+        dynamoDbObjectMapper.load(Customer.self, hashKey: customerItem._userId,
+                                  rangeKey: customerItem._tripsTaken, completionHandler: {
                                     (objectModel: AWSDynamoDBObjectModel?, error: Error?) -> Void in
-                                    if let error = error {
-                                        print("Amazon DynamoDB Read Error: \(error)")
-                                        return
-                                    }
-                                    else if let loadedCustomer = objectModel as? Customer{
-                                        
-                                        self.returnedActivePasses = loadedCustomer._activeTrips ?? Set<String>()
-                                        //print(self.returnedActivePasses)
-                                        returnedPasses = self.mapReturnedActivePassesToActivePassesArray();
-                                        self.activePasses = returnedPasses
-                                    }
-                                    print("An item was read")
-                                    self.dispatchGroup.leave()
-        
-                                    
+            if let error = error {
+                print("Amazon DynamoDB Read Error: \(error)")
+                return
+            }
+            else if let loadedCustomer = objectModel as? Customer{
+                
+                self.returnedActivePasses = loadedCustomer._activeTrips ?? Set<String>()
+                //print(self.returnedActivePasses)
+                returnedPasses = self.mapReturnedActivePassesToActivePassesArray();
+                self.activePasses = returnedPasses
+            }
+            print("An item was read")
+            self.dispatchGroup.leave()
         })
-        
-        
-        
     }
     
     func mapReturnedActivePassesToActivePassesArray() -> [String]{
         var returnArray = [String]();
         for activePass in self.returnedActivePasses{
             returnArray.append(activePass);
-            
         }
         
         return returnArray
@@ -90,7 +85,6 @@ extension ActivePassesViewController: UITableViewDataSource, UITableViewDelegate
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return activePasses.count
     }
-    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         print("Constructing tableView rows now")

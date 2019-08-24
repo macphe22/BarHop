@@ -15,7 +15,7 @@ import Foundation
 import UIKit
 import AWSDynamoDB
 
-class Bars: AWSDynamoDBObjectModel, AWSDynamoDBModeling {
+@objcMembers class Bars: AWSDynamoDBObjectModel, AWSDynamoDBModeling {
     
     var _userId: String?
     var _itemId: String?
@@ -23,6 +23,7 @@ class Bars: AWSDynamoDBObjectModel, AWSDynamoDBModeling {
     var _latitude: NSNumber?
     var _longitude: NSNumber?
     var _maxCapacity: NSNumber?
+    var _numPassesLeft: NSNumber?
     var _name: String?
     var _ownersName: String?
     var _phoneNumber: String?
@@ -51,6 +52,7 @@ class Bars: AWSDynamoDBObjectModel, AWSDynamoDBModeling {
                "_latitude" : "latitude",
                "_longitude" : "longitude",
                "_maxCapacity" : "max_capacity",
+               "_numPassesLeft" : "numPassesLeft",
                "_name" : "name",
                "_ownersName" : "owners_name",
                "_phoneNumber" : "phone_number",

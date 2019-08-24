@@ -9,6 +9,8 @@
 import UIKit
 import MapKit
 import CoreLocation
+import AWSDynamoDB
+import AWSAuthCore
 
 // Map Search View Controller
 class MapSearchVC: UIViewController {
@@ -19,9 +21,15 @@ class MapSearchVC: UIViewController {
     @IBOutlet weak var button: UIButton!
     
     var barName = ""
+    var index: Int?
     
     let locationManager = CLLocationManager()
     let regionSpan: Double = 10000
+    
+    var scanReturn: [MKPointAnnotation] = []
+    var pinInfo: [[String: Any]] = []
+    var names: [String] = []
+    let dispatchGroup = DispatchGroup()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +41,9 @@ class MapSearchVC: UIViewController {
         checkLocationServices()
         // Add our pins here
         addPins()
+        dispatchGroup.notify(queue: .main) {
+            self.displayPins()
+        }
     }
     
     // Function to handle moving on to PayVC and handling data forwarding
@@ -43,25 +54,49 @@ class MapSearchVC: UIViewController {
     // Override the prepare for segue function to handle data forwarding
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let payVC = segue.destination as! PayViewController
-        let price = 25 // Need a query here
-        payVC.barName = barName
-        payVC.cost = price
-        payVC.numPassesText = "10" // Need a query here
+        // Find the bar within the names list
+        payVC.barUserId = barName
+        payVC.barItemId = pinInfo[index!]["rangeKey"] as? String
+        payVC.cost = pinInfo[index!]["price"] as? Int
+        payVC.numPassesText = pinInfo[index!]["numLeft"] as? Int
     }
     
     // Function to add custom pins to the mapview
     private func addPins() {
-        // For now, we will simply add a couple of pins manually, however, this
-        // is where the query should be inserted to find bars within the view
-        let bondBar = MKPointAnnotation()
-        bondBar.title = "Bond Bar"
-        bondBar.coordinate = CLLocationCoordinate2D(latitude: 37.7648, longitude: -122.4213)
-        mapView.addAnnotation(bondBar)
+        // Call our scan here, and use the results to make new pins
+        // Create a scan expression
+        self.dispatchGroup.enter()
+        let dynamoDBObjectMapper = AWSDynamoDBObjectMapper.default()
+        let scanExpression = AWSDynamoDBScanExpression()
         
-        let theStud = MKPointAnnotation()
-        theStud.title = "The Stud"
-        theStud.coordinate = CLLocationCoordinate2D(latitude: 37.7728, longitude: -122.4101)
-        mapView.addAnnotation(theStud)
+        dynamoDBObjectMapper.scan(Bars.self, expression: scanExpression).continueWith(block: { (task:AWSTask<AWSDynamoDBPaginatedOutput>!) -> Void in
+            if let error = task.error as NSError? {
+                print("The request failed. Error: \(error)")
+            } else if let paginatedOutput = task.result {
+                // For each bar found in the scan, we will make a pin object and append it to the list
+                for bar in paginatedOutput.items as! [Bars] {
+                    let tempPin = MKPointAnnotation()
+                    tempPin.title = bar._userId
+                    tempPin.coordinate = CLLocationCoordinate2D(latitude: Double(truncating: bar._latitude!), longitude: Double(truncating: bar._longitude!))
+                    self.scanReturn.append(tempPin)
+                    // Add other important information needed later on
+                    let hashKey = bar._userId!
+                    let rangeKey = bar._itemId!
+                    let numLeft = bar._numPassesLeft!
+                    let price = bar._price!
+                    let temp = ["hashKey": hashKey, "rangeKey": rangeKey, "numLeft": numLeft, "price": price] as [String : Any]
+                    self.pinInfo.append(temp)
+                    self.names.append(hashKey)
+                }
+            }
+            self.dispatchGroup.leave()
+        })
+    }
+    
+    func displayPins() {
+        for pin in scanReturn {
+            mapView.addAnnotation(pin)
+        }
     }
         
     // Function that centers the map on the user's location
@@ -133,9 +168,10 @@ class MapSearchVC: UIViewController {
     private func addPinInfo(name: String) {
         // Set barName variable for later use
         barName = name
+        index = names.firstIndex(of: barName)
         // Button
         button.isHidden = false
-        button.frame = CGRect(x: 10, y: UIScreen.main.bounds.height*7/8, width: UIScreen.main.bounds.width - 20, height: UIScreen.main.bounds.height/12 - 10)
+        button.frame = CGRect(x: 10, y: UIScreen.main.bounds.height*5/6, width: UIScreen.main.bounds.width - 20, height: UIScreen.main.bounds.height/12 - 10)
         button.setTitleColor(UIColor(white: 1, alpha: 1), for: .normal)
         button.setTitle("Go to \(name)", for: .normal)
         button.layer.cornerRadius = 8

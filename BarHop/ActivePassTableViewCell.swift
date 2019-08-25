@@ -13,6 +13,7 @@ import AWSMobileClient
 
 class ActivePassTableViewCell: UITableViewCell {
     
+    @IBOutlet weak var barAddressLabel: UILabel!
     @IBOutlet weak var barNameLabel: UILabel!
     @IBOutlet weak var redeemBtn: UIButton!
     

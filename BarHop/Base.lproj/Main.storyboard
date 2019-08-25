@@ -21,9 +21,15 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uIL-hZ-Xyo">
-                                        <rect key="frame" x="15" y="15" width="345" height="417"/>
+                                        <rect key="frame" x="15" y="15" width="345" height="376.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N4J-WL-Ahu" userLabel="Address Label">
+                                        <rect key="frame" x="15" y="411.5" width="345" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gWw-wL-Jdy">
@@ -60,6 +66,7 @@
                         <viewLayoutGuide key="safeArea" id="cDS-fK-fdG"/>
                     </view>
                     <connections>
+                        <outlet property="addressLabel" destination="N4J-WL-Ahu" id="LwM-TT-JFr"/>
                         <outlet property="barLabel" destination="uIL-hZ-Xyo" id="Z4N-Be-fOQ"/>
                         <outlet property="disclaimerLabel" destination="n1Z-1N-Vvx" id="8oy-id-52b"/>
                         <outlet property="numPassesLabel" destination="gWw-wL-Jdy" id="fye-bV-255"/>
@@ -94,12 +101,6 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="89.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0e3-Gt-eXs">
-                                                            <rect key="frame" x="25" y="21" width="275" height="48"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                                            <nil key="textColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="09g-HP-G7D">
                                                             <rect key="frame" x="267" y="21" width="93" height="48"/>
                                                             <constraints>
@@ -113,19 +114,37 @@
                                                                 <action selector="redeemBtnClicked:" destination="pbh-jn-Wxy" eventType="touchUpInside" id="xoF-G7-ML4"/>
                                                             </connections>
                                                         </button>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="WjV-oy-GmQ">
+                                                            <rect key="frame" x="15" y="11" width="244" height="68"/>
+                                                            <subviews>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8rS-sd-vE1">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="244" height="47.5"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T6q-nh-v5m" userLabel="Bar Address Label">
+                                                                    <rect key="frame" x="0.0" y="47.5" width="244" height="20.5"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                        </stackView>
                                                     </subviews>
                                                     <constraints>
+                                                        <constraint firstItem="WjV-oy-GmQ" firstAttribute="top" secondItem="Ajn-sd-w0U" secondAttribute="topMargin" id="6O7-XC-pHf"/>
                                                         <constraint firstItem="09g-HP-G7D" firstAttribute="top" secondItem="Ajn-sd-w0U" secondAttribute="topMargin" constant="10" id="7PU-ot-Tpv"/>
-                                                        <constraint firstItem="0e3-Gt-eXs" firstAttribute="leading" secondItem="Ajn-sd-w0U" secondAttribute="leadingMargin" constant="10" id="EaZ-3y-fp6"/>
-                                                        <constraint firstItem="0e3-Gt-eXs" firstAttribute="top" secondItem="Ajn-sd-w0U" secondAttribute="topMargin" constant="10" id="PNA-z8-pvZ"/>
+                                                        <constraint firstItem="09g-HP-G7D" firstAttribute="leading" secondItem="WjV-oy-GmQ" secondAttribute="trailing" constant="8" id="KRn-CN-o6a"/>
+                                                        <constraint firstItem="WjV-oy-GmQ" firstAttribute="leading" secondItem="Ajn-sd-w0U" secondAttribute="leadingMargin" id="N5r-j9-sGC"/>
                                                         <constraint firstItem="09g-HP-G7D" firstAttribute="trailing" secondItem="Ajn-sd-w0U" secondAttribute="trailingMargin" id="QkC-CZ-yLv"/>
-                                                        <constraint firstAttribute="bottomMargin" secondItem="0e3-Gt-eXs" secondAttribute="bottom" constant="10" id="o2q-4b-MfA"/>
-                                                        <constraint firstAttribute="trailingMargin" secondItem="0e3-Gt-eXs" secondAttribute="trailing" constant="60" id="u7S-yG-6bQ"/>
+                                                        <constraint firstItem="WjV-oy-GmQ" firstAttribute="bottom" secondItem="Ajn-sd-w0U" secondAttribute="bottomMargin" id="jVf-xz-hor"/>
                                                         <constraint firstAttribute="bottomMargin" secondItem="09g-HP-G7D" secondAttribute="bottom" constant="10" id="zjH-Do-48t"/>
                                                     </constraints>
                                                 </tableViewCellContentView>
                                                 <connections>
-                                                    <outlet property="barNameLabel" destination="0e3-Gt-eXs" id="5ns-gq-Saa"/>
+                                                    <outlet property="barAddressLabel" destination="T6q-nh-v5m" id="amZ-7D-NKe"/>
+                                                    <outlet property="barNameLabel" destination="8rS-sd-vE1" id="aHt-ed-qgb"/>
                                                     <outlet property="redeemBtn" destination="09g-HP-G7D" id="wh4-Rw-2ki"/>
                                                 </connections>
                                             </tableViewCell>
@@ -402,7 +421,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fA1-rQ-Tq7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6663.1999999999998" y="794.30284857571223"/>
+            <point key="canvasLocation" x="5209" y="678"/>
         </scene>
         <!--Passes-->
         <scene sceneID="sS9-XA-Kac">

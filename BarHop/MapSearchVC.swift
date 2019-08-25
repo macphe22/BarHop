@@ -167,6 +167,10 @@ class MapSearchVC: UIViewController {
         payVC.barItemId = pinInfo[index!]["rangeKey"] as? String
         payVC.cost = pinInfo[index!]["price"] as? Int
         payVC.numPassesText = pinInfo[index!]["numLeft"] as? Int
+        payVC.address = pinInfo[index!]["address"] as? String
+        payVC.city = pinInfo[index!]["city"] as? String
+        payVC.state = pinInfo[index!]["state"] as? String
+        payVC.zipCode = pinInfo[index!]["zipCode"] as? String
     }
     
     // Function to add custom pins to the mapview
@@ -192,7 +196,11 @@ class MapSearchVC: UIViewController {
                     let rangeKey = bar._itemId!
                     let numLeft = bar._numPassesLeft!
                     let price = bar._price!
-                    let temp = ["hashKey": hashKey, "rangeKey": rangeKey, "numLeft": numLeft, "price": price] as [String : Any]
+                    let address = bar._address!
+                    let city = bar._city!
+                    let state = bar._state!
+                    let zipCode = bar._zipCode!
+                    let temp = ["hashKey": hashKey, "rangeKey": rangeKey, "numLeft": numLeft, "price": price, "address": address, "city": city, "state": state, "zipCode": zipCode] as [String : Any]
                     self.pinInfo.append(temp)
                     self.names.append(hashKey)
                 }
@@ -279,9 +287,9 @@ class MapSearchVC: UIViewController {
         index = names.firstIndex(of: barName)
         // Button
         button.isHidden = false
+        button.setTitle("Go to \(name)", for: .normal)
         button.frame = CGRect(x: 10, y: UIScreen.main.bounds.height*5/6, width: UIScreen.main.bounds.width - 20, height: UIScreen.main.bounds.height/12 - 10)
         button.setTitleColor(UIColor(white: 1, alpha: 1), for: .normal)
-        button.setTitle("Go to \(name)", for: .normal)
         button.layer.cornerRadius = 8
         button.layer.backgroundColor = UIColor(white: 0, alpha: 1).cgColor
         button.titleLabel?.textColor = UIColor(white: 1, alpha: 1)

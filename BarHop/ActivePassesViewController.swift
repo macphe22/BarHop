@@ -17,6 +17,7 @@ class ActivePassesViewController: UIViewController {
     
     var activePasses = [String]()
     var returnedActivePasses = Set<String>()
+    var passAddress: String?
     
     private let refreshControl = UIRefreshControl()
     
@@ -27,13 +28,6 @@ class ActivePassesViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         // Add a refresh by pull-down method
-        let headerView: UIView = UIView.init(frame: CGRect(x: 1, y: 50, width: 276, height: 30))
-        let labelView: UILabel = UILabel.init(frame: CGRect(x: 4, y: 5, width: 276, height: 24))
-        labelView.text = "Pull down to refresh"
-        labelView.textColor = UIColor(white: 1, alpha: 1)
-        headerView.addSubview(labelView)
-        self.tableView.tableHeaderView = headerView
-        
         tableView.refreshControl = refreshControl
         refreshControl.addTarget(self, action: #selector(refreshData(_:)), for: .valueChanged)
         refreshControl.attributedTitle = NSAttributedString(string: "Fetching Data ...")
@@ -108,6 +102,20 @@ class ActivePassesViewController: UIViewController {
         }
         return returnArray
     }
+    
+    func getPassCity(barUserId: String, barItemId: String) {
+        let dynamoDBObjectMapper = AWSDynamoDBObjectMapper.default()
+        self.dispatchGroup.enter()
+        dynamoDBObjectMapper.load(Bars.self, hashKey: barUserId, rangeKey:
+            barItemId).continueWith(block: { (task:AWSTask<AnyObject>!) -> Void in
+            if let error = task.error as NSError? {
+                print("The request failed. Error: \(error)")
+            } else if let resultBook = task.result as? Bars {
+                self.passAddress = "\(resultBook._city!), \(resultBook._state!)"
+            }
+            self.dispatchGroup.leave()
+        })
+    }
 }
 
 extension ActivePassesViewController: UITableViewDataSource, UITableViewDelegate {
@@ -132,6 +140,13 @@ extension ActivePassesViewController: UITableViewDataSource, UITableViewDelegate
         cell.barNameLabel.textColor = UIColor(white: 1, alpha: 1)
         cell.barNameLabel.text = activePass.components(separatedBy: ",")[0]
         cell.barUniqueId = activePass
+        // Also, we would like to display the city to the user as well which requires a query
+        getPassCity(barUserId: activePass.components(separatedBy: ",")[0], barItemId: activePass.components(separatedBy: ",")[1])
+        dispatchGroup.notify(queue: .main)
+        {
+            cell.barAddressLabel.textColor = UIColor(white: 1, alpha: 1)
+            cell.barAddressLabel.text = self.passAddress
+        }
         return cell
     }
 }

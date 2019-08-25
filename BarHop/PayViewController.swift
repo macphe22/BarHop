@@ -15,6 +15,8 @@ import AWSCore
 
 class PayViewController: UIViewController {
 
+    
+    @IBOutlet weak var addressLabel: UILabel!
     @IBOutlet weak var barLabel: UITextField!
     @IBOutlet weak var numPassesLabel: UITextField!
     @IBOutlet weak var payBtn: UIButton!
@@ -28,6 +30,10 @@ class PayViewController: UIViewController {
     var braintree: NSNumber?
     var activePasses: Set<String>?
     var userHasPass: Bool = false
+    var address: String?
+    var city: String?
+    var state: String?
+    var zipCode: String?
     
     let dispatchGroup = DispatchGroup()
     
@@ -40,6 +46,10 @@ class PayViewController: UIViewController {
         barLabel.text = textField
         barLabel.textColor = UIColor(white: 1, alpha: 1)
         barLabel.textAlignment = NSTextAlignment.center
+        // Address label
+        addressLabel.text = "\(address!)\n\(city!), \(state!) \(zipCode!)"
+        addressLabel.textColor = UIColor(white: 1, alpha: 1)
+        addressLabel.textAlignment = NSTextAlignment.center
         // Number of passes label
         if (numPassesText == nil) {
             numPassesLabel.text = "INSERT NUM LEFT"

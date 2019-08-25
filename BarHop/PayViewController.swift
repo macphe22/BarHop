@@ -220,9 +220,9 @@ class PayViewController: UIViewController {
                 if (result!.paymentOptionType.rawValue == 17) {
                     // Check the below line to ensure that the username property of
                     // the VenmoAccountNonce is what should be passed in here
-                    self.postNonceToServer(paymentMethodNonce: result?.paymentMethod?.nonce ?? "", amount: cost, venue: self.barUserId ?? "unknown")
+                    self.postNonceToServer(paymentMethodNonce: result?.paymentMethod?.nonce ?? "", amount: cost, venue: "\(self.barUserId!),\(self.barItemId!)")
                 } else {
-                    self.postNonceToServer(paymentMethodNonce: result?.paymentMethod?.nonce ?? "", amount: cost, venue: self.barUserId ?? "unknown")
+                    self.postNonceToServer(paymentMethodNonce: result?.paymentMethod?.nonce ?? "", amount: cost, venue: "\(self.barUserId!),\(self.barItemId!)")
                 }
             }
             controller.dismiss(animated: true, completion: nil)

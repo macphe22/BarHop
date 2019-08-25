@@ -308,9 +308,6 @@ class PayViewController: UIViewController {
                 self.updatePasses()
                 // Now that the user has bought a pass successfully, we should make sure they
                 // don't accidentally buy a second pass and disable the pay button on this screen
-                self.payBtn.layer.borderColor = UIColor(red: 1, green: 0, blue: 0, alpha: 1).cgColor
-                self.payBtn.setTitle("You have an active pass at this venue", for: .normal)
-                self.payBtn.setTitleColor(UIColor(red: 1, green: 0, blue: 0, alpha: 1), for: .normal)
                 self.payBtn.isEnabled = false
             }
         }.resume()

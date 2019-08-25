@@ -194,9 +194,11 @@
                                     <outlet property="delegate" destination="Mlw-XS-gie" id="Z7q-dA-XPQ"/>
                                 </connections>
                             </mapView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ynH-7b-J6q">
-                                <rect key="frame" x="0.0" y="558" width="375" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ynH-7b-J6q">
+                                <rect key="frame" x="16" y="489" width="343" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="10z-fC-kM4"/>
+                                </constraints>
                                 <state key="normal" title="Button"/>
                                 <connections>
                                     <action selector="barBtnClicked:" destination="Mlw-XS-gie" eventType="touchUpInside" id="KTl-RP-ou2"/>
@@ -206,9 +208,12 @@
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="VQa-xN-hcG" firstAttribute="trailing" secondItem="LHU-94-xiJ" secondAttribute="trailing" id="3Ft-uc-2Pu"/>
+                            <constraint firstItem="ynH-7b-J6q" firstAttribute="top" secondItem="VQa-xN-hcG" secondAttribute="bottom" constant="-65" id="XUE-yZ-lKK"/>
                             <constraint firstItem="VQa-xN-hcG" firstAttribute="top" secondItem="a0I-n0-gn2" secondAttribute="top" id="Zrl-8X-oKC"/>
                             <constraint firstItem="VQa-xN-hcG" firstAttribute="bottom" secondItem="LHU-94-xiJ" secondAttribute="bottom" id="bCd-cS-RjP"/>
                             <constraint firstItem="VQa-xN-hcG" firstAttribute="leading" secondItem="LHU-94-xiJ" secondAttribute="leading" id="by7-ZB-tLH"/>
+                            <constraint firstItem="ynH-7b-J6q" firstAttribute="leading" secondItem="LHU-94-xiJ" secondAttribute="leading" constant="16" id="rsJ-Ii-Q8B"/>
+                            <constraint firstItem="LHU-94-xiJ" firstAttribute="trailing" secondItem="ynH-7b-J6q" secondAttribute="trailing" constant="16" id="tH9-h5-Z7W"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="LHU-94-xiJ"/>
                     </view>

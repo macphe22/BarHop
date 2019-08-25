@@ -60,8 +60,6 @@ class ActivePassTableViewCell: UITableViewCell {
                     if let error = task.error as NSError? {
                         print("The request failed. Error: \(error)")
                     }
-                    // TODO: The above code has handled altering the database; now we must remove the cell from the table
-
                 })
             }
         })

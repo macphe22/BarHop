@@ -452,7 +452,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="1NK-d3-5RG" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Register" image="IconTabBar2" id="Eav-Ib-FYw"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="lIb-FF-Z43">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="lIb-FF-Z43">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -468,7 +468,7 @@
     </scenes>
     <resources>
         <image name="IconTabBar0" width="7" height="19"/>
-        <image name="IconTabBar1" width="16" height="20.666666030883789"/>
+        <image name="IconTabBar1" width="13.333333015441895" height="20"/>
         <image name="IconTabBar2" width="20" height="13.333333015441895"/>
     </resources>
 </document>

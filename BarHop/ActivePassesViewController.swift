@@ -18,12 +18,25 @@ class ActivePassesViewController: UIViewController {
     var activePasses = [String]()
     var returnedActivePasses = Set<String>()
     
+    private let refreshControl = UIRefreshControl()
+    
     let dispatchGroup = DispatchGroup()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
+        // Add a refresh by pull-down method
+        let headerView: UIView = UIView.init(frame: CGRect(x: 1, y: 50, width: 276, height: 30))
+        let labelView: UILabel = UILabel.init(frame: CGRect(x: 4, y: 5, width: 276, height: 24))
+        labelView.text = "Pull down to refresh"
+        labelView.textColor = UIColor(white: 1, alpha: 1)
+        headerView.addSubview(labelView)
+        self.tableView.tableHeaderView = headerView
+        
+        tableView.refreshControl = refreshControl
+        refreshControl.addTarget(self, action: #selector(refreshData(_:)), for: .valueChanged)
+        refreshControl.attributedTitle = NSAttributedString(string: "Fetching Data ...")
         // First we call our query
         getCustomersActiveTrips()
         // Then when we exit the dispatch group, we can display the passes retrieved
@@ -41,6 +54,17 @@ class ActivePassesViewController: UIViewController {
         dispatchGroup.notify(queue: .main)
         {
             self.displayPasses()
+        }
+    }
+    
+    // Selector function for updating pull-down
+    @objc private func refreshData(_ sender: Any) {
+        getCustomersActiveTrips()
+        // Then when we exit the dispatch group, we can display the passes retrieved
+        dispatchGroup.notify(queue: .main)
+        {
+            self.displayPasses()
+            self.refreshControl.endRefreshing()
         }
     }
     
@@ -86,7 +110,7 @@ class ActivePassesViewController: UIViewController {
     }
 }
 
-extension ActivePassesViewController: UITableViewDataSource, UITableViewDelegate{
+extension ActivePassesViewController: UITableViewDataSource, UITableViewDelegate {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }

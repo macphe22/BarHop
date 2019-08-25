@@ -11,7 +11,6 @@
 		388839B0F42A3C1C5E694C2D /* Pods_BarHopTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5D202D4ED592C981B7CDAA5 /* Pods_BarHopTests.framework */; };
 		A1893E192280DE5D008473C7 /* MapSearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1893E182280DE5D008473C7 /* MapSearchVC.swift */; };
 		A1A642FE22AC8EC30004F0B0 /* PayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A642FD22AC8EC30004F0B0 /* PayViewController.swift */; };
-		A1A6430022ADB92F0004F0B0 /* colors.txt in Resources */ = {isa = PBXBuildFile; fileRef = A1A642FF22ADB92F0004F0B0 /* colors.txt */; };
 		A1CE3F6E22ADCDE2007268EA /* Screen Shot 2018-12-27 at 5.00.02 PM.png in Resources */ = {isa = PBXBuildFile; fileRef = A1CE3F6922ADCDE2007268EA /* Screen Shot 2018-12-27 at 5.00.02 PM.png */; };
 		A1CE3F6F22ADCDE2007268EA /* Screen Shot 2018-12-27 at 4.56.00 PM.png in Resources */ = {isa = PBXBuildFile; fileRef = A1CE3F6A22ADCDE2007268EA /* Screen Shot 2018-12-27 at 4.56.00 PM.png */; };
 		A1CE3F7022ADCDE2007268EA /* Screen Shot 2018-12-27 at 4.38.47 PM.png in Resources */ = {isa = PBXBuildFile; fileRef = A1CE3F6B22ADCDE2007268EA /* Screen Shot 2018-12-27 at 4.38.47 PM.png */; };
@@ -57,7 +56,6 @@
 		83E6392AB7F36F4E69E100AA /* Pods-BarHop.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BarHop.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BarHop/Pods-BarHop.debug.xcconfig"; sourceTree = "<group>"; };
 		A1893E182280DE5D008473C7 /* MapSearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapSearchVC.swift; sourceTree = "<group>"; };
 		A1A642FD22AC8EC30004F0B0 /* PayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayViewController.swift; sourceTree = "<group>"; };
-		A1A642FF22ADB92F0004F0B0 /* colors.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = colors.txt; sourceTree = "<group>"; };
 		A1CE3F6922ADCDE2007268EA /* Screen Shot 2018-12-27 at 5.00.02 PM.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Screen Shot 2018-12-27 at 5.00.02 PM.png"; sourceTree = "<group>"; };
 		A1CE3F6A22ADCDE2007268EA /* Screen Shot 2018-12-27 at 4.56.00 PM.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Screen Shot 2018-12-27 at 4.56.00 PM.png"; sourceTree = "<group>"; };
 		A1CE3F6B22ADCDE2007268EA /* Screen Shot 2018-12-27 at 4.38.47 PM.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Screen Shot 2018-12-27 at 4.38.47 PM.png"; sourceTree = "<group>"; };
@@ -188,7 +186,6 @@
 				D3DDFAD721D081910071B437 /* Assets.xcassets */,
 				D3DDFAFE21D0823F0071B437 /* awsconfiguration.json */,
 				D334D11621E3C59800A3046B /* Bars.swift */,
-				A1A642FF22ADB92F0004F0B0 /* colors.txt */,
 				D334D11221DEAA5600A3046B /* Customer.swift */,
 				D3DDFADC21D081910071B437 /* Info.plist */,
 				D3DDFAD921D081910071B437 /* LaunchScreen.storyboard */,
@@ -330,7 +327,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				A1CE3F7122ADCDE2007268EA /* beer-2424943_960_720.png in Resources */,
-				A1A6430022ADB92F0004F0B0 /* colors.txt in Resources */,
 				A1CE3F6E22ADCDE2007268EA /* Screen Shot 2018-12-27 at 5.00.02 PM.png in Resources */,
 				A1CE3F7422ADF124007268EA /* logopng.pdf in Resources */,
 				A1CE3F7222ADCDE2007268EA /* Screen Shot 2018-12-27 at 5.02.26 PM.png in Resources */,

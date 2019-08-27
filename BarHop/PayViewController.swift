@@ -20,7 +20,6 @@ class PayViewController: UIViewController {
     @IBOutlet weak var barLabel: UITextField!
     @IBOutlet weak var numPassesLabel: UITextField!
     @IBOutlet weak var payBtn: UIButton!
-    @IBOutlet weak var disclaimerLabel: UILabel!
     
     var barUserId: String?
     var barItemId: String?
@@ -81,10 +80,6 @@ class PayViewController: UIViewController {
                 self.payBtn.layer.borderColor = midBlue.cgColor
                 self.payBtn.titleLabel?.textColor = midBlue
             }
-            // Disclaimer Label
-            self.disclaimerLabel.text = "BarHop is not responsible for your entry into this venue; our services solely serve to reduce your time waiting in line. It is up to staff at each venue whether or not to permnit your entry, regardless of your legal ability to enter. Please drink responsibly."
-            self.disclaimerLabel.textColor = UIColor(white: 1, alpha: 1)
-            self.disclaimerLabel.textAlignment = NSTextAlignment.center
         }
     }
     

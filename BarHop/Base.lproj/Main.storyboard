@@ -17,41 +17,35 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="EWQ-LZ-Hc6">
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="EWQ-LZ-Hc6">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uIL-hZ-Xyo">
-                                        <rect key="frame" x="15" y="15" width="345" height="376.5"/>
+                                        <rect key="frame" x="15" y="15" width="345" height="116"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N4J-WL-Ahu" userLabel="Address Label">
-                                        <rect key="frame" x="15" y="411.5" width="345" height="20.5"/>
+                                        <rect key="frame" x="15" y="151" width="345" height="116"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gWw-wL-Jdy">
-                                        <rect key="frame" x="15" y="452" width="345" height="20.5"/>
+                                        <rect key="frame" x="15" y="287" width="345" height="116"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9rY-DO-rQf">
-                                        <rect key="frame" x="15" y="492.5" width="345" height="26.5"/>
+                                        <rect key="frame" x="15" y="423" width="345" height="116"/>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
                                         <state key="normal" title="Pay"/>
                                         <connections>
                                             <action selector="payBtnClicked:" destination="dbc-Ut-vJH" eventType="touchUpInside" id="LJi-JC-ELH"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n1Z-1N-Vvx">
-                                        <rect key="frame" x="15" y="539" width="345" height="0.0"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                 </subviews>
                                 <edgeInsets key="layoutMargins" top="15" left="15" bottom="15" right="15"/>
                             </stackView>
@@ -68,7 +62,6 @@
                     <connections>
                         <outlet property="addressLabel" destination="N4J-WL-Ahu" id="LwM-TT-JFr"/>
                         <outlet property="barLabel" destination="uIL-hZ-Xyo" id="Z4N-Be-fOQ"/>
-                        <outlet property="disclaimerLabel" destination="n1Z-1N-Vvx" id="8oy-id-52b"/>
                         <outlet property="numPassesLabel" destination="gWw-wL-Jdy" id="fye-bV-255"/>
                         <outlet property="payBtn" destination="9rY-DO-rQf" id="35O-k8-73d"/>
                     </connections>
@@ -175,7 +168,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UMR-Yv-IuF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4516" y="-973.76311844077964"/>
+            <point key="canvasLocation" x="3908" y="-985"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="S7Q-f8-72U">
@@ -223,14 +216,42 @@
                                     <action selector="barBtnClicked:" destination="Mlw-XS-gie" eventType="touchUpInside" id="KTl-RP-ou2"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qLG-Cz-E1v">
+                                <rect key="frame" x="16" y="20" width="343" height="461"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="461" id="qFD-oQ-emY"/>
+                                </constraints>
+                                <mutableString key="text">BarHop Terms of Use: BarHop offers a no refund policy; all sales are final. BarHop's service is only to expidite waiting times; any user purchasing a pass to a venue takes responsibility onto themselves to ensure they are legally able to enter the venue. Furthermore, it is up to each individual venue to use their sole discretion to grant or not grant each user entry into their venue, regardless of the legal status of the user. BarHop claims no responsibility for the safety or well-being of any users; we strongly suggest users abide by all laws and drink responsibly. By clicking the button labeled 'Accept' below, you agree to the terms listed.</mutableString>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" name="selectedMenuItemTextColor" catalog="System" colorSpace="catalog"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sVD-ry-e1n">
+                                <rect key="frame" x="16" y="489" width="343" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="rWV-Fv-io7"/>
+                                </constraints>
+                                <state key="normal" title="Accept">
+                                    <color key="titleColor" name="systemBlueColor" catalog="System" colorSpace="catalog"/>
+                                </state>
+                                <connections>
+                                    <action selector="acceptBtnClicked:" destination="Mlw-XS-gie" eventType="touchUpInside" id="xAO-se-iAF"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="sVD-ry-e1n" firstAttribute="leading" secondItem="LHU-94-xiJ" secondAttribute="leading" constant="16" id="34o-Fl-Dn1"/>
                             <constraint firstItem="VQa-xN-hcG" firstAttribute="trailing" secondItem="LHU-94-xiJ" secondAttribute="trailing" id="3Ft-uc-2Pu"/>
+                            <constraint firstItem="LHU-94-xiJ" firstAttribute="bottom" secondItem="sVD-ry-e1n" secondAttribute="bottom" constant="15" id="3KD-6Y-4C2"/>
+                            <constraint firstItem="LHU-94-xiJ" firstAttribute="trailing" secondItem="qLG-Cz-E1v" secondAttribute="trailing" constant="16" id="B5D-hJ-ec3"/>
                             <constraint firstItem="ynH-7b-J6q" firstAttribute="top" secondItem="VQa-xN-hcG" secondAttribute="bottom" constant="-65" id="XUE-yZ-lKK"/>
                             <constraint firstItem="VQa-xN-hcG" firstAttribute="top" secondItem="a0I-n0-gn2" secondAttribute="top" id="Zrl-8X-oKC"/>
                             <constraint firstItem="VQa-xN-hcG" firstAttribute="bottom" secondItem="LHU-94-xiJ" secondAttribute="bottom" id="bCd-cS-RjP"/>
                             <constraint firstItem="VQa-xN-hcG" firstAttribute="leading" secondItem="LHU-94-xiJ" secondAttribute="leading" id="by7-ZB-tLH"/>
+                            <constraint firstItem="qLG-Cz-E1v" firstAttribute="leading" secondItem="LHU-94-xiJ" secondAttribute="leading" constant="16" id="h5E-jm-Xb3"/>
+                            <constraint firstItem="qLG-Cz-E1v" firstAttribute="top" secondItem="LHU-94-xiJ" secondAttribute="top" constant="20" id="ihm-te-bqz"/>
+                            <constraint firstItem="LHU-94-xiJ" firstAttribute="trailing" secondItem="sVD-ry-e1n" secondAttribute="trailing" constant="16" id="qI1-m8-KM2"/>
                             <constraint firstItem="ynH-7b-J6q" firstAttribute="leading" secondItem="LHU-94-xiJ" secondAttribute="leading" constant="16" id="rsJ-Ii-Q8B"/>
                             <constraint firstItem="LHU-94-xiJ" firstAttribute="trailing" secondItem="ynH-7b-J6q" secondAttribute="trailing" constant="16" id="tH9-h5-Z7W"/>
                         </constraints>
@@ -257,8 +278,10 @@
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" translucent="NO" prompted="NO"/>
                     <connections>
+                        <outlet property="acceptBtn" destination="sVD-ry-e1n" id="a1t-yq-608"/>
                         <outlet property="button" destination="ynH-7b-J6q" id="DOf-o4-9ul"/>
                         <outlet property="mapView" destination="VQa-xN-hcG" id="MBz-fU-MxR"/>
+                        <outlet property="termsOfUseLabel" destination="qLG-Cz-E1v" id="OxQ-KM-oCc"/>
                         <segue destination="dbc-Ut-vJH" kind="show" identifier="pushPayVC" id="3Lz-rf-PN6"/>
                     </connections>
                 </viewController>
@@ -443,7 +466,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x84-OM-sjf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3576.8000000000002" y="-973.76311844077964"/>
+            <point key="canvasLocation" x="2969" y="-985"/>
         </scene>
         <!--Bars-->
         <scene sceneID="XTS-KU-KOO">

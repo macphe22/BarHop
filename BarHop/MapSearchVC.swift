@@ -21,6 +21,8 @@ class MapSearchVC: UIViewController {
     @IBOutlet weak var mapView: MKMapView!
     // Button and label outlet
     @IBOutlet weak var button: UIButton!
+    @IBOutlet weak var termsOfUseLabel: UILabel!
+    @IBOutlet weak var acceptBtn: UIButton!
     
     var barName = ""
     var index: Int?
@@ -35,6 +37,14 @@ class MapSearchVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // Set terms of use information to invisible
+        termsOfUseLabel.isHidden = true
+        acceptBtn.isHidden = true
+        // Handle terms of use styling
+        let midBlue = UIColor(red: 0, green: 191/255, blue: 255/255, alpha: 1)
+        acceptBtn.layer.borderColor = midBlue.cgColor
+        acceptBtn.layer.cornerRadius = 8
+        acceptBtn.setTitleColor(midBlue, for: .normal)
         // Set button and label to invisible
         button.isHidden = true
         // Make the view controller the mapView's delegate
@@ -94,6 +104,7 @@ class MapSearchVC: UIViewController {
             } else if (objectModel as? Customer) == nil {
                 // The customer was not found, we can create the customer
                 self.createCustomer()
+                self.termsOfUse()
             }
         })
     }
@@ -121,6 +132,26 @@ class MapSearchVC: UIViewController {
         return count
     }
     
+    // Function that handles making new users agree to BarHop's terms of use
+    func termsOfUse() {
+        // Make everything invisible except the terms of use information
+        DispatchQueue.main.async {
+            self.mapView.isHidden = true
+            self.termsOfUseLabel.isHidden = false
+            self.acceptBtn.isHidden = false
+        }
+    }
+    
+    // Function that handles making terms of use info invisible when the accept button is clicked
+    @IBAction func acceptBtnClicked(_ sender: Any) {
+        // Make everything visible again except the terms of use information
+        DispatchQueue.main.async {
+            self.mapView.isHidden = false
+            self.termsOfUseLabel.isHidden = true
+            self.acceptBtn.isHidden = true
+        }
+    }
+    
     // Creating a new customer
     func createCustomer(){
         //print("Creating Customer")
@@ -141,7 +172,9 @@ class MapSearchVC: UIViewController {
                     print("Amazon DynamoDB Save Error: \(error)")
                     return
                 }
-                print("An item was saved.")
+                // Now that we've created a new customer, we should bring up a one-time
+                // terms of service agreement telling the customer our policies on refunds, etc.
+                self.termsOfUse()
                 self.postAuth()
             })
         }

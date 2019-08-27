@@ -33,11 +33,6 @@ class Customer: AWSDynamoDBObjectModel, AWSDynamoDBModeling {
         return "_userId"
     }
     
-//    class func rangeKeyAttribute() -> String {
-//
-//        return "_tripsTaken"
-//    }
-    
     override class func jsonKeyPathsByPropertyKey() -> [AnyHashable: Any] {
         return [
                "_userId" : "userId",

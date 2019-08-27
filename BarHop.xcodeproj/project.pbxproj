@@ -18,12 +18,12 @@
 		A1CE3F7222ADCDE2007268EA /* Screen Shot 2018-12-27 at 5.02.26 PM.png in Resources */ = {isa = PBXBuildFile; fileRef = A1CE3F6D22ADCDE2007268EA /* Screen Shot 2018-12-27 at 5.02.26 PM.png */; };
 		A1CE3F7422ADF124007268EA /* logopng.pdf in Resources */ = {isa = PBXBuildFile; fileRef = A1CE3F7322ADF124007268EA /* logopng.pdf */; };
 		A1CE3F7622ADF190007268EA /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = A1CE3F7522ADF190007268EA /* logo.png */; };
+		A1D96B362314CCAB00D00FBC /* RegisterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D96B352314CCAB00D00FBC /* RegisterVC.swift */; };
 		D2F8EF42B222F0757748BFA8 /* Pods_BarHopUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4EED81701FD3D85B34B8A5EE /* Pods_BarHopUITests.framework */; };
 		D31F281F22EA77C8007B9F27 /* ActivePassTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31F281E22EA77C8007B9F27 /* ActivePassTableViewCell.swift */; };
 		D31F282322F11E22007B9F27 /* ActivePassesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31F282222F11E22007B9F27 /* ActivePassesViewController.swift */; };
 		D334D11321DEAA5600A3046B /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D334D11221DEAA5600A3046B /* Customer.swift */; };
 		D334D11721E3C59800A3046B /* Bars.swift in Sources */ = {isa = PBXBuildFile; fileRef = D334D11621E3C59800A3046B /* Bars.swift */; };
-		D35ABDB52307505900D5BB78 /* RegisterBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35ABDB42307505900D5BB78 /* RegisterBarViewController.swift */; };
 		D3DDFAD121D0818F0071B437 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DDFAD021D0818F0071B437 /* AppDelegate.swift */; };
 		D3DDFAD621D0818F0071B437 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D3DDFAD421D0818F0071B437 /* Main.storyboard */; };
 		D3DDFAD821D081910071B437 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3DDFAD721D081910071B437 /* Assets.xcassets */; };
@@ -63,6 +63,7 @@
 		A1CE3F6D22ADCDE2007268EA /* Screen Shot 2018-12-27 at 5.02.26 PM.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Screen Shot 2018-12-27 at 5.02.26 PM.png"; sourceTree = "<group>"; };
 		A1CE3F7322ADF124007268EA /* logopng.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = logopng.pdf; sourceTree = "<group>"; };
 		A1CE3F7522ADF190007268EA /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
+		A1D96B352314CCAB00D00FBC /* RegisterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterVC.swift; sourceTree = "<group>"; };
 		BA278A557AA837A2F0DC83C3 /* Pods-BarHopUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BarHopUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-BarHopUITests/Pods-BarHopUITests.release.xcconfig"; sourceTree = "<group>"; };
 		BACC7E0B876795EF4FEF91B3 /* Pods-BarHopUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BarHopUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BarHopUITests/Pods-BarHopUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		C5D202D4ED592C981B7CDAA5 /* Pods_BarHopTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BarHopTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -72,7 +73,6 @@
 		D31F282222F11E22007B9F27 /* ActivePassesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivePassesViewController.swift; sourceTree = "<group>"; };
 		D334D11221DEAA5600A3046B /* Customer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Customer.swift; sourceTree = "<group>"; };
 		D334D11621E3C59800A3046B /* Bars.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bars.swift; sourceTree = "<group>"; };
-		D35ABDB42307505900D5BB78 /* RegisterBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterBarViewController.swift; sourceTree = "<group>"; };
 		D3DDFACD21D0818F0071B437 /* BarHop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BarHop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3DDFAD021D0818F0071B437 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D3DDFAD521D0818F0071B437 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -192,7 +192,7 @@
 				D3DDFAD421D0818F0071B437 /* Main.storyboard */,
 				A1893E182280DE5D008473C7 /* MapSearchVC.swift */,
 				A1A642FD22AC8EC30004F0B0 /* PayViewController.swift */,
-				D35ABDB42307505900D5BB78 /* RegisterBarViewController.swift */,
+				A1D96B352314CCAB00D00FBC /* RegisterVC.swift */,
 			);
 			path = BarHop;
 			sourceTree = "<group>";
@@ -436,11 +436,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				A1893E192280DE5D008473C7 /* MapSearchVC.swift in Sources */,
-				D35ABDB52307505900D5BB78 /* RegisterBarViewController.swift in Sources */,
 				D31F281F22EA77C8007B9F27 /* ActivePassTableViewCell.swift in Sources */,
 				A1A642FE22AC8EC30004F0B0 /* PayViewController.swift in Sources */,
 				D31F282322F11E22007B9F27 /* ActivePassesViewController.swift in Sources */,
 				D334D11721E3C59800A3046B /* Bars.swift in Sources */,
+				A1D96B362314CCAB00D00FBC /* RegisterVC.swift in Sources */,
 				D3DDFAD121D0818F0071B437 /* AppDelegate.swift in Sources */,
 				D334D11321DEAA5600A3046B /* Customer.swift in Sources */,
 			);

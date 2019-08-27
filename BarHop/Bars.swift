@@ -32,6 +32,7 @@ import AWSDynamoDB
     var _city: String?
     var _state: String?
     var _zipCode: String?
+    var _email: String?
     
     class func dynamoDBTableName() -> String {
 
@@ -65,6 +66,7 @@ import AWSDynamoDB
                "_city" : "city",
                "_state" : "state",
                "_zipCode" : "zipCode",
+               "_email" : "email",
         ]
     }
 }

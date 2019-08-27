@@ -37,6 +37,12 @@ class MapSearchVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // Set up navigation bar logo
+        let logoImage = UIImage(named: "NavBarLogo")
+        let logoImageView = UIImageView(image: logoImage)
+        logoImageView.frame = CGRect(x: 0, y: 0, width: 34, height: 34)
+        logoImageView.contentMode = .scaleAspectFit
+        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: logoImageView)
         // Set terms of use information to invisible
         termsOfUseLabel.isHidden = true
         acceptBtn.isHidden = true
@@ -74,7 +80,7 @@ class MapSearchVC: UIViewController {
         config.enableUserPoolsUI = true
         config.backgroundColor = UIColor(white: 0, alpha: 1)
         config.isBackgroundColorFullScreen = true
-        config.logoImage = UIImage(named: "beer-2424943_960_720")
+        config.logoImage = UIImage(named: "logoImage")
         
         AWSAuthUIViewController.presentViewController(with: self.navigationController!,
                                                       configuration: config, completionHandler: { (provider: AWSSignInProvider, error: Error?) in
@@ -101,10 +107,11 @@ class MapSearchVC: UIViewController {
                 // An error has occurred
             } else if (objectModel as? Customer) != nil {
                 // The customer already exists; we don't need to do anything here
+                // except handle post authorization setup details
+                self.postAuth()
             } else if (objectModel as? Customer) == nil {
                 // The customer was not found, we can create the customer
                 self.createCustomer()
-                self.termsOfUse()
             }
         })
     }

@@ -25,6 +25,13 @@ class ActivePassesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // Set up navigation bar logo
+        let logoImage = UIImage(named: "NavBarLogo")
+        let logoImageView = UIImageView(image: logoImage)
+        logoImageView.frame = CGRect(x: 0, y: 0, width: 34, height: 34)
+        logoImageView.contentMode = .scaleAspectFit
+        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: logoImageView)
+        // Handle table view delegation
         tableView.delegate = self
         tableView.dataSource = self
         // Add a refresh by pull-down method

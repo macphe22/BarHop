@@ -29,10 +29,6 @@ class ActivePassTableViewCell: UITableViewCell {
         redeemBtn.layer.borderColor = midBlue.cgColor
         redeemBtn.layer.cornerRadius = 5
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-    }
     
     // Handle the redeem button being clicked
     // We must both remove the pass from the user's profile, and in real-time,

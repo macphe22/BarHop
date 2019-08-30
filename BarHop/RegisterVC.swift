@@ -38,11 +38,10 @@ class RegisterVC: UIViewController, MFMailComposeViewControllerDelegate {
         logoImageView.contentMode = .scaleAspectFit
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: logoImageView)
         // Set submit button's attributes
-        let midBlue = UIColor(red: 0, green: 191/255, blue: 255/255, alpha: 1)
         submitBtn.layer.cornerRadius = 8
         submitBtn.layer.borderWidth = 1
-        submitBtn.layer.borderColor = midBlue.cgColor
-        submitBtn.titleLabel?.textColor = midBlue
+        submitBtn.layer.borderColor = UIColor(red: 1, green: 0, blue: 0, alpha: 1).cgColor
+        submitBtn.setTitleColor(UIColor(red: 1, green: 0, blue: 0, alpha: 1), for: .normal)
     }
     
     //Calls this function when the tap is recognized.
@@ -53,7 +52,7 @@ class RegisterVC: UIViewController, MFMailComposeViewControllerDelegate {
     
     // Function to handle setting up guards that only allow the button to be visible to the user when all text fields have been filled out
     func setUpButtonGuards() {
-        submitBtn.isHidden = true
+        submitBtn.isEnabled = false
         // Add targets for all textFields
         nameTextField.addTarget(self, action: #selector(textFieldsNotEmpty), for: .editingChanged)
         streetAddressTextField.addTarget(self, action: #selector(textFieldsNotEmpty), for: .editingChanged)
@@ -75,11 +74,16 @@ class RegisterVC: UIViewController, MFMailComposeViewControllerDelegate {
             let phone = phoneNumberTextField.text, !phone.isEmpty,
             let email = emailTextField.text, !email.isEmpty
         else {
-            self.submitBtn.isHidden = true
+            submitBtn.layer.borderColor = UIColor(red: 1, green: 0, blue: 0, alpha: 1).cgColor
+            submitBtn.setTitleColor(UIColor(red: 1, green: 0, blue: 0, alpha: 1), for: .normal)
+            submitBtn.isEnabled = false
             return
         }
         // enable okButton if all conditions are met
-        submitBtn.isHidden = false
+        let midBlue = UIColor(red: 0, green: 191/255, blue: 255/255, alpha: 1)
+        submitBtn.layer.borderColor = midBlue.cgColor
+        submitBtn.setTitleColor(midBlue, for: .normal)
+        submitBtn.isEnabled = true
     }
     
     // Function for converting the given street address to coordinates to be used in the Bars table

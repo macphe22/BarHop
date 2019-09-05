@@ -21,25 +21,31 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uIL-hZ-Xyo">
-                                        <rect key="frame" x="15" y="15" width="345" height="116"/>
+                                        <rect key="frame" x="15" y="15" width="345" height="89"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pjq-fh-G1M">
+                                        <rect key="frame" x="15" y="124" width="345" height="88.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N4J-WL-Ahu" userLabel="Address Label">
-                                        <rect key="frame" x="15" y="151" width="345" height="116"/>
+                                        <rect key="frame" x="15" y="232.5" width="345" height="89"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gWw-wL-Jdy">
-                                        <rect key="frame" x="15" y="287" width="345" height="116"/>
+                                        <rect key="frame" x="15" y="341.5" width="345" height="88.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9rY-DO-rQf">
-                                        <rect key="frame" x="15" y="423" width="345" height="116"/>
+                                        <rect key="frame" x="15" y="450" width="345" height="89"/>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
                                         <state key="normal" title="Pay"/>
                                         <connections>
@@ -64,6 +70,7 @@
                         <outlet property="barLabel" destination="uIL-hZ-Xyo" id="Z4N-Be-fOQ"/>
                         <outlet property="numPassesLabel" destination="gWw-wL-Jdy" id="fye-bV-255"/>
                         <outlet property="payBtn" destination="9rY-DO-rQf" id="35O-k8-73d"/>
+                        <outlet property="validUntilLabel" destination="Pjq-fh-G1M" id="ygJ-Iv-Ijq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="29Q-2h-fba" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -173,7 +180,6 @@
         <!--Tab Bar Controller-->
         <scene sceneID="S7Q-f8-72U">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="eQA-u7-VYS" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tabBarController id="vtu-bn-pgs" sceneMemberID="viewController">
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics" barStyle="black" translucent="NO"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" translucent="NO" id="xjy-vZ-Vle">
@@ -188,6 +194,7 @@
                         <segue destination="1NK-d3-5RG" kind="relationship" relationship="viewControllers" id="NVI-WK-ss2"/>
                     </connections>
                 </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eQA-u7-VYS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2708" y="-195"/>
         </scene>
@@ -221,7 +228,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="461" id="qFD-oQ-emY"/>
                                 </constraints>
-                                <mutableString key="text">BarHop Terms of Use: BarHop offers a no refund policy; all sales are final. BarHop's service is only to expidite waiting times; any user purchasing a pass to a venue takes responsibility onto themselves to ensure they are legally able to enter the venue. Furthermore, it is up to each individual venue to use their sole discretion to grant or not grant each user entry into their venue, regardless of the legal status of the user. BarHop claims no responsibility for the safety or well-being of any users; we strongly suggest users abide by all laws and drink responsibly. By clicking the button labeled 'Accept' below, you agree to the terms listed.</mutableString>
+                                <string key="text">BarHop Terms of Use: BarHop offers a no refund policy; all sales are final. BarHop's service is only to expidite waiting times; any user purchasing a pass to a venue takes responsibility onto themselves to ensure they are legally able to enter the venue. Furthermore, it is up to each individual venue to use their sole discretion to grant or not grant each user entry into their venue, regardless of the legal status of the user. BarHop claims no responsibility for the safety or well-being of any users; we strongly suggest users abide by all laws and drink responsibly. By clicking the button labeled 'Accept' below, you agree to the terms listed.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" name="selectedMenuItemTextColor" catalog="System" colorSpace="catalog"/>
                                 <nil key="highlightedColor"/>

@@ -17,6 +17,7 @@ class PayViewController: UIViewController {
 
     
     @IBOutlet weak var addressLabel: UILabel!
+    @IBOutlet weak var validUntilLabel: UILabel!
     @IBOutlet weak var barLabel: UITextField!
     @IBOutlet weak var numPassesLabel: UITextField!
     @IBOutlet weak var payBtn: UIButton!
@@ -45,6 +46,31 @@ class PayViewController: UIViewController {
         barLabel.text = textField
         barLabel.textColor = UIColor(white: 1, alpha: 1)
         barLabel.textAlignment = NSTextAlignment.center
+        // Valid Until Label
+        let calendar = Calendar.current
+        // TODO: Calculate actual times here
+        let date = calendar.date(byAdding: .hour, value: -4, to: Date())!
+        let hour = calendar.component(.hour, from: date)
+        let dateComponents : DateComponents = {
+            var dateComp = DateComponents()
+            dateComp.day = 1
+            return dateComp
+        }()
+        // TODO: Adjust this hour time below for endDate; currently, will allow the user to only buy pass for next day after 4 am (or later if daylight savings time)
+        let endDate = (hour > 4) ? Calendar.current.date(byAdding: dateComponents, to: date) : date
+        // Format the date
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss '+0000'"
+        // Extract the month and day
+        formatter.dateFormat = "MM"
+        let moOut = formatter.string(from: endDate!)
+        let mo = month(mo: moOut)
+        formatter.dateFormat = "dd"
+        var day = formatter.string(from: endDate!)
+        if (Array(day)[0] == "0") { day = String(Array(day)[1]) }
+        validUntilLabel.text = "Valid until \(mo) \(day) at 2 am"
+        validUntilLabel.textColor = UIColor(white: 1, alpha: 1)
+        validUntilLabel.textAlignment = NSTextAlignment.center
         // Address label
         addressLabel.text = "\(address!)\n\(city!), \(state!) \(zipCode!)"
         addressLabel.textColor = UIColor(white: 1, alpha: 1)
@@ -80,6 +106,40 @@ class PayViewController: UIViewController {
                 self.payBtn.layer.borderColor = midBlue.cgColor
                 self.payBtn.titleLabel?.textColor = midBlue
             }
+        }
+    }
+    
+    // Function to return written month
+    func month(mo: String) -> String {
+        switch mo {
+        case "01":
+            return "January"
+        case "02":
+            return "February"
+        case "03":
+            return "March"
+        case "04":
+            return "April"
+        case "05":
+            return "May"
+        case "06":
+            return "June"
+        case "07":
+            return "July"
+        case "08":
+            return "August"
+        case "09":
+            return "September"
+        case "10":
+            return "October"
+        case "11":
+            return "November"
+        case "12":
+            return "December"
+        case "00":
+            return "December"
+        default:
+            return ""
         }
     }
     
@@ -283,7 +343,7 @@ class PayViewController: UIViewController {
                     }
                 })
             }
-        })
+        })        
     }
    
     // Sends the payment nonce to the server via a post request on the /payment-methods route

@@ -61,6 +61,14 @@ class MapSearchVC: UIViewController {
         } else {
             postAuth()
         }
+        // Handle button disappearing code
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(hideBtn))
+        mapView.addGestureRecognizer(gesture)
+    }
+    
+    // Function that makes the button invisible upon a click to the map
+    @objc func hideBtn() {
+        button.isHidden = true
     }
     
     // Function that handles post-authorization
@@ -326,13 +334,13 @@ class MapSearchVC: UIViewController {
         barName = name
         index = names.firstIndex(of: barName)
         // Button
-        button.isHidden = false
         button.setTitle("Go to \(name)", for: .normal)
         button.frame = CGRect(x: 10, y: UIScreen.main.bounds.height*5/6, width: UIScreen.main.bounds.width - 20, height: UIScreen.main.bounds.height/12 - 10)
         button.setTitleColor(UIColor(white: 1, alpha: 1), for: .normal)
         button.layer.cornerRadius = 8
         button.layer.backgroundColor = UIColor(white: 0, alpha: 1).cgColor
         button.titleLabel?.textColor = UIColor(white: 1, alpha: 1)
+        button.isHidden = false
         mapView.addSubview(button)
     }
 }

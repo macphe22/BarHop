@@ -85,13 +85,15 @@ class PayViewController: UIViewController {
         numPassesLabel.textColor = UIColor(white: 1, alpha: 1)
         numPassesLabel.textAlignment = NSTextAlignment.center
         // Pay button
+        let midBlue = UIColor(red: 0, green: 191/255, blue: 255/255, alpha: 1)
+        payBtn.layer.cornerRadius = 8
+        payBtn.layer.borderWidth = 1
+        payBtn.layer.borderColor = midBlue.cgColor
+        payBtn.titleLabel?.textColor = midBlue
         // Check the user's active passes against the current venue
         checkPasses()
         // Need a dispatch group here because we are querying to check if the user has already gotten a pass here
         dispatchGroup.notify(queue: .main) {
-            let midBlue = UIColor(red: 0, green: 191/255, blue: 255/255, alpha: 1)
-            self.payBtn.layer.cornerRadius = 8
-            self.payBtn.layer.borderWidth = 1
             if (self.numPassesText! == 0) {
                 self.payBtn.layer.borderColor = UIColor(red: 1, green: 0, blue: 0, alpha: 1).cgColor
                 self.payBtn.setTitle("No remaining passes available", for: .normal)
@@ -102,9 +104,6 @@ class PayViewController: UIViewController {
                 self.payBtn.setTitle("You have an active pass at this venue", for: .normal)
                 self.payBtn.setTitleColor(UIColor(red: 1, green: 0, blue: 0, alpha: 1), for: .normal)
                 self.payBtn.isEnabled = false
-            } else {
-                self.payBtn.layer.borderColor = midBlue.cgColor
-                self.payBtn.titleLabel?.textColor = midBlue
             }
         }
     }
@@ -112,34 +111,20 @@ class PayViewController: UIViewController {
     // Function to return written month
     func month(mo: String) -> String {
         switch mo {
-        case "01":
-            return "January"
-        case "02":
-            return "February"
-        case "03":
-            return "March"
-        case "04":
-            return "April"
-        case "05":
-            return "May"
-        case "06":
-            return "June"
-        case "07":
-            return "July"
-        case "08":
-            return "August"
-        case "09":
-            return "September"
-        case "10":
-            return "October"
-        case "11":
-            return "November"
-        case "12":
-            return "December"
-        case "00":
-            return "December"
-        default:
-            return ""
+        case "01": return "January"
+        case "02": return "February"
+        case "03": return "March"
+        case "04": return "April"
+        case "05": return "May"
+        case "06": return "June"
+        case "07": return "July"
+        case "08": return "August"
+        case "09": return "September"
+        case "10": return "October"
+        case "11": return "November"
+        case "12": return "December"
+        case "00": return "December"
+        default: return ""
         }
     }
     
@@ -343,7 +328,7 @@ class PayViewController: UIViewController {
                     }
                 })
             }
-        })        
+        })
     }
    
     // Sends the payment nonce to the server via a post request on the /payment-methods route

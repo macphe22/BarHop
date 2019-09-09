@@ -12,6 +12,7 @@ import Braintree
 import AWSDynamoDB
 import AWSMobileClient
 import AWSCore
+import AudioToolbox
 
 class PayViewController: UIViewController {
 
@@ -46,6 +47,12 @@ class PayViewController: UIViewController {
         barLabel.text = textField
         barLabel.textColor = UIColor(white: 1, alpha: 1)
         barLabel.textAlignment = NSTextAlignment.center
+        // Pay button
+        let midBlue = UIColor(red: 0, green: 191/255, blue: 255/255, alpha: 1)
+        payBtn.layer.cornerRadius = 8
+        payBtn.layer.borderWidth = 1
+        payBtn.layer.borderColor = midBlue.cgColor
+        payBtn.titleLabel?.textColor = midBlue
         // Valid Until Label
         let calendar = Calendar.current
         // TODO: Calculate actual times here
@@ -84,12 +91,6 @@ class PayViewController: UIViewController {
         // Change background color of label depending on number of passes left once query figured out
         numPassesLabel.textColor = UIColor(white: 1, alpha: 1)
         numPassesLabel.textAlignment = NSTextAlignment.center
-        // Pay button
-        let midBlue = UIColor(red: 0, green: 191/255, blue: 255/255, alpha: 1)
-        payBtn.layer.cornerRadius = 8
-        payBtn.layer.borderWidth = 1
-        payBtn.layer.borderColor = midBlue.cgColor
-        payBtn.titleLabel?.textColor = midBlue
         // Check the user's active passes against the current venue
         checkPasses()
         // Need a dispatch group here because we are querying to check if the user has already gotten a pass here
@@ -354,6 +355,10 @@ class PayViewController: UIViewController {
             // can add their new pass to their activePass set and subtract a remaining pass
             // from the selected bar
             if (result == "true") {
+                // Send the user a success vibration
+                let generator = UIImpactFeedbackGenerator(style: .heavy)
+                generator.impactOccurred()
+                // Continue to perform db operations (back-end) and UI changes to reflect new pass (front-end)
                 self.alterDatabase()
                 self.updatePasses()
                 // Now that the user has bought a pass successfully, we should make sure they

@@ -355,9 +355,6 @@ class PayViewController: UIViewController {
             // can add their new pass to their activePass set and subtract a remaining pass
             // from the selected bar
             if (result == "true") {
-                // Send the user a success vibration
-                let generator = UIImpactFeedbackGenerator(style: .heavy)
-                generator.impactOccurred()
                 // Continue to perform db operations (back-end) and UI changes to reflect new pass (front-end)
                 self.alterDatabase()
                 self.updatePasses()

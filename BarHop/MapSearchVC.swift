@@ -24,6 +24,11 @@ class MapSearchVC: UIViewController {
     @IBOutlet weak var termsOfUseLabel: UILabel!
     @IBOutlet weak var acceptBtn: UIButton!
     
+    // For checking active passes
+    var activePasses: Set<String>?
+    var userHasPass: Bool = false
+    var numPassesLeft: Int?
+    
     var barName = ""
     var index: Int?
     
@@ -53,6 +58,13 @@ class MapSearchVC: UIViewController {
         acceptBtn.setTitleColor(midBlue, for: .normal)
         // Set button and label to invisible
         button.isHidden = true
+        button.frame = CGRect(x: 10, y: UIScreen.main.bounds.height*5/6, width: UIScreen.main.bounds.width - 20, height: UIScreen.main.bounds.height/12 - 10)
+        button.setTitleColor(UIColor(white: 1, alpha: 1), for: .normal)
+        button.layer.cornerRadius = 8
+        button.layer.backgroundColor = UIColor(white: 0, alpha: 1).cgColor
+        button.layer.borderColor = midBlue.cgColor
+        button.layer.borderWidth = 2
+        button.setTitleColor(midBlue, for: .normal)
         // Make the view controller the mapView's delegate
         mapView.delegate = self as MKMapViewDelegate
         // Handle sign in here
@@ -197,7 +209,11 @@ class MapSearchVC: UIViewController {
     
     // Function to handle moving on to PayVC and handling data forwarding
     @IBAction func barBtnClicked(_ sender: Any) {
-        self.performSegue(withIdentifier: "pushPayVC", sender: self)
+        if (!userHasPass) {
+            self.performSegue(withIdentifier: "pushPayVC", sender: self)
+        } else {
+            self.tabBarController?.selectedIndex = 1
+        }
     }
     
     // Handle sign out
@@ -328,20 +344,70 @@ class MapSearchVC: UIViewController {
         }
     }
     
+    // Function that queries to see if the user already has an active pass at the selected venue
+    func checkPasses() {
+        // Create a query expression
+        self.dispatchGroup.enter()
+        let dynamoDbObjectMapper = AWSDynamoDBObjectMapper.default()
+        let customerItem: Customer = Customer();
+        customerItem._userId = AWSIdentityManager.default().identityId
+        customerItem._tripsTaken = 0
+        dynamoDbObjectMapper.load(Customer.self, hashKey: customerItem._userId!,
+                                  rangeKey: nil, completionHandler: {
+                                    (objectModel: AWSDynamoDBObjectModel?, error: Error?) -> Void in
+                                    if let error = error {
+                                        print("Amazon DynamoDB Read Error: \(error)")
+                                        return
+                                    }
+                                    else if let loadedCustomer = objectModel as? Customer {
+                                        self.activePasses = loadedCustomer._activeTrips!
+                                    }
+                                    // Now that we have finished retrieving the user's active passes, we can return whether or not
+                                    // we have found the user's active passes contain the current venue
+                                    let dict = self.pinInfo[self.index!]
+                                    let passName: String = self.names[self.index!] + "," + String(describing: dict["rangeKey"]!)
+                                    if ((self.activePasses?.contains(passName))!) {
+                                        self.userHasPass = true
+                                    } else {
+                                        self.userHasPass = false
+                                    }
+                                    self.numPassesLeft = dict["numLeft"] as? Int
+                                    self.dispatchGroup.leave()
+        })
+    }
+    
     // Handles button and label properties
     private func addPinInfo(name: String) {
         // Set barName variable for later use
         barName = name
         index = names.firstIndex(of: barName)
+        // First we need to check if the user already has a pass or the passes are sold out
+        checkPasses()
         // Button
-        button.setTitle("Go to \(name)", for: .normal)
-        button.frame = CGRect(x: 10, y: UIScreen.main.bounds.height*5/6, width: UIScreen.main.bounds.width - 20, height: UIScreen.main.bounds.height/12 - 10)
-        button.setTitleColor(UIColor(white: 1, alpha: 1), for: .normal)
-        button.layer.cornerRadius = 8
-        button.layer.backgroundColor = UIColor(white: 0, alpha: 1).cgColor
-        button.titleLabel?.textColor = UIColor(white: 1, alpha: 1)
-        button.isHidden = false
-        mapView.addSubview(button)
+        dispatchGroup.notify(queue: .main) {
+            if (self.userHasPass) {
+                self.button.setTitleColor(.red, for: .normal)
+                self.button.layer.borderColor = UIColor(red: 1, green: 0, blue: 0, alpha: 1).cgColor
+                self.button.setTitle("Pass already purchased", for: .normal)
+                self.button.isHidden = false
+                self.mapView.addSubview(self.button)
+            } else if (self.numPassesLeft! <= 0) {
+                self.button.setTitleColor(.red, for: .normal)
+                self.button.layer.borderColor = UIColor(red: 1, green: 0, blue: 0, alpha: 1).cgColor
+                self.button.setTitle("No passes available", for: .normal)
+                self.button.isEnabled = false
+                self.button.isHidden = false
+                self.mapView.addSubview(self.button)
+            } else {
+                let midBlue = UIColor(red: 0, green: 191/255, blue: 255/255, alpha: 1)
+                self.button.setTitleColor(midBlue, for: .normal)
+                self.button.layer.borderColor = midBlue.cgColor
+                self.button.setTitle("Go to \(name)", for: .normal)
+                self.button.isEnabled = true
+                self.button.isHidden = false
+                self.mapView.addSubview(self.button)
+            }
+        }
     }
 }
 

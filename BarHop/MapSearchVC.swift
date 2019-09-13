@@ -264,7 +264,14 @@ class MapSearchVC: UIViewController {
                     let city = bar._city!
                     let state = bar._state!
                     let zipCode = bar._zipCode!
-                    let temp = ["hashKey": hashKey, "rangeKey": rangeKey, "numLeft": numLeft, "price": price, "address": address, "city": city, "state": state, "zipCode": zipCode] as [String : Any]
+                    let temp = ["hashKey": hashKey,
+                                "rangeKey": rangeKey,
+                                "numLeft": numLeft,
+                                "price": price,
+                                "address": address,
+                                "city": city,
+                                "state": state,
+                                "zipCode": zipCode] as [String : Any]
                     self.pinInfo.append(temp)
                     self.names.append(hashKey)
                 }

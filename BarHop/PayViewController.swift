@@ -100,11 +100,6 @@ class PayViewController: UIViewController {
                 self.payBtn.setTitle("No remaining passes available", for: .normal)
                 self.payBtn.setTitleColor(UIColor(red: 1, green: 0, blue: 0, alpha: 1), for: .normal)
                 self.payBtn.isEnabled = false
-            } else if (self.userHasPass) {
-                self.payBtn.layer.borderColor = UIColor(red: 1, green: 0, blue: 0, alpha: 1).cgColor
-                self.payBtn.setTitle("You have an active pass at this venue", for: .normal)
-                self.payBtn.setTitleColor(UIColor(red: 1, green: 0, blue: 0, alpha: 1), for: .normal)
-                self.payBtn.isEnabled = false
             }
         }
     }

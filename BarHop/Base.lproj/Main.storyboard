@@ -86,10 +86,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="WuZ-SR-zfS">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="590"/>
                                 <subviews>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="90" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="T2D-ki-3FR">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="590"/>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="separatorColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="sectionIndexBackgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -157,11 +157,23 @@
                                     <constraint firstAttribute="bottom" secondItem="T2D-ki-3FR" secondAttribute="bottom" id="h9m-Cc-g7H"/>
                                 </constraints>
                             </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="All passes expire at 2 am or the given venue's closing time" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OZj-r2-9R9">
+                                <rect key="frame" x="0.0" y="518" width="375" height="36"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="36" id="hmR-cM-Wdh"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="WuZ-SR-zfS" firstAttribute="trailing" secondItem="dm9-su-4Dt" secondAttribute="trailing" id="6sT-49-fGC"/>
-                            <constraint firstItem="WuZ-SR-zfS" firstAttribute="bottom" secondItem="dm9-su-4Dt" secondAttribute="bottom" id="QW3-GW-SUW"/>
+                            <constraint firstItem="OZj-r2-9R9" firstAttribute="bottom" secondItem="dm9-su-4Dt" secondAttribute="bottom" id="Fql-H3-8hh"/>
+                            <constraint firstItem="WuZ-SR-zfS" firstAttribute="bottom" secondItem="dm9-su-4Dt" secondAttribute="bottom" constant="36" id="QW3-GW-SUW"/>
+                            <constraint firstItem="OZj-r2-9R9" firstAttribute="leading" secondItem="dm9-su-4Dt" secondAttribute="leading" id="Tlz-ir-Ff7"/>
+                            <constraint firstItem="OZj-r2-9R9" firstAttribute="trailing" secondItem="dm9-su-4Dt" secondAttribute="trailing" id="XDO-tC-xB7"/>
                             <constraint firstItem="WuZ-SR-zfS" firstAttribute="leading" secondItem="dm9-su-4Dt" secondAttribute="leading" id="YRZ-U2-hX0"/>
                             <constraint firstItem="WuZ-SR-zfS" firstAttribute="top" secondItem="dm9-su-4Dt" secondAttribute="top" id="d7s-yI-eKV"/>
                         </constraints>
@@ -175,7 +187,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UMR-Yv-IuF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3908" y="-985"/>
+            <point key="canvasLocation" x="3908" y="-985.45727136431788"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="S7Q-f8-72U">
@@ -228,7 +240,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="461" id="qFD-oQ-emY"/>
                                 </constraints>
-                                <mutableString key="text">BarHop Terms of Use: BarHop offers a no refund policy; all sales are final. BarHop's service is only to expidite waiting times; any user purchasing a pass to a venue takes responsibility onto themselves to ensure they are legally able to enter the venue. Furthermore, it is up to each individual venue to use their sole discretion to grant or not grant each user entry into their venue, regardless of the legal status of the user. BarHop claims no responsibility for the safety or well-being of any users; we strongly suggest users abide by all laws and drink responsibly. A full list of our policies can be found on barhopmobile.com at any time. By clicking the button labeled 'Accept' below, you agree to the terms listed.</mutableString>
+                                <string key="text">BarHop Terms of Use: BarHop offers a no refund policy; all sales are final. BarHop's service is only to expidite waiting times; any user purchasing a pass to a venue takes responsibility onto themselves to ensure they are legally able to enter the venue. Furthermore, it is up to each individual venue to use their sole discretion to grant or not grant each user entry into their venue, regardless of the legal status of the user. BarHop claims no responsibility for the safety or well-being of any users; we strongly suggest users abide by all laws and drink responsibly. By clicking the button labeled 'Accept' below, you agree to the terms listed.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" name="selectedMenuItemTextColor" catalog="System" colorSpace="catalog"/>
                                 <nil key="highlightedColor"/>

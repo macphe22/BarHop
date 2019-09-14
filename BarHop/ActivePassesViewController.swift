@@ -13,7 +13,7 @@ import AWSAuthCore
 
 class ActivePassesViewController: UIViewController {
     
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet var tableView: UITableView! = UITableView()
     
     var activePasses = [String]()
     var returnedActivePasses = Set<String>()
@@ -36,14 +36,17 @@ class ActivePassesViewController: UIViewController {
         tableView.dataSource = self
         // Add a refresh by pull-down method
         tableView.refreshControl = refreshControl
+        if #available(iOS 10.0, *) {
+            tableView.refreshControl = refreshControl
+        } else {
+            tableView.backgroundView = refreshControl
+        }
         refreshControl.addTarget(self, action: #selector(refreshData(_:)), for: .valueChanged)
-        refreshControl.attributedTitle = NSAttributedString(string: "Fetching Data ...")
         // First we call our query
         getCustomersActiveTrips()
         // Then when we exit the dispatch group, we can display the passes retrieved
-        dispatchGroup.notify(queue: .main)
-        {
-            self.displayPasses()
+        dispatchGroup.notify(queue: .main) {
+            self.tableView?.reloadData()
         }
     }
     
@@ -52,9 +55,8 @@ class ActivePassesViewController: UIViewController {
         // First we call our query
         getCustomersActiveTrips()
         // Then when we exit the dispatch group, we can display the passes retrieved
-        dispatchGroup.notify(queue: .main)
-        {
-            self.displayPasses()
+        dispatchGroup.notify(queue: .main) {
+            self.tableView?.reloadData()
         }
     }
     
@@ -62,16 +64,10 @@ class ActivePassesViewController: UIViewController {
     @objc private func refreshData(_ sender: Any) {
         getCustomersActiveTrips()
         // Then when we exit the dispatch group, we can display the passes retrieved
-        dispatchGroup.notify(queue: .main)
-        {
-            self.displayPasses()
+        dispatchGroup.notify(queue: .main) {
+            self.tableView?.reloadData()
             self.refreshControl.endRefreshing()
         }
-    }
-    
-    // This function handles local reloads of data
-    func displayPasses() {
-        self.tableView?.reloadData()
     }
     
     func getCustomersActiveTrips(){
@@ -121,6 +117,47 @@ class ActivePassesViewController: UIViewController {
                 self.passAddress = "\(resultBook._city!), \(resultBook._state!)"
             }
             self.dispatchGroup.leave()
+        })
+    }
+    
+    // Function to organize codebase for removing a pass from the user
+    func redeemPass(bar: String, index: IndexPath) {
+        // Alter the database
+        alterDB(bar: bar)
+        // Once the database returns our results, use them to reload our data
+        DispatchQueue.main.async {
+            self.tableView?.reloadData()
+        }
+    }
+    
+    // Function to handle remove pass from the database
+    func alterDB(bar: String) {
+        // This retreival will decrement the number of active passes for the logged in user
+        // This first block is handling the retreival of the current customer in the database
+        self.dispatchGroup.enter()
+        let customerItem: Customer = Customer()
+        let dynamoDBObjectMapper = AWSDynamoDBObjectMapper.default()
+        customerItem._userId = AWSIdentityManager.default().identityId
+        dynamoDBObjectMapper.load(Customer.self, hashKey: customerItem._userId!,
+                                  rangeKey: nil, completionHandler: {
+                                    (objectModel: AWSDynamoDBObjectModel?, error: Error?) -> Void in
+                                    if let error = error {
+                                        print("Amazon DynamoDB Read Error: \(error)")
+                                        return
+                                    }
+                                    else if let customer = objectModel as? Customer {
+                                        // We can now remove the active pass from the customer
+                                        if (((customer._activeTrips?.contains(bar))!)) {
+                                            customer._activeTrips?.remove(bar)
+                                        }
+                                        // Now that we have retreived the Customer, we can save it back into the database
+                                        dynamoDBObjectMapper.save(customer).continueWith(block: { (task:AWSTask<AnyObject>!) -> Void in
+                                            if let error = task.error as NSError? {
+                                                print("The request failed. Error: \(error)")
+                                            }
+                                        })
+                                        self.dispatchGroup.leave()
+                                    }
         })
     }
 }

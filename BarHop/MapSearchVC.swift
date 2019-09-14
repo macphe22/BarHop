@@ -60,6 +60,8 @@ class MapSearchVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // Button text handling
+        button.setTitle("", for: .normal)
         // Popup visibility
         popupView.isHidden = true
         // Set up navigation bar logo
@@ -72,19 +74,15 @@ class MapSearchVC: UIViewController {
         termsOfUseLabel.isHidden = true
         acceptBtn.isHidden = true
         // Handle terms of use styling
-        let midBlue = UIColor(red: 0, green: 191/255, blue: 255/255, alpha: 1)
-        acceptBtn.layer.borderColor = midBlue.cgColor
+        acceptBtn.layer.borderColor = UIColor(ciColor: .blue).cgColor
         acceptBtn.layer.cornerRadius = 8
-        acceptBtn.setTitleColor(midBlue, for: .normal)
+        acceptBtn.setTitleColor(.blue, for: .normal)
         // Set button and label to invisible
         button.isHidden = true
         button.frame = CGRect(x: 10, y: UIScreen.main.bounds.height*5/6, width: UIScreen.main.bounds.width - 20, height: UIScreen.main.bounds.height/12 - 10)
-        button.setTitleColor(UIColor(white: 1, alpha: 1), for: .normal)
+        button.setTitleColor(.white, for: .normal)
         button.layer.cornerRadius = 8
-        button.layer.backgroundColor = UIColor(white: 0, alpha: 1).cgColor
-        button.layer.borderColor = midBlue.cgColor
-        button.layer.borderWidth = 2
-        button.setTitleColor(midBlue, for: .normal)
+        button.layer.backgroundColor = UIColor(ciColor: .blue).cgColor
         // Make the view controller the mapView's delegate
         mapView.delegate = self as MKMapViewDelegate
         // Handle sign in here
@@ -129,14 +127,13 @@ class MapSearchVC: UIViewController {
                 // We can check to see if the customer with the provided information is in the database
                 // already, and if not, create a new customer object
                 self.findCustomer(userId: AWSIdentityManager.default().identityId!)
-            } else {
-                // end user faced error while loggin in, take any required action here.
             }
         })
     }
     
     // Function to handle searching for customer
     func findCustomer(userId: String) {
+        dispatchGroup.enter()
         let customerItem: Customer = Customer();
         customerItem._userId = userId
         let dynamoDBObjectMapper = AWSDynamoDBObjectMapper.default()
@@ -153,6 +150,7 @@ class MapSearchVC: UIViewController {
                 // The customer was not found, we can create the customer
                 self.createCustomer()
             }
+            self.dispatchGroup.leave()
         })
     }
     
@@ -229,62 +227,63 @@ class MapSearchVC: UIViewController {
     
     // Function to handle moving on to PayVC and handling data forwarding
     @IBAction func barBtnClicked(_ sender: Any) {
-        if (!userHasPass) {
-            // Variable passing
-            self.barItemId = pinInfo[index!]["rangeKey"] as? String
-            // Close Button
-            popupCloseBtn.setTitleColor(.red, for: .normal)
-            // Bar Label
-            popupBarNameLabel.text = "\(String(describing: pinInfo[index!]["hashKey"]!))"
-            popupBarNameLabel.textColor = .white
-            // Cost Label
-            popupCostLabel.text = "$\(String(describing: pinInfo[index!]["price"]!))"
-            popupCostLabel.textColor = .white
-            // Address Label
-            let address1 = pinInfo[index!]["address"] as? String
-            let address2 = "\(pinInfo[index!]["city"] as! String), \(pinInfo[index!]["state"] as! String) \(pinInfo[index!]["zipCode"] as! String)"
-            popupAddressLabel.text = "\(address1!)\n\(address2)"
-            popupAddressLabel.textColor = .white
-            // Num Passes Label
-            popupNumPassesLabel.text = "\(String(describing: pinInfo[index!]["numLeft"]!)) passes left"
-            popupNumPassesLabel.textColor = .white
-            // Pay Button
-            let midBlue = UIColor(red: 0, green: 191/255, blue: 255/255, alpha: 1)
-            popupPayBtn.layer.cornerRadius = 8
-            popupPayBtn.layer.borderWidth = 1
-            popupPayBtn.layer.borderColor = midBlue.cgColor
-            popupPayBtn.setTitleColor(midBlue, for: .normal)
-            popupPayBtn.isEnabled = true
-            // Valid Until Label
-            let calendar = Calendar.current
-            // TODO: Calculate actual times here
-            let date = calendar.date(byAdding: .hour, value: -4, to: Date())!
-            let hour = calendar.component(.hour, from: date)
-            let dateComponents : DateComponents = {
-                var dateComp = DateComponents()
-                dateComp.day = 1
-                return dateComp
-            }()
-            // TODO: Adjust this hour time below for endDate; currently, will allow the user to only buy pass for next day after 4 am (or later if daylight savings time)
-            let endDate = (hour > 4) ? Calendar.current.date(byAdding: dateComponents, to: date) : date
-            // Format the date
-            let formatter = DateFormatter()
-            formatter.dateFormat = "yyyy-MM-dd HH:mm:ss '+0000'"
-            // Extract the month and day
-            formatter.dateFormat = "MM"
-            let moOut = formatter.string(from: endDate!)
-            let mo = month(mo: moOut)
-            formatter.dateFormat = "dd"
-            var day = formatter.string(from: endDate!)
-            if (Array(day)[0] == "0") { day = String(Array(day)[1]) }
-            popupValidUntilLabel.text = "Valid until \(mo) \(day) at 2 am"
-            popupValidUntilLabel.textColor = UIColor(white: 1, alpha: 1)
-            popupValidUntilLabel.textAlignment = NSTextAlignment.center
-            // View
-            popupView.layer.cornerRadius = 12
-            popupView.isHidden = false
-        } else {
-            self.tabBarController?.selectedIndex = 1
+        checkPasses()
+        dispatchGroup.notify(queue: .main) {
+            if (!self.userHasPass) {
+                // Variable passing
+                self.barItemId = self.pinInfo[self.index!]["rangeKey"] as? String
+                // Close Button
+                self.popupCloseBtn.setTitleColor(.red, for: .normal)
+                // Bar Label
+                self.popupBarNameLabel.text = "\(String(describing: self.pinInfo[self.index!]["hashKey"]!))"
+                self.popupBarNameLabel.textColor = .white
+                // Cost Label
+                self.popupCostLabel.text = "$\(String(describing: self.pinInfo[self.index!]["price"]!))"
+                self.popupCostLabel.textColor = .white
+                // Address Label
+                let address1 = self.pinInfo[self.index!]["address"] as? String
+                let address2 = "\(self.pinInfo[self.index!]["city"] as! String), \(self.pinInfo[self.index!]["state"] as! String) \(self.pinInfo[self.index!]["zipCode"] as! String)"
+                self.popupAddressLabel.text = "\(address1!)\n\(address2)"
+                self.popupAddressLabel.textColor = .white
+                // Num Passes Label
+                self.popupNumPassesLabel.text = "\(String(describing: self.pinInfo[self.index!]["numLeft"]!)) passes left"
+                self.popupNumPassesLabel.textColor = .white
+                // Pay Button
+                self.popupPayBtn.layer.cornerRadius = 8
+                self.popupPayBtn.setTitleColor(.white, for: .normal)
+                self.popupPayBtn.layer.backgroundColor = UIColor(ciColor: .blue).cgColor
+                self.popupPayBtn.isEnabled = true
+                // Valid Until Label
+                let calendar = Calendar.current
+                // TODO: Calculate actual times here
+                let date = calendar.date(byAdding: .hour, value: -4, to: Date())!
+                let hour = calendar.component(.hour, from: date)
+                let dateComponents : DateComponents = {
+                    var dateComp = DateComponents()
+                    dateComp.day = 1
+                    return dateComp
+                }()
+                // TODO: Adjust this hour time below for endDate; currently, will allow the user to only buy pass for next day after 4 am (or later if daylight savings time)
+                let endDate = (hour > 4) ? Calendar.current.date(byAdding: dateComponents, to: date) : date
+                // Format the date
+                let formatter = DateFormatter()
+                formatter.dateFormat = "yyyy-MM-dd HH:mm:ss '+0000'"
+                // Extract the month and day
+                formatter.dateFormat = "MM"
+                let moOut = formatter.string(from: endDate!)
+                let mo = self.month(mo: moOut)
+                formatter.dateFormat = "dd"
+                var day = formatter.string(from: endDate!)
+                if (Array(day)[0] == "0") { day = String(Array(day)[1]) }
+                self.popupValidUntilLabel.text = "Valid until \(mo) \(day) at 2 am"
+                self.popupValidUntilLabel.textColor = UIColor(white: 1, alpha: 1)
+                self.popupValidUntilLabel.textAlignment = NSTextAlignment.center
+                // View
+                self.popupView.layer.cornerRadius = 12
+                self.popupView.isHidden = false
+            } else {
+                self.tabBarController?.selectedIndex = 1
+            }
         }
     }
     
@@ -476,22 +475,18 @@ class MapSearchVC: UIViewController {
         // Button
         dispatchGroup.notify(queue: .main) {
             if (self.userHasPass) {
-                self.button.setTitleColor(.red, for: .normal)
-                self.button.layer.borderColor = UIColor(red: 1, green: 0, blue: 0, alpha: 1).cgColor
+                self.button.layer.backgroundColor = UIColor(ciColor: .red).cgColor
                 self.button.setTitle("Pass already purchased", for: .normal)
                 self.button.isHidden = false
                 self.mapView.addSubview(self.button)
             } else if (self.numPassesLeft! <= 0) {
-                self.button.setTitleColor(.red, for: .normal)
-                self.button.layer.borderColor = UIColor(red: 1, green: 0, blue: 0, alpha: 1).cgColor
+                self.button.layer.backgroundColor = UIColor(ciColor: .red).cgColor
                 self.button.setTitle("No passes available", for: .normal)
                 self.button.isEnabled = false
                 self.button.isHidden = false
                 self.mapView.addSubview(self.button)
             } else {
-                let midBlue = UIColor(red: 0, green: 191/255, blue: 255/255, alpha: 1)
-                self.button.setTitleColor(midBlue, for: .normal)
-                self.button.layer.borderColor = midBlue.cgColor
+                self.button.layer.backgroundColor = UIColor(ciColor: .blue).cgColor
                 self.button.setTitle("Go to \(name)", for: .normal)
                 self.button.isEnabled = true
                 self.button.isHidden = false
@@ -502,6 +497,7 @@ class MapSearchVC: UIViewController {
     
     // Function that handles updating a Bar's remaining passes
     func updatePasses() {
+        dispatchGroup.enter()
         let dynamoDBObjectMapper = AWSDynamoDBObjectMapper.default()
         let barItemId = pinInfo[index!]["rangeKey"] as? String
         
@@ -516,6 +512,7 @@ class MapSearchVC: UIViewController {
                     DispatchQueue.main.async {
                         self.popupNumPassesLabel.text = "\((resultBook._numPassesLeft! as? Int)!) passes left"
                     }
+                    self.dispatchGroup.leave()
                 }
                 return nil
             })
@@ -548,7 +545,7 @@ class MapSearchVC: UIViewController {
     // Function to handle finding the braintreeId of the current user
     func getUser() {
         // Create a query expression
-        self.dispatchGroup.enter()
+        dispatchGroup.enter()
         let dynamoDbObjectMapper = AWSDynamoDBObjectMapper.default()
         let customerItem: Customer = Customer();
         customerItem._userId = AWSIdentityManager.default().identityId
@@ -568,6 +565,7 @@ class MapSearchVC: UIViewController {
     
     // This function serves to ensure that the customer exists before fetching a client token
     func handleCustomerCreation(userId: NSNumber) {
+        dispatchGroup.enter()
         let createURL = URL(string: "https://mysterious-brook-47208.herokuapp.com/create")!
         var request = URLRequest(url: createURL)
         // Save the current user in a variable
@@ -578,7 +576,8 @@ class MapSearchVC: UIViewController {
         URLSession.shared.dataTask(with: request) { (data, response, error) -> Void in
             // TODO: Handle success or failure
             let _ = String(data: data!, encoding: String.Encoding.utf8)
-            }.resume()
+            self.dispatchGroup.leave()
+        }.resume()
     }
     
     // Braintree function for Venmo payments through dropin UI which collects
@@ -629,13 +628,14 @@ class MapSearchVC: UIViewController {
             let clientToken = String(data: data!, encoding: String.Encoding.utf8)
             // Present drop in
             self.showDropIn(token: clientToken ?? "nil")
-            }.resume()
+        }.resume()
     }
     
     // This function handles altering the databases when a user purchases a new pass
     func alterDatabase() {
         // First create an instance of the object mapper
         let dynamoDBObjectMapper = AWSDynamoDBObjectMapper.default()
+        dispatchGroup.enter()
         // This first retreival and write will decrement the number of remaining passes for the given bar
         dynamoDBObjectMapper.load(Bars.self, hashKey: self.barName, rangeKey: self.barItemId).continueWith(block: { (task:AWSTask<AnyObject>!) -> Void in
             if let error = task.error as NSError? {
@@ -649,17 +649,20 @@ class MapSearchVC: UIViewController {
                         print("The request failed. Error: \(error)")
                     }
                 })
+                self.dispatchGroup.leave()
             }
         })
         // This second retreival will increment the number of active passes for the logged in user
         // This first block is handling the retreival of the current customer in the database
         let customerItem: Customer = Customer();
         customerItem._userId = AWSIdentityManager.default().identityId
+        dispatchGroup.enter()
         dynamoDBObjectMapper.load(Customer.self, hashKey: customerItem._userId!,
                                   rangeKey: nil, completionHandler: {
                                     (objectModel: AWSDynamoDBObjectModel?, error: Error?) -> Void in
                                     if let error = error {
                                         print("Amazon DynamoDB Read Error: \(error)")
+                                        self.dispatchGroup.leave()
                                         return
                                     }
                                     else if let customer = objectModel as? Customer {
@@ -672,6 +675,7 @@ class MapSearchVC: UIViewController {
                                                 print("The request failed. Error: \(error)")
                                             }
                                         })
+                                        self.dispatchGroup.leave()
                                     }
         })
     }
@@ -685,7 +689,8 @@ class MapSearchVC: UIViewController {
         // Make the body with the payment_method_nonce and the amount
         request.httpBody = "nonce=\(paymentMethodNonce)&amount=\(amount)&venue=\(venue)&device_data=\(deviceData)".data(using: String.Encoding.utf8)
         request.httpMethod = "POST"
-        
+        // Enter the dispatch group
+        dispatchGroup.enter()
         URLSession.shared.dataTask(with: request) { (data, response, error) -> Void in
             // TODO: Handle success or failure
             let result = String(data: data!, encoding: String.Encoding.utf8)
@@ -706,6 +711,7 @@ class MapSearchVC: UIViewController {
                 // don't accidentally buy a second pass and disable the pay button on this screen
                 self.popupPayBtn.isEnabled = false
             }
+            self.dispatchGroup.leave()
         }.resume()
         // Hide the view
         self.popupView.isHidden = true

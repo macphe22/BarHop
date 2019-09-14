@@ -13,6 +13,9 @@ import AWSDynamoDB
 import AWSAuthCore
 import AWSAuthUI
 import AWSMobileClient
+import AWSCore
+import BraintreeDropIn
+import Braintree
 
 // Map Search View Controller
 class MapSearchVC: UIViewController {
@@ -40,8 +43,25 @@ class MapSearchVC: UIViewController {
     var names: [String] = []
     let dispatchGroup = DispatchGroup()
     
+    // Popup variables
+    @IBOutlet weak var popupCloseBtn: UIButton!
+    @IBOutlet weak var popupBarNameLabel: UILabel!
+    @IBOutlet weak var popupCostLabel: UILabel!
+    @IBOutlet weak var popupAddressLabel: UILabel!
+    @IBOutlet weak var popupNumPassesLabel: UILabel!
+    @IBOutlet weak var popupPayBtn: UIButton!
+    @IBOutlet weak var popupValidUntilLabel: UILabel!
+    
+    @IBOutlet weak var popupView: UIView!
+    
+    var backgroundTask: UIBackgroundTaskIdentifier?
+    var braintree: NSNumber?
+    var barItemId: String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        // Popup visibility
+        popupView.isHidden = true
         // Set up navigation bar logo
         let logoImage = UIImage(named: "NavBarLogo")
         let logoImageView = UIImageView(image: logoImage)
@@ -210,9 +230,86 @@ class MapSearchVC: UIViewController {
     // Function to handle moving on to PayVC and handling data forwarding
     @IBAction func barBtnClicked(_ sender: Any) {
         if (!userHasPass) {
-            self.performSegue(withIdentifier: "pushPayVC", sender: self)
+            // Variable passing
+            self.barItemId = pinInfo[index!]["rangeKey"] as? String
+            // Close Button
+            popupCloseBtn.setTitleColor(.red, for: .normal)
+            // Bar Label
+            popupBarNameLabel.text = "\(String(describing: pinInfo[index!]["hashKey"]!))"
+            popupBarNameLabel.textColor = .white
+            // Cost Label
+            popupCostLabel.text = "$\(String(describing: pinInfo[index!]["price"]!))"
+            popupCostLabel.textColor = .white
+            // Address Label
+            let address1 = pinInfo[index!]["address"] as? String
+            let address2 = "\(pinInfo[index!]["city"] as! String), \(pinInfo[index!]["state"] as! String) \(pinInfo[index!]["zipCode"] as! String)"
+            popupAddressLabel.text = "\(address1!)\n\(address2)"
+            popupAddressLabel.textColor = .white
+            // Num Passes Label
+            popupNumPassesLabel.text = "\(String(describing: pinInfo[index!]["numLeft"]!)) passes left"
+            popupNumPassesLabel.textColor = .white
+            // Pay Button
+            let midBlue = UIColor(red: 0, green: 191/255, blue: 255/255, alpha: 1)
+            popupPayBtn.layer.cornerRadius = 8
+            popupPayBtn.layer.borderWidth = 1
+            popupPayBtn.layer.borderColor = midBlue.cgColor
+            popupPayBtn.setTitleColor(midBlue, for: .normal)
+            popupPayBtn.isEnabled = true
+            // Valid Until Label
+            let calendar = Calendar.current
+            // TODO: Calculate actual times here
+            let date = calendar.date(byAdding: .hour, value: -4, to: Date())!
+            let hour = calendar.component(.hour, from: date)
+            let dateComponents : DateComponents = {
+                var dateComp = DateComponents()
+                dateComp.day = 1
+                return dateComp
+            }()
+            // TODO: Adjust this hour time below for endDate; currently, will allow the user to only buy pass for next day after 4 am (or later if daylight savings time)
+            let endDate = (hour > 4) ? Calendar.current.date(byAdding: dateComponents, to: date) : date
+            // Format the date
+            let formatter = DateFormatter()
+            formatter.dateFormat = "yyyy-MM-dd HH:mm:ss '+0000'"
+            // Extract the month and day
+            formatter.dateFormat = "MM"
+            let moOut = formatter.string(from: endDate!)
+            let mo = month(mo: moOut)
+            formatter.dateFormat = "dd"
+            var day = formatter.string(from: endDate!)
+            if (Array(day)[0] == "0") { day = String(Array(day)[1]) }
+            popupValidUntilLabel.text = "Valid until \(mo) \(day) at 2 am"
+            popupValidUntilLabel.textColor = UIColor(white: 1, alpha: 1)
+            popupValidUntilLabel.textAlignment = NSTextAlignment.center
+            // View
+            popupView.layer.cornerRadius = 12
+            popupView.isHidden = false
         } else {
             self.tabBarController?.selectedIndex = 1
+        }
+    }
+    
+    // Function to handle closing the popup
+    @IBAction func popupCloseBtnClicked(_ sender: Any) {
+        self.popupView.isHidden = true
+    }
+    
+    // Function to return written month
+    func month(mo: String) -> String {
+        switch mo {
+        case "01": return "January"
+        case "02": return "February"
+        case "03": return "March"
+        case "04": return "April"
+        case "05": return "May"
+        case "06": return "June"
+        case "07": return "July"
+        case "08": return "August"
+        case "09": return "September"
+        case "10": return "October"
+        case "11": return "November"
+        case "12": return "December"
+        case "00": return "December"
+        default: return ""
         }
     }
     
@@ -222,21 +319,7 @@ class MapSearchVC: UIViewController {
             self.viewDidLoad()
         })
     }
-    
-    // Override the prepare for segue function to handle data forwarding
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let payVC = segue.destination as! PayViewController
-        // Find the bar within the names list
-        payVC.barUserId = barName
-        payVC.barItemId = pinInfo[index!]["rangeKey"] as? String
-        payVC.cost = pinInfo[index!]["price"] as? Int
-        payVC.numPassesText = pinInfo[index!]["numLeft"] as? Int
-        payVC.address = pinInfo[index!]["address"] as? String
-        payVC.city = pinInfo[index!]["city"] as? String
-        payVC.state = pinInfo[index!]["state"] as? String
-        payVC.zipCode = pinInfo[index!]["zipCode"] as? String
-    }
-    
+
     // Function to add custom pins to the mapview
     private func addPins() {
         // Call our scan here, and use the results to make new pins
@@ -415,6 +498,217 @@ class MapSearchVC: UIViewController {
                 self.mapView.addSubview(self.button)
             }
         }
+    }
+    
+    // Function that handles updating a Bar's remaining passes
+    func updatePasses() {
+        let dynamoDBObjectMapper = AWSDynamoDBObjectMapper.default()
+        let barItemId = pinInfo[index!]["rangeKey"] as? String
+        
+        dynamoDBObjectMapper.load(Bars.self, hashKey: barName, rangeKey:
+            barItemId).continueWith(block: { (task:AWSTask<AnyObject>!) -> Any? in
+                if let error = task.error as NSError? {
+                    print("The request failed. Error: \(error)")
+                } else if let resultBook = task.result as? Bars {
+                    // Update our variable to current value
+                    self.numPassesLeft = resultBook._numPassesLeft! as? Int
+                    // Here we can also update the label itself
+                    DispatchQueue.main.async {
+                        self.popupNumPassesLabel.text = "\((resultBook._numPassesLeft! as? Int)!) passes left"
+                    }
+                }
+                return nil
+            })
+    }
+    
+    @IBAction func payBtnClicked(_ sender: Any) {
+        // First we get the user's unique braintree id
+        getUser()
+        // Then we can use the results of this to handle payments processing
+        dispatchGroup.notify(queue: .main) {
+            // Start running the process in the background
+            DispatchQueue.global().async {
+                // Request the task assertion and save the ID.
+                self.backgroundTask = UIApplication.shared.beginBackgroundTask (withName: "Finish Network Tasks") {
+                    // End the task if time expires.
+                    UIApplication.shared.endBackgroundTask(self.backgroundTask!)
+                    self.backgroundTask = UIBackgroundTaskIdentifier.invalid
+                }
+                // Perform the actual task
+                self.handleCustomerCreation(userId: self.braintree!)
+                self.fetchClientToken()
+                
+                // End the task assertion.
+                UIApplication.shared.endBackgroundTask(self.backgroundTask!)
+                self.backgroundTask = UIBackgroundTaskIdentifier.invalid
+            }
+        }
+    }
+    
+    // Function to handle finding the braintreeId of the current user
+    func getUser() {
+        // Create a query expression
+        self.dispatchGroup.enter()
+        let dynamoDbObjectMapper = AWSDynamoDBObjectMapper.default()
+        let customerItem: Customer = Customer();
+        customerItem._userId = AWSIdentityManager.default().identityId
+        dynamoDbObjectMapper.load(Customer.self, hashKey: customerItem._userId!,
+                                  rangeKey: nil, completionHandler: {
+                                    (objectModel: AWSDynamoDBObjectModel?, error: Error?) -> Void in
+                                    if let error = error {
+                                        print("Amazon DynamoDB Read Error: \(error)")
+                                        return
+                                    }
+                                    else if let loadedCustomer = objectModel as? Customer{
+                                        self.braintree = loadedCustomer._braintreeId!
+                                    }
+                                    self.dispatchGroup.leave()
+        })
+    }
+    
+    // This function serves to ensure that the customer exists before fetching a client token
+    func handleCustomerCreation(userId: NSNumber) {
+        let createURL = URL(string: "https://mysterious-brook-47208.herokuapp.com/create")!
+        var request = URLRequest(url: createURL)
+        // Save the current user in a variable
+        // Make the body with the payment_method_nonce and the amount
+        request.httpBody = "customerId=\(userId.stringValue)".data(using: String.Encoding.utf8)
+        request.httpMethod = "POST"
+        
+        URLSession.shared.dataTask(with: request) { (data, response, error) -> Void in
+            // TODO: Handle success or failure
+            let _ = String(data: data!, encoding: String.Encoding.utf8)
+            }.resume()
+    }
+    
+    // Braintree function for Venmo payments through dropin UI which collects
+    // customer's payment information and sends a nonce to your server
+    func showDropIn(token: String) {
+        let request =  BTDropInRequest()
+        request.vaultManager = true
+        request.paypalDisabled = true
+        let dropIn = BTDropInController(authorization: token, request: request)
+        { (controller, result, error) in
+            if (error != nil) {
+                print("ERROR")
+            } else if (result?.isCancelled == true) {
+                print("CANCELLED")
+            } else if result != nil {
+                // STEP 4: Send payment nonce to our server
+                // This step acts after the user submits all of their payment info and hits submit
+                // When the user hits submit/pay, their information is processed by the Braintree
+                // servers and then the servers return a payment nonce, which we can use to pass
+                // into the postNonceToServer() function below.
+                let cost: Double = 10.99
+                // If the user is paying with Venmo, we need to cast their nonce into a BTVenmoAccountNonce
+                // and then use the username property instead of the typical card transaction nonce
+                if (result!.paymentOptionType.rawValue == 17) {
+                    // Check the below line to ensure that the username property of
+                    // the VenmoAccountNonce is what should be passed in here
+                    self.postNonceToServer(paymentMethodNonce: result?.paymentMethod?.nonce ?? "", amount: cost, venue: "\(self.barName),\(self.barItemId!)")
+                } else {
+                    self.postNonceToServer(paymentMethodNonce: result?.paymentMethod?.nonce ?? "", amount: cost, venue: "\(self.barName),\(self.barItemId!)")
+                }
+            }
+            controller.dismiss(animated: true, completion: nil)
+        }
+        BTUIKAppearance.darkTheme()
+        self.present(dropIn!, animated: true, completion: nil)
+    }
+    
+    // Function to fetch a client token from the server
+    func fetchClientToken() {
+        // STEP 1: Front-end requests a client token from the server and sets up the client-side SDK
+        let clientTokenURL = NSURLComponents(string: "https://mysterious-brook-47208.herokuapp.com/client_token")!
+        // Add query items to the GET request to allow data transferring in the form of customerId
+        clientTokenURL.queryItems = [URLQueryItem(name: "userId", value: braintree?.stringValue)]
+        // Create the URLRequest and downcast the NSURLComponents to a URL
+        let clientTokenRequest = URLRequest(url: clientTokenURL.url!)
+        
+        URLSession.shared.dataTask(with: clientTokenRequest as URLRequest) { (data, response, error) -> Void in
+            let clientToken = String(data: data!, encoding: String.Encoding.utf8)
+            // Present drop in
+            self.showDropIn(token: clientToken ?? "nil")
+            }.resume()
+    }
+    
+    // This function handles altering the databases when a user purchases a new pass
+    func alterDatabase() {
+        // First create an instance of the object mapper
+        let dynamoDBObjectMapper = AWSDynamoDBObjectMapper.default()
+        // This first retreival and write will decrement the number of remaining passes for the given bar
+        dynamoDBObjectMapper.load(Bars.self, hashKey: self.barName, rangeKey: self.barItemId).continueWith(block: { (task:AWSTask<AnyObject>!) -> Void in
+            if let error = task.error as NSError? {
+                print("The request failed. Error: \(error)")
+            } else if let resultBar = task.result as? Bars {
+                // We can now change the number of passes on the given bar to one less than before
+                resultBar._numPassesLeft = Int(truncating: resultBar._numPassesLeft!) - 1 as NSNumber
+                // Now that we have retreived the element, we can save it back into the database
+                dynamoDBObjectMapper.save(resultBar).continueWith(block: { (task:AWSTask<AnyObject>!) -> Void in
+                    if let error = task.error as NSError? {
+                        print("The request failed. Error: \(error)")
+                    }
+                })
+            }
+        })
+        // This second retreival will increment the number of active passes for the logged in user
+        // This first block is handling the retreival of the current customer in the database
+        let customerItem: Customer = Customer();
+        customerItem._userId = AWSIdentityManager.default().identityId
+        dynamoDBObjectMapper.load(Customer.self, hashKey: customerItem._userId!,
+                                  rangeKey: nil, completionHandler: {
+                                    (objectModel: AWSDynamoDBObjectModel?, error: Error?) -> Void in
+                                    if let error = error {
+                                        print("Amazon DynamoDB Read Error: \(error)")
+                                        return
+                                    }
+                                    else if let customer = objectModel as? Customer {
+                                        let newPass: String = self.barName + "," + self.barItemId!
+                                        customer._activeTrips?.insert(newPass)
+                                        customer._tripsTaken = Int(truncating: customer._tripsTaken!) + 1 as NSNumber
+                                        // Now that we have retreived the Customer, we can save it back into the database
+                                        dynamoDBObjectMapper.save(customer).continueWith(block: { (task:AWSTask<AnyObject>!) -> Void in
+                                            if let error = task.error as NSError? {
+                                                print("The request failed. Error: \(error)")
+                                            }
+                                        })
+                                    }
+        })
+    }
+    
+    // Sends the payment nonce to the server via a post request on the /payment-methods route
+    func postNonceToServer(paymentMethodNonce: String, amount: Double, venue: String) {
+        let paymentURL = URL(string: "https://mysterious-brook-47208.herokuapp.com/payment-methods")!
+        var request = URLRequest(url: paymentURL)
+        // Handle device data collection
+        let deviceData = PPDataCollector.collectPayPalDeviceData()
+        // Make the body with the payment_method_nonce and the amount
+        request.httpBody = "nonce=\(paymentMethodNonce)&amount=\(amount)&venue=\(venue)&device_data=\(deviceData)".data(using: String.Encoding.utf8)
+        request.httpMethod = "POST"
+        
+        URLSession.shared.dataTask(with: request) { (data, response, error) -> Void in
+            // TODO: Handle success or failure
+            let result = String(data: data!, encoding: String.Encoding.utf8)
+            // Show the client their transaction results
+            // If the string is empty, we can assume it's false
+            let transMessage = (result == "true") ? "Your payment was processed successfully!" : "Oops, something went wrong with your payment, please try again"
+            let alert = UIAlertController(title: "Transaction Status", message: transMessage, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: nil))
+            self.present(alert, animated: true)
+            // Now that the user has paid, if the transaction was successful, we
+            // can add their new pass to their activePass set and subtract a remaining pass
+            // from the selected bar
+            if (result == "true") {
+                // Continue to perform db operations (back-end) and UI changes to reflect new pass (front-end)
+                self.alterDatabase()
+                self.updatePasses()
+                // Now that the user has bought a pass successfully, we should make sure they
+                // don't accidentally buy a second pass and disable the pay button on this screen
+                self.popupPayBtn.isEnabled = false
+            }
+        }.resume()
+        // Hide the view
+        self.popupView.isHidden = true
     }
 }
 

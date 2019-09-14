@@ -10,7 +10,6 @@
 		1EF4BBAF8E1314AD1B103805 /* Pods_BarHop.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6454501B7B68AEF7AE8CD7B8 /* Pods_BarHop.framework */; };
 		388839B0F42A3C1C5E694C2D /* Pods_BarHopTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5D202D4ED592C981B7CDAA5 /* Pods_BarHopTests.framework */; };
 		A1893E192280DE5D008473C7 /* MapSearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1893E182280DE5D008473C7 /* MapSearchVC.swift */; };
-		A1A642FE22AC8EC30004F0B0 /* PayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A642FD22AC8EC30004F0B0 /* PayViewController.swift */; };
 		A1CE3F6E22ADCDE2007268EA /* Screen Shot 2018-12-27 at 5.00.02 PM.png in Resources */ = {isa = PBXBuildFile; fileRef = A1CE3F6922ADCDE2007268EA /* Screen Shot 2018-12-27 at 5.00.02 PM.png */; };
 		A1CE3F6F22ADCDE2007268EA /* Screen Shot 2018-12-27 at 4.56.00 PM.png in Resources */ = {isa = PBXBuildFile; fileRef = A1CE3F6A22ADCDE2007268EA /* Screen Shot 2018-12-27 at 4.56.00 PM.png */; };
 		A1CE3F7022ADCDE2007268EA /* Screen Shot 2018-12-27 at 4.38.47 PM.png in Resources */ = {isa = PBXBuildFile; fileRef = A1CE3F6B22ADCDE2007268EA /* Screen Shot 2018-12-27 at 4.38.47 PM.png */; };
@@ -55,7 +54,6 @@
 		6454501B7B68AEF7AE8CD7B8 /* Pods_BarHop.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BarHop.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		83E6392AB7F36F4E69E100AA /* Pods-BarHop.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BarHop.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BarHop/Pods-BarHop.debug.xcconfig"; sourceTree = "<group>"; };
 		A1893E182280DE5D008473C7 /* MapSearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapSearchVC.swift; sourceTree = "<group>"; };
-		A1A642FD22AC8EC30004F0B0 /* PayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayViewController.swift; sourceTree = "<group>"; };
 		A1CE3F6922ADCDE2007268EA /* Screen Shot 2018-12-27 at 5.00.02 PM.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Screen Shot 2018-12-27 at 5.00.02 PM.png"; sourceTree = "<group>"; };
 		A1CE3F6A22ADCDE2007268EA /* Screen Shot 2018-12-27 at 4.56.00 PM.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Screen Shot 2018-12-27 at 4.56.00 PM.png"; sourceTree = "<group>"; };
 		A1CE3F6B22ADCDE2007268EA /* Screen Shot 2018-12-27 at 4.38.47 PM.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Screen Shot 2018-12-27 at 4.38.47 PM.png"; sourceTree = "<group>"; };
@@ -191,7 +189,6 @@
 				D3DDFAD921D081910071B437 /* LaunchScreen.storyboard */,
 				D3DDFAD421D0818F0071B437 /* Main.storyboard */,
 				A1893E182280DE5D008473C7 /* MapSearchVC.swift */,
-				A1A642FD22AC8EC30004F0B0 /* PayViewController.swift */,
 				A1D96B352314CCAB00D00FBC /* RegisterVC.swift */,
 			);
 			path = BarHop;
@@ -437,7 +434,6 @@
 			files = (
 				A1893E192280DE5D008473C7 /* MapSearchVC.swift in Sources */,
 				D31F281F22EA77C8007B9F27 /* ActivePassTableViewCell.swift in Sources */,
-				A1A642FE22AC8EC30004F0B0 /* PayViewController.swift in Sources */,
 				D31F282322F11E22007B9F27 /* ActivePassesViewController.swift in Sources */,
 				D334D11721E3C59800A3046B /* Bars.swift in Sources */,
 				A1D96B362314CCAB00D00FBC /* RegisterVC.swift in Sources */,

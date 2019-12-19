@@ -40,7 +40,6 @@
                                                             </state>
                                                             <connections>
                                                                 <action selector="redeemBtnClicked:" destination="pbh-jn-Wxy" eventType="touchUpInside" id="xoF-G7-ML4"/>
-                                                                <segue destination="zul-IS-rbc" kind="show" id="Be0-ue-Y47"/>
                                                             </connections>
                                                         </button>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="WjV-oy-GmQ">
@@ -78,6 +77,7 @@
                                                     <outlet property="barAddressLabel" destination="T6q-nh-v5m" id="amZ-7D-NKe"/>
                                                     <outlet property="barNameLabel" destination="8rS-sd-vE1" id="aHt-ed-qgb"/>
                                                     <outlet property="redeemBtn" destination="09g-HP-G7D" id="wh4-Rw-2ki"/>
+                                                    <segue destination="zul-IS-rbc" kind="show" identifier="redeemPassViewControllerSegue" id="r1r-zE-bvK"/>
                                                 </connections>
                                             </tableViewCell>
                                         </prototypes>

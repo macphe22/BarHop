@@ -23,7 +23,18 @@ class ActivePassesViewController: UIViewController {
     
     let dispatchGroup = DispatchGroup()
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destinationViewController = segue.destination as! RedeemPassViewController
+//        print((type(of: sender)))
+        
+        print("here")
+        let activePassTableViewCell = sender as! ActivePassTableViewCell
+        destinationViewController.barName = activePassTableViewCell.barNameLabel.text
+        
+    }
+    
     override func viewDidLoad() {
+        self.tableView.allowsSelection = true
         super.viewDidLoad()
         // Set up navigation bar logo
         let logoImage = UIImage(named: "NavBarLogo")
@@ -163,6 +174,7 @@ class ActivePassesViewController: UIViewController {
 }
 
 extension ActivePassesViewController: UITableViewDataSource, UITableViewDelegate {
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -192,5 +204,10 @@ extension ActivePassesViewController: UITableViewDataSource, UITableViewDelegate
             cell.barAddressLabel.text = self.passAddress
         }
         return cell
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let selectedActivePass = self.activePasses[indexPath.row]
+        guard let cell = tableView.cellForRow(at: indexPath) else { return }
+        self.performSegue(withIdentifier: "redeemPassViewControllerSegue", sender: cell)
     }
 }

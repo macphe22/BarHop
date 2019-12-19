@@ -34,7 +34,10 @@ class ActivePassTableViewCell: UITableViewCell {
     @IBAction func redeemBtnClicked(_ sender: Any) {
         let tableView = ActivePassesViewController()
         tableView.redeemPass(bar: barUniqueId!, index: indexPath!)
+        // tableView.prepare(for: <#T##UIStoryboardSegue#>, sender: <#T##Any?#>)
     }
+    
+    
 }
 
 // Extension used for finding parent of an object

@@ -27,7 +27,7 @@ class ActivePassesViewController: UIViewController {
         let destinationViewController = segue.destination as! RedeemPassViewController
 //        print((type(of: sender)))
         
-        print("here")
+//        print("here")
         let activePassTableViewCell = sender as! ActivePassTableViewCell
         destinationViewController.barName = activePassTableViewCell.barNameLabel.text
         
@@ -206,8 +206,7 @@ extension ActivePassesViewController: UITableViewDataSource, UITableViewDelegate
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let selectedActivePass = self.activePasses[indexPath.row]
-        guard let cell = tableView.cellForRow(at: indexPath) else { return }
-        self.performSegue(withIdentifier: "redeemPassViewControllerSegue", sender: cell)
+//        guard let cell = tableView.cellForRow(at: indexPath) else { return }
+//        self.performSegue(withIdentifier: "redeemPassViewControllerSegue", sender: cell)
     }
 }

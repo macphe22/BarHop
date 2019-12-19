@@ -128,15 +128,66 @@
                     <view key="view" contentMode="scaleToFill" id="BIe-PF-Rp1">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="574"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ekf-I1-dgb">
+                                <rect key="frame" x="25" y="429" width="325" height="90"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="90" id="wvE-A0-bgm"/>
+                                </constraints>
+                                <state key="normal" title="Redeem">
+                                    <color key="titleColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                    <color key="titleShadowColor" cocoaTouchSystemColor="lightTextColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="redeemButton:" destination="zul-IS-rbc" eventType="touchUpInside" id="4UG-QO-dwp"/>
+                                </connections>
+                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="170" translatesAutoresizingMaskIntoConstraints="NO" id="xTb-pS-7PY">
+                                <rect key="frame" x="25" y="0.0" width="325" height="211"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FNE-Ug-nul">
+                                        <rect key="frame" x="0.0" y="0.0" width="325" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vgO-9e-cms">
+                                        <rect key="frame" x="0.0" y="190.5" width="325" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="vgO-9e-cms" firstAttribute="leading" secondItem="xTb-pS-7PY" secondAttribute="leading" id="LxF-ra-qsF"/>
+                                    <constraint firstItem="FNE-Ug-nul" firstAttribute="leading" secondItem="xTb-pS-7PY" secondAttribute="leading" id="TjJ-n4-kSY"/>
+                                    <constraint firstAttribute="trailing" secondItem="FNE-Ug-nul" secondAttribute="trailing" id="oaF-cw-WQi"/>
+                                    <constraint firstItem="FNE-Ug-nul" firstAttribute="top" secondItem="xTb-pS-7PY" secondAttribute="top" constant="10" id="vo3-SY-Udc"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="ekf-I1-dgb" firstAttribute="leading" secondItem="OL5-BC-2Mb" secondAttribute="leading" constant="25" id="3b6-by-HOU"/>
+                            <constraint firstItem="xTb-pS-7PY" firstAttribute="leading" secondItem="OL5-BC-2Mb" secondAttribute="leading" constant="25" id="TxR-Ku-clT"/>
+                            <constraint firstItem="OL5-BC-2Mb" firstAttribute="bottom" secondItem="ekf-I1-dgb" secondAttribute="bottom" constant="55" id="VsA-gw-6Ri"/>
+                            <constraint firstItem="xTb-pS-7PY" firstAttribute="top" secondItem="OL5-BC-2Mb" secondAttribute="top" id="aLk-vS-Cpj"/>
+                            <constraint firstItem="OL5-BC-2Mb" firstAttribute="trailing" secondItem="ekf-I1-dgb" secondAttribute="trailing" constant="25" id="ydI-r7-sU0"/>
+                            <constraint firstItem="OL5-BC-2Mb" firstAttribute="trailing" secondItem="xTb-pS-7PY" secondAttribute="trailing" constant="25" id="zGF-yU-mk6"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="OL5-BC-2Mb"/>
                     </view>
                     <navigationItem key="navigationItem" id="RIB-nc-Opp"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" translucent="NO" prompted="NO"/>
+                    <connections>
+                        <outlet property="barNameLabel" destination="FNE-Ug-nul" id="7DV-zw-urK"/>
+                        <outlet property="instructionLabel" destination="vgO-9e-cms" id="J0w-CY-dFe"/>
+                        <outlet property="redeemButtonOutlet" destination="ekf-I1-dgb" id="vzN-se-gO2"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dlJ-lO-xIq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4716" y="-947"/>
+            <point key="canvasLocation" x="4716" y="-985"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="S7Q-f8-72U">

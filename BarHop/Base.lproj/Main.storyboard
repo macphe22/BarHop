@@ -13,14 +13,14 @@
             <objects>
                 <viewController title="Active Passes" id="ngD-pB-ts6" customClass="ActivePassesViewController" customModule="BarHop" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8G0-4M-KOR">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="574"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="WuZ-SR-zfS">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="610"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="659"/>
                                 <subviews>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="90" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="T2D-ki-3FR">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="610"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="659"/>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="separatorColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="sectionIndexBackgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -90,7 +90,7 @@
                                 </constraints>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="All passes expire at 2 am or the given venue's closing time" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OZj-r2-9R9">
-                                <rect key="frame" x="0.0" y="538" width="375" height="36"/>
+                                <rect key="frame" x="0.0" y="587" width="375" height="36"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="36" id="hmR-cM-Wdh"/>
                                 </constraints>
@@ -126,11 +126,11 @@
             <objects>
                 <viewController id="zul-IS-rbc" customClass="RedeemPassViewController" customModule="BarHop" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="BIe-PF-Rp1">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="574"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ekf-I1-dgb">
-                                <rect key="frame" x="25" y="429" width="325" height="90"/>
+                                <rect key="frame" x="25" y="478" width="325" height="90"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="90" id="wvE-A0-bgm"/>
                                 </constraints>
@@ -140,6 +140,7 @@
                                 </state>
                                 <connections>
                                     <action selector="redeemButton:" destination="zul-IS-rbc" eventType="touchUpInside" id="4UG-QO-dwp"/>
+                                    <segue destination="DgP-k0-tEu" kind="show" id="VTW-bw-wBN"/>
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="170" translatesAutoresizingMaskIntoConstraints="NO" id="xTb-pS-7PY">
@@ -188,6 +189,46 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dlJ-lO-xIq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4716" y="-985"/>
+        </scene>
+        <!--Redeemed Pass Modal View Controller-->
+        <scene sceneID="N2O-8r-Bqb">
+            <objects>
+                <viewController modalPresentationStyle="pageSheet" id="DgP-k0-tEu" customClass="RedeemedPassModalViewController" customModule="BarHop" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="X9n-TT-zGS">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your pass has been successfully redeemed!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pDA-1l-jEu">
+                                <rect key="frame" x="25" y="95" width="325" height="41"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YNf-lV-RGg">
+                                <rect key="frame" x="168" y="211" width="39" height="30"/>
+                                <state key="normal" title="Close"/>
+                                <connections>
+                                    <segue destination="ngD-pB-ts6" kind="show" id="9gC-Am-dgx"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="YNf-lV-RGg" firstAttribute="top" secondItem="pDA-1l-jEu" secondAttribute="bottom" constant="75" id="Epl-Ft-HD0"/>
+                            <constraint firstItem="pDA-1l-jEu" firstAttribute="top" secondItem="JUt-9a-ydv" secondAttribute="top" constant="95" id="MuC-w5-lum"/>
+                            <constraint firstItem="JUt-9a-ydv" firstAttribute="trailing" secondItem="YNf-lV-RGg" secondAttribute="trailing" constant="168" id="S0b-6s-1BV"/>
+                            <constraint firstItem="pDA-1l-jEu" firstAttribute="leading" secondItem="JUt-9a-ydv" secondAttribute="leading" constant="25" id="Zc5-8q-z9c"/>
+                            <constraint firstItem="JUt-9a-ydv" firstAttribute="trailing" secondItem="pDA-1l-jEu" secondAttribute="trailing" constant="25" id="pKh-LK-ZH3"/>
+                            <constraint firstItem="YNf-lV-RGg" firstAttribute="leading" secondItem="JUt-9a-ydv" secondAttribute="leading" constant="168" id="rh3-54-b6E"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="JUt-9a-ydv"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="ADk-xV-OrF"/>
+                    <value key="contentSizeForViewInPopover" type="size" width="300" height="600"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Uhn-J4-yqL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5480.8000000000002" y="-985.45727136431788"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="S7Q-f8-72U">
@@ -648,4 +689,8 @@
         <image name="IconTabBar1" width="13.333333015441895" height="20"/>
         <image name="IconTabBar2" width="20" height="13.333333015441895"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="VTW-bw-wBN"/>
+        <segue reference="9gC-Am-dgx"/>
+    </inferredMetricsTieBreakers>
 </document>

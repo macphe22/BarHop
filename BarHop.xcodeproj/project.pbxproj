@@ -24,7 +24,8 @@
 		D334D11321DEAA5600A3046B /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D334D11221DEAA5600A3046B /* Customer.swift */; };
 		D334D11721E3C59800A3046B /* Bars.swift in Sources */ = {isa = PBXBuildFile; fileRef = D334D11621E3C59800A3046B /* Bars.swift */; };
 		D3DBADF223AADB0400796B2A /* RedeemPassViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DBADF123AADB0400796B2A /* RedeemPassViewController.swift */; };
-		D3DBADF623B6805200796B2A /* RedeemedPassModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DBADF523B6805200796B2A /* RedeemedPassModalViewController.swift */; };
+		D3DBADF823D39CAB00796B2A /* RedeemedPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DBADF723D39CAB00796B2A /* RedeemedPopUpViewController.swift */; };
+		D3DBADFA23D3A5AB00796B2A /* RedeemedPassModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DBADF923D3A5AB00796B2A /* RedeemedPassModalViewController.swift */; };
 		D3DDFAD121D0818F0071B437 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DDFAD021D0818F0071B437 /* AppDelegate.swift */; };
 		D3DDFAD621D0818F0071B437 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D3DDFAD421D0818F0071B437 /* Main.storyboard */; };
 		D3DDFAD821D081910071B437 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3DDFAD721D081910071B437 /* Assets.xcassets */; };
@@ -74,7 +75,8 @@
 		D334D11221DEAA5600A3046B /* Customer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Customer.swift; sourceTree = "<group>"; };
 		D334D11621E3C59800A3046B /* Bars.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bars.swift; sourceTree = "<group>"; };
 		D3DBADF123AADB0400796B2A /* RedeemPassViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedeemPassViewController.swift; sourceTree = "<group>"; };
-		D3DBADF523B6805200796B2A /* RedeemedPassModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedeemedPassModalViewController.swift; sourceTree = "<group>"; };
+		D3DBADF723D39CAB00796B2A /* RedeemedPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedeemedPopUpViewController.swift; sourceTree = "<group>"; };
+		D3DBADF923D3A5AB00796B2A /* RedeemedPassModalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RedeemedPassModalViewController.swift; sourceTree = "<group>"; };
 		D3DDFACD21D0818F0071B437 /* BarHop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BarHop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3DDFAD021D0818F0071B437 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D3DDFAD521D0818F0071B437 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -192,10 +194,11 @@
 				D3DDFADC21D081910071B437 /* Info.plist */,
 				D3DDFAD921D081910071B437 /* LaunchScreen.storyboard */,
 				D3DDFAD421D0818F0071B437 /* Main.storyboard */,
+				D3DBADF723D39CAB00796B2A /* RedeemedPopUpViewController.swift */,
 				A1893E182280DE5D008473C7 /* MapSearchVC.swift */,
 				A1D96B352314CCAB00D00FBC /* RegisterVC.swift */,
 				D3DBADF123AADB0400796B2A /* RedeemPassViewController.swift */,
-				D3DBADF523B6805200796B2A /* RedeemedPassModalViewController.swift */,
+				D3DBADF923D3A5AB00796B2A /* RedeemedPassModalViewController.swift */,
 			);
 			path = BarHop;
 			sourceTree = "<group>";
@@ -443,9 +446,10 @@
 				D31F281F22EA77C8007B9F27 /* ActivePassTableViewCell.swift in Sources */,
 				D31F282322F11E22007B9F27 /* ActivePassesViewController.swift in Sources */,
 				D334D11721E3C59800A3046B /* Bars.swift in Sources */,
-				D3DBADF623B6805200796B2A /* RedeemedPassModalViewController.swift in Sources */,
 				A1D96B362314CCAB00D00FBC /* RegisterVC.swift in Sources */,
+				D3DBADFA23D3A5AB00796B2A /* RedeemedPassModalViewController.swift in Sources */,
 				D3DDFAD121D0818F0071B437 /* AppDelegate.swift in Sources */,
+				D3DBADF823D39CAB00796B2A /* RedeemedPopUpViewController.swift in Sources */,
 				D334D11321DEAA5600A3046B /* Customer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

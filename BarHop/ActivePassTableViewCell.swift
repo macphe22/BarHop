@@ -31,8 +31,16 @@ class ActivePassTableViewCell: UITableViewCell {
     // Handle the redeem button being clicked
     // We must both remove the pass from the user's profile, and in real-time,
     // remove the pass from the table view
+    @available(iOS 13.0, *)
     @IBAction func redeemBtnClicked(_ sender: Any) {
+        
+//        let popOverVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "redeemedPopUpID") as! RedeemedPopUpViewController
+//
         let tableView = ActivePassesViewController()
+//        tableView.addChild(popOverVC)
+//        popOverVC.view.frame = tableView.view.frame
+//        tableView.view.addSubview(popOverVC.view)
+//        popOverVC.didMove(toParent: tableView)
         tableView.redeemPass(bar: barUniqueId!, index: indexPath!)
         // tableView.prepare(for: <#T##UIStoryboardSegue#>, sender: <#T##Any?#>)
     }

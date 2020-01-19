@@ -13,7 +13,13 @@ class RedeemPassViewController: UIViewController {
     var barName: String? = ""
     let dispatchGroup = DispatchGroup()
     @IBAction func redeemButton(_ sender: UIButton) {
-        removePassFromCustomer(bar: barName!)
+        // removePassFromCustomer(bar: barName!)
+        let popOverVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "redeemedPopUpID") as! RedeemedPopUpViewController
+        self.addChild(popOverVC)
+        popOverVC.view.frame = self.view.frame
+        self.view.addSubview(popOverVC.view)
+        popOverVC.didMove(toParent: self)
+        
     }
     override func viewDidLoad() {
         super.viewDidLoad()

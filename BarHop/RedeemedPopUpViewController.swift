@@ -13,11 +13,15 @@ class RedeemedPopUpViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.black.withAlphaComponent(0.8)
-        self.view.layer.cornerRadius = 8
+        self.redeemPopUpView.layer.cornerRadius = 8
+        self.redeemPopUpView.layer.borderWidth = 0.8
+        self.redeemPopUpView.layer.borderColor = UIColor.white.cgColor
+        self.redeemPopUpView.backgroundColor = UIColor.black
         // Do any additional setup after loading the view.
     }
     
-
+    @IBOutlet weak var redeemPopUpView: UIView!
+    
     @IBAction func closePopUp(_ sender: Any) {
         self.view.removeFromSuperview()
     }

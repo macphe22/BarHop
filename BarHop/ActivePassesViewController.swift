@@ -30,6 +30,7 @@ class ActivePassesViewController: UIViewController {
 //        print("here")
         let activePassTableViewCell = sender as! ActivePassTableViewCell
         destinationViewController.barName = activePassTableViewCell.barNameLabel.text
+        destinationViewController.barUniqueId = activePassTableViewCell.barUniqueId
         
     }
     

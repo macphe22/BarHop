@@ -11,9 +11,10 @@ import AWSAuthUI
 import AWSDynamoDB
 class RedeemPassViewController: UIViewController {
     var barName: String? = ""
+    var barUniqueId: String?
     let dispatchGroup = DispatchGroup()
     @IBAction func redeemButton(_ sender: UIButton) {
-        // removePassFromCustomer(bar: barName!)
+        removePassFromCustomer(bar: barUniqueId!)
         let popOverVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "redeemedPopUpID") as! RedeemedPopUpViewController
         self.addChild(popOverVC)
         popOverVC.view.frame = self.view.frame

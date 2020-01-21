@@ -17,6 +17,7 @@ class RedeemedPopUpViewController: UIViewController {
         self.redeemPopUpView.layer.borderWidth = 0.8
         self.redeemPopUpView.layer.borderColor = UIColor.white.cgColor
         self.redeemPopUpView.backgroundColor = UIColor.black
+        
         // Do any additional setup after loading the view.
     }
     

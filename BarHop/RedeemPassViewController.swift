@@ -20,6 +20,8 @@ class RedeemPassViewController: UIViewController {
         
         self.view.addSubview(popOverVC.view)
         popOverVC.didMove(toParent: self)
+//        let tableView = ActivePassesViewController()
+//        tableView.redeemPass(bar: <#T##String#>, index: <#T##IndexPath#>)
         
     }
     override func viewDidLoad() {

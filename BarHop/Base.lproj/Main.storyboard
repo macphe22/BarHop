@@ -32,16 +32,6 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="90"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="09g-HP-G7D">
-                                                            <rect key="frame" x="203" y="21" width="157" height="48"/>
-                                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
-                                                            <state key="normal" title="Redeem">
-                                                                <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                            </state>
-                                                            <connections>
-                                                                <action selector="redeemBtnClicked:" destination="pbh-jn-Wxy" eventType="touchUpInside" id="xoF-G7-ML4"/>
-                                                            </connections>
-                                                        </button>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="WjV-oy-GmQ">
                                                             <rect key="frame" x="15" y="11" width="180" height="68"/>
                                                             <subviews>
@@ -65,18 +55,13 @@
                                                     </subviews>
                                                     <constraints>
                                                         <constraint firstItem="WjV-oy-GmQ" firstAttribute="top" secondItem="Ajn-sd-w0U" secondAttribute="topMargin" id="6O7-XC-pHf"/>
-                                                        <constraint firstItem="09g-HP-G7D" firstAttribute="top" secondItem="Ajn-sd-w0U" secondAttribute="topMargin" constant="10" id="7PU-ot-Tpv"/>
-                                                        <constraint firstItem="09g-HP-G7D" firstAttribute="leading" secondItem="WjV-oy-GmQ" secondAttribute="trailing" constant="8" id="KRn-CN-o6a"/>
                                                         <constraint firstItem="WjV-oy-GmQ" firstAttribute="leading" secondItem="Ajn-sd-w0U" secondAttribute="leadingMargin" id="N5r-j9-sGC"/>
-                                                        <constraint firstItem="09g-HP-G7D" firstAttribute="trailing" secondItem="Ajn-sd-w0U" secondAttribute="trailingMargin" id="QkC-CZ-yLv"/>
                                                         <constraint firstItem="WjV-oy-GmQ" firstAttribute="bottom" secondItem="Ajn-sd-w0U" secondAttribute="bottomMargin" id="jVf-xz-hor"/>
-                                                        <constraint firstAttribute="bottomMargin" secondItem="09g-HP-G7D" secondAttribute="bottom" constant="10" id="zjH-Do-48t"/>
                                                     </constraints>
                                                 </tableViewCellContentView>
                                                 <connections>
                                                     <outlet property="barAddressLabel" destination="T6q-nh-v5m" id="amZ-7D-NKe"/>
                                                     <outlet property="barNameLabel" destination="8rS-sd-vE1" id="aHt-ed-qgb"/>
-                                                    <outlet property="redeemBtn" destination="09g-HP-G7D" id="wh4-Rw-2ki"/>
                                                     <segue destination="zul-IS-rbc" kind="show" identifier="redeemPassViewControllerSegue" id="r1r-zE-bvK"/>
                                                 </connections>
                                             </tableViewCell>

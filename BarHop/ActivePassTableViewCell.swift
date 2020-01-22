@@ -22,10 +22,11 @@ class ActivePassTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        self.accessoryType = .disclosureIndicator
         // Initialization code
-        redeemBtn.setTitleColor(.white, for: .normal)
-        redeemBtn.layer.backgroundColor = UIColor(ciColor: .blue).cgColor
-        redeemBtn.layer.cornerRadius = 5
+//        redeemBtn.setTitleColor(.white, for: .normal)
+//        redeemBtn.layer.backgroundColor = UIColor(ciColor: .blue).cgColor
+//        redeemBtn.layer.cornerRadius = 5
     }
     
     // Handle the redeem button being clicked
